@@ -179,15 +179,15 @@ local function displayCalls()
 
 	local y = 3
 	
-	local types = parser.getEntityByTypes()
+	local calls = parser.getAverageCalls()
 	
 	for i = 1, 5 do
 		monitor.setCursorPos(nameX, y)
-		monitor.write(types[i].name)
+		monitor.write(calls[i].name)
 		monitor.setCursorPos(timeX, y)
-		monitor.write(types[i].time)
+		monitor.write(calls[i].time)
 		monitor.setCursorPos(callX, y)
-		monitor.write(types[i].calls)
+		monitor.write(calls[i].calls)
 		y = y + 1
 	end
 end
