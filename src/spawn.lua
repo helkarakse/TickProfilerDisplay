@@ -42,22 +42,22 @@ while true do
 	monitor.setTextColor(colors.white)
 	 
 	--headers
-	monitor.setCursorPos(1,5)
+	monitor.setCursorPos(1,6)
 	monitor.write("Name:")
-	monitor.setCursorPos(25,5)
+	monitor.setCursorPos(25,6)
 	monitor.write("X - Y - Z:")
-	monitor.setCursorPos(40,5)
+	monitor.setCursorPos(40,6)
 	monitor.write("ServerLoad:")
-	monitor.setCursorPos(52,5)
+	monitor.setCursorPos(52,6)
 	monitor.write("Dimension:")
 	 
 	local singleEntities = parser.getSingleEntities()
 	for i = 1, 10 do
-		monitor.setCursorPos(1, i+5)
+		monitor.setCursorPos(1, i+6)
 		monitor.write(singleEntities[i].name)
-		monitor.setCursorPos(25, i+5)
+		monitor.setCursorPos(25, i+6)
 		monitor.write(singleEntities[i].position)
-		monitor.setCursorPos(40, i+5)
+		monitor.setCursorPos(40, i+6)
 		 
 		local percentage = tonumber(singleEntities[i].percent)
 		local percentageColour
@@ -73,7 +73,7 @@ while true do
 		monitor.write(percentage)
 		monitor.setTextColor(colors.white)
 		 
-		monitor.setCursorPos(52, i+5)
+		monitor.setCursorPos(52, i+6)
 		monitor.write(singleEntities[i].dimension)
 	end
 	
