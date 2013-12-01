@@ -84,6 +84,7 @@ local function displayEntities()
 end
 
 local function displayChunks()
+	functions.debug("displayChunks called")
 	local posX = 15
 	local timeX = 30
 	local percentX = 45
@@ -97,7 +98,9 @@ local function displayChunks()
 	monitor.write("%")
 
 	local y = 3
+	
 	local chunks = parser.getChunks()
+	functions.debug("Chunks: #", #chunks)
 	
 	for i = 1, 5 do
 		monitor.setCursorPos(posX, headerY)
