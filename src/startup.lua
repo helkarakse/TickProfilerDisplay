@@ -1,44 +1,49 @@
 --[[
  
-    MacroStartup Version 1.0 Beta
+    MacroStartup Version 1.1 Beta
     Do not modify, copy or distribute without permission of author
 	Helkarakse, 20130614
- 
+ 	
+ 	Changelog:
+ 	- 1.1 - Changed the startup code to pull latest copy from github instead of private server, 20131202
 ]]--
+
+-- File array of github links
+local fileArray = {
+	{link = "https://raw.github.com/helkarakse/TickProfilerDisplay/master/src/functions.lua", file = "functions"},
+	{link = "https://raw.github.com/helkarakse/TickProfilerDisplay/master/src/json.lua", file = "json"},
+	{link = "https://raw.github.com/helkarakse/TickProfilerDisplay/master/src/parser.lua", file = "parser"},
+	{link = "https://raw.github.com/helkarakse/TickProfilerDisplay/master/src/spawn.lua", file = "spawn"}
+}
+
+-- This filename is the file that will be executed
+local indexFile = "spawn"
+
+-- Set to true to overwrite files
+local overwrite = true
  
-local file = "main"
-local api = {"functions", "json"}
-local debug = true
- 
--- get code from remote server
+-- Helper function to pull latest file from server
 local function getProgram(link, filename)
-        print("Downloading '" .. filename .. "' file from server.")
-        local data = http.get(link)
-        if data then
-                print("File '" .. filename .. "' download complete.")
-                local file = fs.open(filename,"w")
-                file.write(data.readAll())
-                file.close()
-        end
+	print("Downloading '" .. filename .. "' file from server.")
+	
+	-- remove the file if override is true
+	if (overwrite == true) then
+		shell.run("rm " .. filename)
+	end
+	
+	-- get the latest copy
+	local data = http.get(link)
+	if data then
+    	print("File '" .. filename .. "' download complete.")
+		local file = fs.open(filename,"w")
+		file.write(data.readAll())
+		file.close()
+	end
 end
  
 -- download and start program
-for key, value in pairs(api) do
-        local link = "http://nimcuron.twilightparadox.com:8113/lua/lua.php?u=lua&p=codelua&pkg=api&f=" .. value
-        getProgram(link, value)
-end
- 
-local link = "http://nimcuron.twilightparadox.com:8113/lua/lua.php?u=lua&p=codelua&pkg=storage&f=" .. file
-if (debug == true) then
-        getProgram(link, file)
-end
- 
-if fs.exists(file) then
-        print("Starting primary process...")
-        shell.run(file)
-else
-        getProgram(link, file)
-        print("Starting primary process...")
-        shell.run(file)
+for i = 1, #fileArray do
+	getProgram(fileArray[i].link, fileArray[i].file)
 end
 
+shell.run(indexFile)
