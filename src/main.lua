@@ -129,6 +129,7 @@ local function displayScreen(id)
 	if (id == 1) then
 		displayEntities()
 	elseif (id == 2) then
+		displayChunks()
 	elseif (id == 3) then
 	elseif (id == 4) then
 	end
