@@ -15,6 +15,7 @@ local monitor, state
 local jsonFile = "data"
 local headerY = 6
 local displayY = 7
+local limit = 10
 
 -- Menu array (left side)
 local menuArray = {
@@ -101,7 +102,7 @@ local function displayEntities()
 	local y = displayY
 	local entities = parser.getSingleEntities()
 	
-	for i = 1, 5 do
+	for i = 1, limit do
 		monitor.setCursorPos(entityX, y)
 		monitor.write(entities[i].name)
 		monitor.setCursorPos(posX, y)
@@ -133,7 +134,7 @@ local function displayChunks()
 	local y = displayY
 	local chunks = parser.getChunks()
 	
-	for i = 1, 5 do
+	for i = 1, limit do
 		monitor.setCursorPos(posX, y)
 		monitor.write(chunks[i].positionX .. ", " .. chunks[i].positionZ)
 		monitor.setCursorPos(timeX, y)
@@ -161,7 +162,7 @@ local function displayTypes()
 	local y = displayY
 	local types = parser.getEntityByTypes()
 	
-	for i = 1, 5 do
+	for i = 1, limit do
 		monitor.setCursorPos(typeX, y)
 		monitor.write(types[i].type)
 		monitor.setCursorPos(timeX, y)
@@ -189,7 +190,7 @@ local function displayCalls()
 	local y = displayY
 	local calls = parser.getAverageCalls()
 	
-	for i = 1, 5 do
+	for i = 1, limit do
 		monitor.setCursorPos(nameX, y)
 		monitor.write(calls[i].name)
 		monitor.setCursorPos(timeX, y)
