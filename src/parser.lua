@@ -70,11 +70,11 @@ function getSingleEntities()
 		row.percent = value["%"]
 		row.time = value["Time/Tick"]
 		
-		local nameTable = explode(" ", value["Single Entity"])
+		local nameTable = functions.explode(" ", value["Single Entity"])
 		-- the first part of the name contains the actual entity name
 		row.name = nameTable[1]
 		
-		local dimTable = explode(":", value["Single Entity"])
+		local dimTable = functions.explode(":", value["Single Entity"])
 		row.dimension = dimTable[2]
 		
 		-- strip off the dimension from the position
@@ -101,7 +101,7 @@ function getChunks()
 		row.percent = value["%"]
 		row.time = value["Time/Tick"]
 		
-		local chunkTable = explode("\, ", value["Chunk"])
+		local chunkTable = functions.explode("\, ", value["Chunk"])
 		local chunkX = tonumber(chunkTable[1])
 		local chunkZ = tonumber(chunkTable[2])
 		
