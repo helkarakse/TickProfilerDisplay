@@ -24,6 +24,21 @@ local menuArray = {
 	{name = "Calls", screen = "calls"}
 }
 
+-- Returns the color for the percentage based on severity
+local function getPercentColor(percent)
+	local percentage = tonumber(percent)
+	local percentageColor
+	if (percentage >= 5) then
+		percentageColor = colors.red
+	elseif (percentage >= 3 and percentage < 5) then
+		percentageColor = colors.yellow
+	elseif (percentage >= 0 and percentage < 3) then
+		percentageColor = colors.green
+	end
+	
+	return percentageColor
+end
+
 -- Display
 local function displayHeader()
 	local tps = tonumber(parser.getTps())
@@ -37,13 +52,13 @@ local function displayHeader()
 	end
 	 
 	monitor.clear()
-	monitor.setCursorPos(1,1)
+	monitor.setCursorPos(2, 1)
 	monitor.write("OTE-Gaming Tickboard of Shame")
-	monitor.setCursorPos(1,2)
+	monitor.setCursorPos(2, 2)
 	monitor.write("Powered by Helk & Shot")
-	monitor.setCursorPos(1,4)
+	monitor.setCursorPos(2, 4)
 	monitor.write("Global TPS: ")
-	monitor.setCursorPos(13,4)
+	monitor.setCursorPos(13, 4)
 	monitor.setTextColor(tpsColour)
 	monitor.write(tps)
 	monitor.setTextColor(colors.white)
@@ -92,19 +107,9 @@ local function displayEntities()
 		monitor.setCursorPos(posX, y)
 		monitor.write(entities[i].position)
 		monitor.setCursorPos(percentX, y)
-		
-		local percentage = tonumber(entities[i].percent)
-		local percentageColor
-		if (percentage >= 5) then
-		        percentageColor = colors.red
-		elseif (percentage >= 3 and percentage < 5) then
-		        percentageColor = colors.yellow
-		elseif (percentage >= 0 and percentage < 3) then
-		        percentageColor = colors.green
-		end
 		 
-		monitor.setTextColor(percentageColor)
-		monitor.write(percentage)
+		monitor.setTextColor(getPercentColor(entities[i].percent))
+		monitor.write(entities[i].percent)
 		monitor.setTextColor(colors.white)
 		
 		monitor.setCursorPos(dimX, y)
@@ -134,7 +139,9 @@ local function displayChunks()
 		monitor.setCursorPos(timeX, y)
 		monitor.write(chunks[i].time)
 		monitor.setCursorPos(percentX, y)
+		monitor.setTextColor(getPercentColor(chunks[i].percent))
 		monitor.write(chunks[i].percent)
+		monitor.setTextColor(colors.white)
 		y = y + 1
 	end
 end
@@ -160,7 +167,9 @@ local function displayTypes()
 		monitor.setCursorPos(timeX, y)
 		monitor.write(types[i].time)
 		monitor.setCursorPos(percentX, y)
+		monitor.setTextColor(getPercentColor(types[i].percent))
 		monitor.write(types[i].percent)
+		monitor.setTextColor(colors.white)
 		y = y + 1
 	end
 end
