@@ -137,7 +137,31 @@ local function displayChunks()
 end
 
 local function displayTypes()
+	local typeX = 15
+	local timeX = 30
+	local percentX = 45
+	
+	local headerY = 2
+	monitor.setCursorPos(typeX, headerY)
+	monitor.write("Type:")
+	monitor.setCursorPos(timeX, headerY)
+	monitor.write("Time/Tick:")
+	monitor.setCursorPos(percentX, headerY)
+	monitor.write("%")
 
+	local y = 3
+	
+	local types = parser.getEntityByTypes()
+	
+	for i = 1, 5 do
+		monitor.setCursorPos(typeX, y)
+		monitor.write(types[i].type)
+		monitor.setCursorPos(timeX, y)
+		monitor.write(types[i].time)
+		monitor.setCursorPos(percentX, y)
+		monitor.write(types[i].percent)
+		y = y + 1
+	end
 end
 
 local function displayCalls()
@@ -157,6 +181,7 @@ local function displayScreen(id)
 	elseif (id == 2) then
 		displayChunks()
 	elseif (id == 3) then
+		displayTypes()
 	elseif (id == 4) then
 	end
 end
