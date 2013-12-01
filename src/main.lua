@@ -44,7 +44,17 @@ end
 
 local function displayTps()
 	local tps = parser.getTps()
+	local tpsColor
+	if (tps >= 18) then
+	        tpsColor = colors.green
+	elseif (tps >= 15 and tps < 18) then
+	        tpsColor = colors.yellow
+	elseif (tps < 15) then
+	        tpsColor = colors.red
+	end
+	
 	monitor.setCursorPos(2, 14)
+	monitor.setTextColor(tpsColor)
 	monitor.write("TPS: " .. tps)
 	monitor.setCursorPos(2, 15)
 	monitor.write("Helkarakse")
@@ -76,7 +86,21 @@ local function displayEntities()
 		monitor.setCursorPos(posX, y)
 		monitor.write(entities[i].position)
 		monitor.setCursorPos(percentX, y)
-		monitor.write(entities[i].percent)
+		
+		local percentage = tonumber(entities[i].percent)
+		local percentageColor
+		if (percentage >= 5) then
+		        percentageColor = colors.red
+		elseif (percentage >= 3 and percentage < 5) then
+		        percentageColor = colors.yellow
+		elseif (percentage >= 0 and percentage < 3) then
+		        percentageColor = colors.green
+		end
+		 
+		monitor.setTextColor(percentageColor)
+		monitor.write(percentage)
+		monitor.setTextColor(colors.white)
+		
 		monitor.setCursorPos(dimX, y)
 		monitor.write(entities[i].dimension)
 		y = y + 1
@@ -84,7 +108,6 @@ local function displayEntities()
 end
 
 local function displayChunks()
-	functions.debug("displayChunks called")
 	local posX = 15
 	local timeX = 30
 	local percentX = 45
@@ -100,7 +123,6 @@ local function displayChunks()
 	local y = 3
 	
 	local chunks = parser.getChunks()
-	functions.debug("Chunks: #", #chunks)
 	
 	for i = 1, 5 do
 		monitor.setCursorPos(posX, y)
