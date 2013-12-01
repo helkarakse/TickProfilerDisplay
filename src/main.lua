@@ -103,11 +103,11 @@ local function displayChunks()
 	functions.debug("Chunks: #", #chunks)
 	
 	for i = 1, 5 do
-		monitor.setCursorPos(posX, headerY)
+		monitor.setCursorPos(posX, y)
 		monitor.write(chunks[i].positionX .. ", " .. chunks[i].positionZ)
-		monitor.setCursorPos(timeX, headerY)
+		monitor.setCursorPos(timeX, y)
 		monitor.write(chunks[i].time)
-		monitor.setCursorPos(percentX, headerY)
+		monitor.setCursorPos(percentX, y)
 		monitor.write(chunks[i].percent)
 		y = y + 1
 	end
