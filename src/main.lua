@@ -52,9 +52,17 @@ local function displayTps()
 end
 
 local function displayEntities()
-	local x = 15
-	local y = 2
+	monitor.setCursorPos(15, 2)
+	monitor.write("Entity Name:")
+	monitor.setCursorPos(40, 2)
+	monitor.write("Position:")
+	monitor.setCursorPos(55, 2)
+	monitor.write("%")
+	monitor.setCursorPos(67, 2)
+	monitor.write("Dimension")
 	
+	local x = 15
+	local y = 3
 	local entities = parser.getSingleEntities()
 	
 	for i = 1, 5 do
