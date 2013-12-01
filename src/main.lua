@@ -66,14 +66,19 @@ local function displayEntities()
 	monitor.write("%")
 	monitor.setCursorPos(dimX, headerY)
 	monitor.write("Dimension")
-	
-	local x = 15
+
 	local y = 3
 	local entities = parser.getSingleEntities()
 	
 	for i = 1, 5 do
-		monitor.setCursorPos(x, y)
+		monitor.setCursorPos(entityX, y)
 		monitor.write(entities[i].name)
+		monitor.setCursorPos(posX, y)
+		monitor.write(entities[i].position)
+		monitor.setCursorPos(percentX, y)
+		monitor.write(entities[i].percent)
+		monitor.setCursorPos(dimX, y)
+		monitor.write(entities[i].dimension)
 		y = y + 1
 	end
 end
