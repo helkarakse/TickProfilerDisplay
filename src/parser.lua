@@ -5,7 +5,9 @@
 	Helkarakse, 20131128
 	
 	Changelog:
-	- 1.0 Added all the methods
+	- 1.1.1 Added dimension name resolution for nether, overworld and end - 20131201
+	- 1.1 Fixed the functions.explode call nil issue - 20131201
+	- 1.0 Added all the methods - 20131128
 	
 ]]
 
@@ -61,7 +63,7 @@ end
 -- SingleEntities
 -- Returns a table containing single entities that cause lag. 
 -- Each row is a table containing the following keys: 
--- percent: percentage of time/tick, time: time/tick, name: name of entity, position: position of entity, dimension: dimension containing entity
+-- percent: percentage of time/tick, time: time/tick, name: name of entity, position: position of entity, dimId: dimension id containing entity, dimension: formatted dimension text
 function getSingleEntities()
 	local returnTable = {}
 	
@@ -75,11 +77,21 @@ function getSingleEntities()
 		row.name = nameTable[1]
 		
 		local dimTable = functions.explode(":", value["Single Entity"])
-		row.dimension = dimTable[2]
+		row.dimId = dimTable[2]
+		
+		if (row.dimId == "1") then
+			row.dimension = "The End"
+		elseif (row.dimId == "0") then
+			row.dimension = "Overworld"
+		elseif (row.dimId == "-1") then
+			row.dimension = "Nether"
+		else
+			row.dimension = ""
+		end
 		
 		-- strip off the dimension from the position
 		local position = nameTable[2]
-		local dimCharCount = string.len(row.dimension)
+		local dimCharCount = string.len(row.dimId)
 		row.position = string.sub(position, 0, string.len(position) - (dimCharCount + 1))
 		
 		
