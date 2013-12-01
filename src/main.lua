@@ -52,13 +52,19 @@ local function displayTps()
 end
 
 local function displayEntities()
-	monitor.setCursorPos(15, 2)
+	local entityX = 15
+	local posX = 40
+	local percentX = 55
+	local dimX = 67
+	
+	local headerY = 2
+	monitor.setCursorPos(entityX, headerY)
 	monitor.write("Entity Name:")
-	monitor.setCursorPos(40, 2)
+	monitor.setCursorPos(posX, headerY)
 	monitor.write("Position:")
-	monitor.setCursorPos(55, 2)
+	monitor.setCursorPos(percentX, headerY)
 	monitor.write("%")
-	monitor.setCursorPos(67, 2)
+	monitor.setCursorPos(dimX, headerY)
 	monitor.write("Dimension")
 	
 	local x = 15
