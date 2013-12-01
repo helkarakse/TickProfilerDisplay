@@ -43,7 +43,7 @@ local function displayMenu(id)
 end
 
 local function displayTps()
-	local tps = parser.getTps()
+	local tps = tonumber(parser.getTps())
 	local tpsColor
 	if (tps >= 18) then
 	        tpsColor = colors.green
