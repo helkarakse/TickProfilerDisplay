@@ -13,6 +13,8 @@ os.loadAPI("parser")
 -- Variables
 local monitor, state
 local jsonFile = "data"
+local headerY = 6
+local displayY = 7
 
 -- Menu array (left side)
 local menuArray = {
@@ -49,7 +51,7 @@ end
 
 local function displayMenu(id)
 	local x = 2
-	local y = 5
+	local y = headerY
 	
 	for i = 1, #menuArray do
 		-- write first column
@@ -72,7 +74,6 @@ local function displayEntities()
 	local percentX = 55
 	local dimX = 67
 	
-	local headerY = 5
 	monitor.setCursorPos(entityX, headerY)
 	monitor.write("Entity Name:")
 	monitor.setCursorPos(posX, headerY)
@@ -82,7 +83,7 @@ local function displayEntities()
 	monitor.setCursorPos(dimX, headerY)
 	monitor.write("Dimension")
 
-	local y = 6
+	local y = displayY
 	local entities = parser.getSingleEntities()
 	
 	for i = 1, 5 do
@@ -117,7 +118,6 @@ local function displayChunks()
 	local timeX = 30
 	local percentX = 45
 	
-	local headerY = 5
 	monitor.setCursorPos(posX, headerY)
 	monitor.write("Position:")
 	monitor.setCursorPos(timeX, headerY)
@@ -125,8 +125,7 @@ local function displayChunks()
 	monitor.setCursorPos(percentX, headerY)
 	monitor.write("%")
 
-	local y = 6
-	
+	local y = displayY
 	local chunks = parser.getChunks()
 	
 	for i = 1, 5 do
@@ -145,7 +144,6 @@ local function displayTypes()
 	local timeX = 40
 	local percentX = 55
 	
-	local headerY = 5
 	monitor.setCursorPos(typeX, headerY)
 	monitor.write("Type:")
 	monitor.setCursorPos(timeX, headerY)
@@ -153,8 +151,7 @@ local function displayTypes()
 	monitor.setCursorPos(percentX, headerY)
 	monitor.write("%")
 
-	local y = 6
-	
+	local y = displayY
 	local types = parser.getEntityByTypes()
 	
 	for i = 1, 5 do
@@ -173,7 +170,6 @@ local function displayCalls()
 	local timeX = 40
 	local callX = 55
 	
-	local headerY = 5
 	monitor.setCursorPos(nameX, headerY)
 	monitor.write("Name:")
 	monitor.setCursorPos(timeX, headerY)
@@ -181,8 +177,7 @@ local function displayCalls()
 	monitor.setCursorPos(callX, headerY)
 	monitor.write("Average Calls")
 
-	local y = 6
-	
+	local y = displayY
 	local calls = parser.getAverageCalls()
 	
 	for i = 1, 5 do
