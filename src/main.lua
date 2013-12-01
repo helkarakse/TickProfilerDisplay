@@ -165,7 +165,31 @@ local function displayTypes()
 end
 
 local function displayCalls()
+	local nameX = 15
+	local timeX = 40
+	local callX = 55
+	
+	local headerY = 2
+	monitor.setCursorPos(nameX, headerY)
+	monitor.write("Name:")
+	monitor.setCursorPos(timeX, headerY)
+	monitor.write("Time/Tick:")
+	monitor.setCursorPos(callX, headerY)
+	monitor.write("Average Calls")
 
+	local y = 3
+	
+	local types = parser.getEntityByTypes()
+	
+	for i = 1, 5 do
+		monitor.setCursorPos(nameX, y)
+		monitor.write(types[i].name)
+		monitor.setCursorPos(timeX, y)
+		monitor.write(types[i].time)
+		monitor.setCursorPos(callX, y)
+		monitor.write(types[i].calls)
+		y = y + 1
+	end
 end
 
 -- Screen changing
@@ -183,6 +207,7 @@ local function displayScreen(id)
 	elseif (id == 3) then
 		displayTypes()
 	elseif (id == 4) then
+		displayCalls()
 	end
 end
 
