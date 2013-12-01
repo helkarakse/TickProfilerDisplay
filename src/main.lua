@@ -138,8 +138,8 @@ end
 
 local function displayTypes()
 	local typeX = 15
-	local timeX = 30
-	local percentX = 45
+	local timeX = 40
+	local percentX = 55
 	
 	local headerY = 2
 	monitor.setCursorPos(typeX, headerY)
