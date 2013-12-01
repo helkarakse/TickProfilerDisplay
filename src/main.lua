@@ -52,7 +52,16 @@ local function displayTps()
 end
 
 local function displayEntities()
-
+	local x = 15
+	local y = 2
+	
+	local entities = parser.getSingleEntities()
+	
+	for i = 1, 5 do
+		monitor.setCursorPos(x, y)
+		monitor.write(entities[i].name)
+		y = y + 1
+	end
 end
 
 local function displayChunks()
@@ -89,10 +98,6 @@ local monitorListener = function()
 	while true do
 		local event, side, xPos, yPos = os.pullEvent("monitor_touch")
 		functions.debug("Detected monitor touch at (", xPos, ", ", yPos, ")")
-		
---		if (state == "main") then
---			
---		end
 		
 		if (yPos % 2 == 0 and xPos <= 14) then
 			local menuId = yPos / 2
