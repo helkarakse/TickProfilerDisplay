@@ -84,7 +84,30 @@ local function displayEntities()
 end
 
 local function displayChunks()
+	local posX = 15
+	local timeX = 30
+	local percentX = 45
+	
+	local headerY = 2
+	monitor.setCursorPos(posX, headerY)
+	monitor.write("Position:")
+	monitor.setCursorPos(timeX, headerY)
+	monitor.write("Time/Tick:")
+	monitor.setCursorPos(percentX, headerY)
+	monitor.write("%")
 
+	local y = 3
+	local chunks = parser.getChunks()
+	
+	for i = 1, 5 do
+		monitor.setCursorPos(posX, headerY)
+		monitor.write(chunks[i].positionX .. ", " .. chunks[i].positionZ)
+		monitor.setCursorPos(timeX, headerY)
+		monitor.write(chunks[i].time)
+		monitor.setCursorPos(percentX, headerY)
+		monitor.write(chunks[i].percent)
+		y = y + 1
+	end
 end
 
 local function displayTypes()
