@@ -23,9 +23,33 @@ local menuArray = {
 }
 
 -- Display
+local function displayHeader()
+	local tps = tonumber(parser.getTps())
+	local tpsColour
+	if (tps >= 18) then
+	        tpsColour = colors.green
+	elseif (tps >= 15 and tps < 18) then
+	        tpsColour = colors.yellow
+	elseif (tps < 15) then
+	        tpsColour = colors.red
+	end
+	 
+	monitor.clear()
+	monitor.setCursorPos(1,1)
+	monitor.write("OTE-Gaming Tickboard of Shame")
+	monitor.setCursorPos(1,2)
+	monitor.write("Powered by Helk & Shot")
+	monitor.setCursorPos(1,4)
+	monitor.write("Global TPS: ")
+	monitor.setCursorPos(13,4)
+	monitor.setTextColor(tpsColour)
+	monitor.write(tps)
+	monitor.setTextColor(colors.white)
+end
+
 local function displayMenu(id)
 	local x = 2
-	local y = 2
+	local y = 5
 	
 	for i = 1, #menuArray do
 		-- write first column
@@ -42,33 +66,13 @@ local function displayMenu(id)
 	end
 end
 
-local function displayTps()
-	local tps = tonumber(parser.getTps())
-	local tpsColor
-	if (tps >= 18) then
-	        tpsColor = colors.green
-	elseif (tps >= 15 and tps < 18) then
-	        tpsColor = colors.yellow
-	elseif (tps < 15) then
-	        tpsColor = colors.red
-	end
-	
-	monitor.setCursorPos(2, 14)
-	monitor.setTextColor(tpsColor)
-	monitor.write("TPS: " .. tps)
-	monitor.setTextColor(colors.white)
-	monitor.setCursorPos(2, 15)
-	monitor.write("Helkarakse")
-	monitor.setCursorPos(1, 1)
-end
-
 local function displayEntities()
 	local entityX = 15
 	local posX = 40
 	local percentX = 55
 	local dimX = 67
 	
-	local headerY = 2
+	local headerY = 5
 	monitor.setCursorPos(entityX, headerY)
 	monitor.write("Entity Name:")
 	monitor.setCursorPos(posX, headerY)
@@ -78,7 +82,7 @@ local function displayEntities()
 	monitor.setCursorPos(dimX, headerY)
 	monitor.write("Dimension")
 
-	local y = 3
+	local y = 6
 	local entities = parser.getSingleEntities()
 	
 	for i = 1, 5 do
@@ -113,7 +117,7 @@ local function displayChunks()
 	local timeX = 30
 	local percentX = 45
 	
-	local headerY = 2
+	local headerY = 5
 	monitor.setCursorPos(posX, headerY)
 	monitor.write("Position:")
 	monitor.setCursorPos(timeX, headerY)
@@ -121,7 +125,7 @@ local function displayChunks()
 	monitor.setCursorPos(percentX, headerY)
 	monitor.write("%")
 
-	local y = 3
+	local y = 6
 	
 	local chunks = parser.getChunks()
 	
@@ -141,7 +145,7 @@ local function displayTypes()
 	local timeX = 40
 	local percentX = 55
 	
-	local headerY = 2
+	local headerY = 5
 	monitor.setCursorPos(typeX, headerY)
 	monitor.write("Type:")
 	monitor.setCursorPos(timeX, headerY)
@@ -149,7 +153,7 @@ local function displayTypes()
 	monitor.setCursorPos(percentX, headerY)
 	monitor.write("%")
 
-	local y = 3
+	local y = 6
 	
 	local types = parser.getEntityByTypes()
 	
@@ -169,7 +173,7 @@ local function displayCalls()
 	local timeX = 40
 	local callX = 55
 	
-	local headerY = 2
+	local headerY = 5
 	monitor.setCursorPos(nameX, headerY)
 	monitor.write("Name:")
 	monitor.setCursorPos(timeX, headerY)
@@ -177,7 +181,7 @@ local function displayCalls()
 	monitor.setCursorPos(callX, headerY)
 	monitor.write("Average Calls")
 
-	local y = 3
+	local y = 6
 	
 	local calls = parser.getAverageCalls()
 	
@@ -198,8 +202,8 @@ local function displayScreen(id)
 	state = menuArray[id].screen
 	
 	monitor.clear()
+	displayHeader()
 	displayMenu(id)
-	displayTps()
 	if (id == 1) then
 		displayEntities()
 	elseif (id == 2) then
@@ -219,7 +223,7 @@ local monitorListener = function()
 		functions.debug("Detected monitor touch at (", xPos, ", ", yPos, ")")
 		
 		if (yPos % 2 == 0 and xPos <= 14) then
-			local menuId = yPos / 2
+			local menuId = (yPos - 4) / 2
 			if (menuId <= #menuArray) then
 				displayScreen(menuId)
 			end

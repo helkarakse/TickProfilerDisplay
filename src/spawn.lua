@@ -41,8 +41,6 @@ while true do
 	monitor.write(tps)
 	monitor.setTextColor(colors.white)
 	 
-	-- 0 to 3, 3 to 5, above 5
-	 
 	--headers
 	monitor.setCursorPos(1,5)
 	monitor.write("Name:")
