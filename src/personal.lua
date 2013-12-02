@@ -263,10 +263,10 @@ local function init()
 		local screenW, screenH = monitor.getSize()
 		-- functions.debug("Monitor size is: ", screenW, "x", screenH)
 		
-		if (monitor.isColor ~= true) then
-			print("An advanced monitor is required to use this program.")
-			return
-		end
+--		if (monitor.isColor ~= true) then
+--			print("An advanced monitor is required to use this program.")
+--			return
+--		end
 	else
 		-- no monitor found
 		print("A monitor is required to use this program.")
