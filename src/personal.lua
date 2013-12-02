@@ -183,7 +183,7 @@ end
 
 -- Screen changing
 local function displayScreen(id) 
-	functions.debug("Displaying the screen for id: ", id)
+	-- functions.debug("Displaying the screen for id: ", id)
 	state = menuArray[id].screen
 	
 	monitor.clear()
@@ -205,7 +205,7 @@ end
 local monitorListener = function()
 	while true do
 		local event, side, xPos, yPos = os.pullEvent("monitor_touch")
-		functions.debug("Detected monitor touch at (", xPos, ", ", yPos, ")")
+		-- functions.debug("Detected monitor touch at (", xPos, ", ", yPos, ")")
 		
 		if (yPos % 2 == 0 and xPos <= 14) then
 			local menuId = (yPos - 4) / 2
@@ -224,9 +224,9 @@ local refreshListener = function()
 		file.close()
 		
 		parser.parseData(text)
-		functions.debug("Refreshing data.")
+		-- functions.debug("Refreshing data.")
 		displayScreen(1)
-		functions.debug("Refreshing screen.")
+		-- functions.debug("Refreshing screen.")
 		sleep(60)
 	end
 end
@@ -249,19 +249,19 @@ local function init()
 	file.close()
 	
 	-- parse the data into internal tables
-	functions.debug("Beginning initial data parsing.")
+	-- functions.debug("Beginning initial data parsing.")
 	parser.parseData(text)
-	functions.debug("Data parsing complete.")
+	-- functions.debug("Data parsing complete.")
 	
 	-- find the monitor and init vars
 	local monFound, monDir = functions.locatePeripheral("monitor");
 	if (monFound == true) then
 		monitor = peripheral.wrap(monDir)
 		local screenW, screenH = monitor.getSize()
-		functions.debug("Monitor size is: ", screenW, "x", screenH)
+		-- functions.debug("Monitor size is: ", screenW, "x", screenH)
 	else
 		-- no monitor found
-		functions.debug("A monitor is required to use this program.")
+		-- functions.debug("A monitor is required to use this program.")
 		return
 	end
 	
