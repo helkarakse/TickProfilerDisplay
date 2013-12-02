@@ -192,6 +192,8 @@ local slideLoop = function()
 end
 
 local function init()
+	functions.debug("Current server id is: ", serverId)
+	
 	local monFound, monDir = functions.locatePeripheral("monitor")
 	if (monFound == true) then
 		monitor = peripheral.wrap(monDir)
@@ -203,7 +205,10 @@ local function init()
 	local file = fs.open(jsonFile, "r")
 	local text = file.readAll()
 	file.close()
+	
+	functions.debug("Beginning initial data parsing.")
 	parser.parseData(text)
+	functions.debug("Data parsing complete.")
 	
 	monitor.clear()
 	displayHeader()

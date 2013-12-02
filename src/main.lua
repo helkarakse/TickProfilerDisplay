@@ -234,6 +234,8 @@ local refreshListener = function()
 end
 
 local function init()
+	functions.debug("Current server id is: ", serverId)
+	
 	-- open the file for parsing
 	local file = fs.open(jsonFile, "r")
 	local text = file.readAll()
