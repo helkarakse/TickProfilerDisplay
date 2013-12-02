@@ -93,7 +93,7 @@ local function displayEntities()
 		
 		-- dimensions
 		monitor.setCursorPos(dimX, y)
-		monitor.write(parser.getDimName(serverId, entities[i].dimId))
+		monitor.write(parser.getDimensionName(serverId, entities[i].dimId))
 		
 		y = y + 1
 	end
