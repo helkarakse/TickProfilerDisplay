@@ -237,7 +237,7 @@ function getServerId(inputId)
 	local computerId = tonumber(inputId)
 	if (computerId == 17 or computerId == 26 or computerId == 27) then
 		return 2
-	elseif (computerId == 25 or computerId == 88) then
+	elseif (computerId == 25 or computerId == 88 or computerId == 78) then
 		return 1
 	end
 end
