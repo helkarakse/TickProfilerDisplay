@@ -1,10 +1,12 @@
 --[[
 
-	TickProfiler JSON Data Parser Version 1.0 Alpha
+	TickProfiler JSON Data Parser Version 1.3 Alpha
 	Do not modify, copy or distribute without permission of author
 	Helkarakse, 20131128
 	
 	Changelog:
+	- 1.3 Added the dimension resolution for dimension ids into the parser
+	- 1.2 Moved the tps color and percentage color functions into parser
 	- 1.1.1 Added dimension name resolution for nether, overworld and end - 20131201
 	- 1.1 Fixed the functions.explode call nil issue - 20131201
 	- 1.0 Added all the methods - 20131128
@@ -23,6 +25,16 @@ os.loadAPI("functions")
 
 -- Vars
 local stringData, tableData, tableTps, tableSingleEntity, tableChunk, tableEntityByType, tableAverageCalls
+
+-- Dimension names
+local dimArray = {
+	{rrServer = 1, dimensionId = 16, dimensionName = "Public Mining Age"},
+	{rrServer = 1, dimensionId = 11, dimensionName = "Silver Mining Age"},
+	{rrServer = 1, dimensionId = 15, dimensionName = "Gold Mining Age"},
+	{rrServer = 2, dimensionId = 16, dimensionName = "Unknown Age"},
+	{rrServer = 2, dimensionId = 11, dimensionName = "Unknown Age"},
+	{rrServer = 2, dimensionId = 15, dimensionName = "Unknown Age"}
+}
 
 -- Main Functions
 -- Parses the json string and initializes each table variable. Returns true on successful parse, false on empty string passed.
@@ -197,4 +209,12 @@ function getTpsColor(tps)
 	end
 	
 	return tpsColor
+end
+
+function getDimName(server, dimensionId)
+	for key, value in pairs(dimArray) do
+		if (value.rrServer == tonumber(server) and value.dimensionId == tonumber(dimensionId)) then
+			return value.dimensionName
+		end
+	end
 end
