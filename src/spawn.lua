@@ -81,11 +81,7 @@ local function displayData(id)
 			
 			-- dimensions
 			monitor.setCursorPos(53, yPos)
-			if (tonumber(singleEntities[i].dimId) == 11) then
-				monitor.write("Gold Mining Age")
-			else
-				monitor.write(singleEntities[i].dimension)
-			end
+			monitor.write(parser.getDimensionName(serverId, singleEntities[i].dimId))
 			
 			yPos = yPos + 1
 		end
