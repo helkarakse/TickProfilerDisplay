@@ -13,7 +13,7 @@ while true do
 	--initial actions
 	local monitor = peripheral.wrap("top")
 	 
-	local file = fs.open("data", "r")
+	local file = fs.open("profile.txt", "r")
 	local text = file.readAll()
 	file.close()
 	parser.parseData(text)
