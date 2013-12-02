@@ -230,3 +230,14 @@ function getDimensionName(server, dimensionId)
 		end
 	end
 end
+
+-- Resolves the RR server ID against the computer ID
+-- Add new computerIds as needed
+function getServerId(inputId)
+	local computerId = tonumber(inputId)
+	if (computerId == 17 or computerId == 26 or computerId == 27) then
+		return 2
+	elseif (computerId == 25 or computerId == 88) then
+		return 1
+	end
+end
