@@ -72,9 +72,15 @@ while true do
 		monitor.setTextColor(percentageColour)
 		monitor.write(percentage)
 		monitor.setTextColor(colors.white)
-		 
+		
+		-- dimensions
 		monitor.setCursorPos(52, i+6)
-		monitor.write(singleEntities[i].dimension)
+		monitor.setCursorPos(dimX, y)
+		if (tonumber(singleEntities[i].dimId) == 11) then
+			monitor.write("Gold Mining Age")
+		else
+			monitor.write(singleEntities[i].dimension)
+		end
 	end
 	
 	sleep(60)

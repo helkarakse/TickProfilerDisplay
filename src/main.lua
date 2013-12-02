@@ -113,8 +113,14 @@ local function displayEntities()
 		monitor.write(entities[i].percent)
 		monitor.setTextColor(colors.white)
 		
+		-- dimensions
 		monitor.setCursorPos(dimX, y)
-		monitor.write(entities[i].dimension)
+		if (tonumber(entities[i].dimId) == 11) then
+			monitor.write("Gold Mining Age")
+		else
+			monitor.write(entities[i].dimension)
+		end
+		
 		y = y + 1
 	end
 end
