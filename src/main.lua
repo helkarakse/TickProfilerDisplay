@@ -244,7 +244,9 @@ local refreshListener = function()
 		file.close()
 		
 		parser.parseData(text)
-		functions.debug("Refreshing data...")
+		functions.debug("Refreshing data.")
+		displayScreen(1)
+		functions.debug("Refreshing screen.")
 		sleep(60)
 	end
 end
