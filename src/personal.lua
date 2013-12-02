@@ -235,15 +235,7 @@ local passwordLoop = function()
 	while true do
 		term.clear()
 		term.setCursorPos (1, 1)
-		print ("Input Password")
-		input = read ("*")
-		if input == "test" then
-			print ("Access Granted")
-		else
-			print ("Incorrect")
-			sleep(1)
-			os.reboot()
-		end
+		print ("This computer has been secured against edits for your safety.")
 	end
 end
 
