@@ -156,3 +156,18 @@ end
 function roundTo(number, decimal)
 	return tonumber(string.format("%." .. (decimal or 0) .. "f", tonumber(number)))
 end
+
+-- Returns the color for the percentage based on severity
+function getPercentColor(percent)
+	local percentage = tonumber(percent)
+	local percentageColor
+	if (percentage >= 5) then
+		percentageColor = colors.red
+	elseif (percentage >= 3 and percentage < 5) then
+		percentageColor = colors.yellow
+	elseif (percentage >= 0 and percentage < 3) then
+		percentageColor = colors.green
+	end
+	
+	return percentageColor
+end

@@ -25,21 +25,6 @@ local menuArray = {
 	{name = "Calls", screen = "calls"}
 }
 
--- Returns the color for the percentage based on severity
-local function getPercentColor(percent)
-	local percentage = tonumber(percent)
-	local percentageColor
-	if (percentage >= 5) then
-		percentageColor = colors.red
-	elseif (percentage >= 3 and percentage < 5) then
-		percentageColor = colors.yellow
-	elseif (percentage >= 0 and percentage < 3) then
-		percentageColor = colors.green
-	end
-	
-	return percentageColor
-end
-
 -- Display
 local function displayHeader()
 	local tps = tonumber(parser.getTps())
@@ -109,7 +94,7 @@ local function displayEntities()
 		monitor.write(entities[i].position)
 		monitor.setCursorPos(percentX, y)
 		 
-		monitor.setTextColor(getPercentColor(entities[i].percent))
+		monitor.setTextColor(functions.getPercentColor(entities[i].percent))
 		monitor.write(entities[i].percent)
 		monitor.setTextColor(colors.white)
 		
@@ -146,7 +131,7 @@ local function displayChunks()
 		monitor.setCursorPos(timeX, y)
 		monitor.write(chunks[i].time)
 		monitor.setCursorPos(percentX, y)
-		monitor.setTextColor(getPercentColor(chunks[i].percent))
+		monitor.setTextColor(functions.getPercentColor(chunks[i].percent))
 		monitor.write(chunks[i].percent)
 		monitor.setTextColor(colors.white)
 		y = y + 1
@@ -174,7 +159,7 @@ local function displayTypes()
 		monitor.setCursorPos(timeX, y)
 		monitor.write(types[i].time)
 		monitor.setCursorPos(percentX, y)
-		monitor.setTextColor(getPercentColor(types[i].percent))
+		monitor.setTextColor(functions.getPercentColor(types[i].percent))
 		monitor.write(types[i].percent)
 		monitor.setTextColor(colors.white)
 		y = y + 1
