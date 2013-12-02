@@ -17,7 +17,7 @@ local refreshDelay = 60
 local jsonFile = "profile.txt"
 
 -- serverId, assumes that the computer label is 1tickMonitor, or 2tickMonitor
-local serverId = string.sub(os.getComputerLabel(), 1, 1)
+local serverId = parser.getServerId(os.getComputerId())
 local limit = 10
 
 -- Functions

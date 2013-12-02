@@ -18,7 +18,7 @@ local displayY = 7
 local limit = 10
 
 -- serverId, assumes that the computer label is 1tickMonitor, or 2tickMonitor
-local serverId = string.sub(os.getComputerLabel(), 1, 1)
+local serverId = parser.getServerId(os.getComputerId())
 
 -- Menu array (left side)
 local menuArray = {
