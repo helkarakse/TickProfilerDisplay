@@ -12,6 +12,9 @@ os.loadAPI("functions")
 
 -- Variables
 local monitor
+local slideDelay = 5
+local refreshDelay = 60
+local jsonFile = "profile.txt"
 
 -- Functions
 local function getTps()
@@ -28,49 +31,37 @@ local function getTps()
 	return tps, tpsColor
 end
 
-local function init()
-	local monFound, monDir = functions.locatePeripheral("monitor")
-	if (monFound == true) then
-		monitor = peripheral.wrap(monDir)
-	else
-		functions.debug("A monitor is required to use this program.")
-		return
-	end
-end
-
-while true do
-	--initial actions
-	local monitor = peripheral.wrap("top")
-	 
-	local file = fs.open("profile.txt", "r")
-	local text = file.readAll()
-	file.close()
-	parser.parseData(text)
-	 
-	--program start
+-- Display
+local function displayHeader()
+	local xPos = 1
+	local yPos = 1
 	local tps, tpsColor = getTps()
-	monitor.clear()
-	monitor.setCursorPos(1,1)
+	
+	monitor.setCursorPos(xPos, yPos)
 	monitor.write("OTE-Gaming Tickboard of Shame")
-	monitor.setCursorPos(1,2)
+	monitor.setCursorPos(xPos, yPos + 1)
 	monitor.write("Powered by Helk & Shot")
-	monitor.setCursorPos(1,4)
+	monitor.setCursorPos(xPos, yPos + 3)
 	monitor.write("Global TPS: ")
-	monitor.setCursorPos(13,4)
+	monitor.setCursorPos(xPos + 12, yPos + 3)
 	monitor.setTextColor(tpsColor)
 	monitor.write(tps)
 	monitor.setTextColor(colors.white)
-	 
-	--headers
-	monitor.setCursorPos(1,6)
+end
+
+local function displayDataHeading()
+	local yPos = 6
+	monitor.setCursorPos(1, yPos)
 	monitor.write("Name:")
-	monitor.setCursorPos(25,6)
+	monitor.setCursorPos(25, yPos)
 	monitor.write("X - Y - Z:")
-	monitor.setCursorPos(40,6)
+	monitor.setCursorPos(40, yPos)
 	monitor.write("%")
-	monitor.setCursorPos(52,6)
+	monitor.setCursorPos(52, yPos)
 	monitor.write("Dimension:")
-	 
+end
+
+local function displayData(id)
 	local singleEntities = parser.getSingleEntities()
 	for i = 1, 10 do
 		monitor.setCursorPos(1, i+6)
@@ -101,6 +92,47 @@ while true do
 			monitor.write(singleEntities[i].dimension)
 		end
 	end
-	
-	sleep(60)
 end
+
+-- Loops
+local refreshLoop = function()
+	while true do
+		local file = fs.open(jsonFile, "r")
+		local text = file.readAll()
+		file.close()
+		
+		parser.parseData(text)
+		functions.debug("Refreshing data.")
+		displayData(1)
+		functions.debug("Refreshing screen.")
+		sleep(refreshDelay)
+	end
+end
+
+local slideLoop = function()
+	
+end
+
+local function init()
+	local monFound, monDir = functions.locatePeripheral("monitor")
+	if (monFound == true) then
+		monitor = peripheral.wrap(monDir)
+	else
+		functions.debug("A monitor is required to use this program.")
+		return
+	end
+	
+	local file = fs.open(jsonFile, "r")
+	local text = file.readAll()
+	file.close()
+	parser.parseData(text)
+	
+	monitor.clear()
+	displayHeader()
+	displayDataHeading()
+	displayData(1)
+	
+	parallel.waitForAll(slideLoop, refreshLoop)
+end
+
+init()
