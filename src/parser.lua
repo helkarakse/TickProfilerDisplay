@@ -196,7 +196,7 @@ function getPercentColor(percent)
 	return percentageColor
 end
 
--- Returns the color for the tps based on severity
+-- Returns the color for the TPS based on severity
 function getTpsColor(tps)
 	local tpsColor
 	local tps = tonumber(tps)
@@ -211,10 +211,21 @@ function getTpsColor(tps)
 	return tpsColor
 end
 
-function getDimName(server, dimensionId)
-	for key, value in pairs(dimArray) do
-		if (value.rrServer == tonumber(server) and value.dimensionId == tonumber(dimensionId)) then
-			return value.dimensionName
+-- Returns the dimension name given the server and dimension id
+-- If the dimension id is a known minecraft constant, it does not lookup
+-- the array.
+function getDimensionName(server, dimensionId)
+	if (dimensionId == "1") then
+		return "The End"
+	elseif (dimensionId == "0") then
+		return "Overworld"
+	elseif (dimensionId == "-1") then
+		return "Nether"
+	else
+		for key, value in pairs(dimArray) do
+			if (value.rrServer == tonumber(server) and value.dimensionId == tonumber(dimensionId)) then
+				return value.dimensionName
+			end
 		end
 	end
 end
