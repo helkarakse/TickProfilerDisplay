@@ -15,7 +15,8 @@ local monitor
 local slideDelay = 5
 local refreshDelay = 60
 local jsonFile = "profile.txt"
-local serverId = 2
+local serverId = 1
+local limit = 10
 
 -- Functions
 local function getTps()
@@ -66,27 +67,42 @@ end
 local function displayData(id)
 	local yPos = 8
 	if (id == 1) then
-		local singleEntities = parser.getSingleEntities()
-		for i = 1, 10 do
+		local data = parser.getSingleEntities()
+		for i = 1, limit do
 			monitor.setCursorPos(2, yPos)
-			monitor.write(singleEntities[i].name)
+			monitor.write(data[i].name)
 			monitor.setCursorPos(26, yPos)
-			monitor.write(singleEntities[i].position)
+			monitor.write(data[i].position)
 			monitor.setCursorPos(41, yPos)
 			 
-			local percentage = tonumber(singleEntities[i].percent)
+			local percentage = tonumber(data[i].percent)
 			monitor.setTextColor(parser.getPercentColor(percentage))
 			monitor.write(percentage)
 			monitor.setTextColor(colors.white)
 			
 			-- dimensions
 			monitor.setCursorPos(53, yPos)
-			monitor.write(parser.getDimensionName(serverId, singleEntities[i].dimId))
+			monitor.write(parser.getDimensionName(serverId, data[i].dimId))
 			
 			yPos = yPos + 1
 		end
 	elseif (id == 2) then
 		-- id 2 = the chunk list
+		local data = parser.getChunks()
+		for i = 1, limit do
+			monitor.setCursorPos(2, yPos)
+			monitor.write(data[i].positionX .. ", " .. positionZ)
+			monitor.setCursorPos(26, yPos)
+			monitor.write(data[i].time)
+			monitor.setCursorPos(41, yPos)
+			 
+			local percentage = tonumber(data[i].percent)
+			monitor.setTextColor(parser.getPercentColor(percentage))
+			monitor.write(percentage)
+			monitor.setTextColor(colors.white)
+			
+			yPos = yPos + 1
+		end
 	elseif (id == 3) then
 		-- id 3 = the type list
 	elseif (id == 4) then
