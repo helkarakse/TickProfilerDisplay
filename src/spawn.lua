@@ -15,6 +15,7 @@ local monitor
 local slideDelay = 5
 local refreshDelay = 60
 local jsonFile = "profile.txt"
+local serverId = 2
 
 -- Functions
 local function getTps()
