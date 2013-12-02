@@ -75,7 +75,6 @@ while true do
 		
 		-- dimensions
 		monitor.setCursorPos(52, i+6)
-		monitor.setCursorPos(dimX, y)
 		if (tonumber(singleEntities[i].dimId) == 11) then
 			monitor.write("Gold Mining Age")
 		else
