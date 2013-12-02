@@ -47,7 +47,7 @@ while true do
 	monitor.setCursorPos(25,6)
 	monitor.write("X - Y - Z:")
 	monitor.setCursorPos(40,6)
-	monitor.write("ServerLoad:")
+	monitor.write("%")
 	monitor.setCursorPos(52,6)
 	monitor.write("Dimension:")
 	 
