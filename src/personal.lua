@@ -16,7 +16,9 @@ local jsonFile = "profile.txt"
 local headerY = 6
 local displayY = 7
 local limit = 10
-local serverId = 1
+
+-- serverId, assumes that the computer label is 1tickMonitor, or 2tickMonitor
+local serverId = string.sub(os.getComputerLabel(), 1, 1)
 
 -- Menu array (left side)
 local menuArray = {

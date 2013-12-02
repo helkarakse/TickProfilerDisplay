@@ -15,7 +15,9 @@ local monitor
 local slideDelay = 10
 local refreshDelay = 60
 local jsonFile = "profile.txt"
-local serverId = 1
+
+-- serverId, assumes that the computer label is 1tickMonitor, or 2tickMonitor
+local serverId = string.sub(os.getComputerLabel(), 1, 1)
 local limit = 10
 
 -- Functions
