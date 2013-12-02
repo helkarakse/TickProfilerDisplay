@@ -195,4 +195,6 @@ function getTpsColor(tps)
 	elseif (tps < 15) then
 	        tpsColor = colors.red
 	end
+	
+	return tpsColor
 end
