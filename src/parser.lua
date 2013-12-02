@@ -86,7 +86,7 @@ function getSingleEntities()
 		elseif (row.dimId == "-1") then
 			row.dimension = "Nether"
 		else
-			row.dimension = ""
+			row.dimension = row.dimId
 		end
 		
 		-- strip off the dimension from the position
