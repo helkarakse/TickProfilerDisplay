@@ -57,6 +57,12 @@ local function displayDataHeading(id)
 		monitor.write("Dimension:")
 	elseif (id == 2) then
 		-- id 2 = the chunk list
+		monitor.setCursorPos(2, yPos)
+		monitor.write("Name:")
+		monitor.setCursorPos(26, yPos)
+		monitor.write("X - Y - Z:")
+		monitor.setCursorPos(41, yPos)
+		monitor.write("%")
 	elseif (id == 3) then
 		-- id 3 = the type list
 	elseif (id == 4) then
@@ -127,7 +133,13 @@ local refreshLoop = function()
 end
 
 local slideLoop = function()
-	
+	while true do
+		for i = 1, 4 do
+			displayDataHeading(i)
+			displayData(i)
+			sleep(slideDelay)
+		end
+	end
 end
 
 local function init()
