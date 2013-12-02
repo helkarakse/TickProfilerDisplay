@@ -167,3 +167,19 @@ function getAverageCalls()
 	
 	return returnTable
 end
+
+-- Miscellaneous Functions
+-- Returns the color for the percentage based on severity
+function getPercentColor(percent)
+	local percentage = tonumber(percent)
+	local percentageColor
+	if (percentage >= 5) then
+		percentageColor = colors.red
+	elseif (percentage >= 3 and percentage < 5) then
+		percentageColor = colors.yellow
+	elseif (percentage >= 0 and percentage < 3) then
+		percentageColor = colors.green
+	end
+	
+	return percentageColor
+end
