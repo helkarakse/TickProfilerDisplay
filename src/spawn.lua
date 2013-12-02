@@ -97,7 +97,7 @@ local function displayData(id)
 		local data = parser.getChunks()
 		for i = 1, limit do
 			monitor.setCursorPos(2, yPos)
-			monitor.write(data[i].positionX .. ", " .. positionZ)
+			monitor.write(data[i].positionX .. ", " .. data[i].positionZ)
 			monitor.setCursorPos(26, yPos)
 			monitor.write(data[i].time)
 			monitor.setCursorPos(41, yPos)
@@ -125,8 +125,12 @@ local refreshLoop = function()
 		
 		parser.parseData(text)
 		functions.debug("Refreshing data.")
+		
+		monitor.clear()
+		displayHeader()
 		displayDataHeading(1)
 		displayData(1)
+		
 		functions.debug("Refreshing screen.")
 		sleep(refreshDelay)
 	end
@@ -135,8 +139,13 @@ end
 local slideLoop = function()
 	while true do
 		for i = 1, 4 do
+			functions.debug("Displaying screen #", i)
+			
+			monitor.clear()
+			displayHeader()
 			displayDataHeading(i)
 			displayData(i)
+			
 			sleep(slideDelay)
 		end
 	end
