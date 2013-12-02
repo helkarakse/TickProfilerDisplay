@@ -16,6 +16,7 @@ local jsonFile = "profile.txt"
 local headerY = 6
 local displayY = 7
 local limit = 10
+local serverId = 1
 
 -- Menu array (left side)
 local menuArray = {
@@ -92,11 +93,7 @@ local function displayEntities()
 		
 		-- dimensions
 		monitor.setCursorPos(dimX, y)
-		if (tonumber(entities[i].dimId) == 11) then
-			monitor.write("Gold Mining Age")
-		else
-			monitor.write(entities[i].dimension)
-		end
+		monitor.write(parser.getDimName(serverId, entities[i].dimId))
 		
 		y = y + 1
 	end
