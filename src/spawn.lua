@@ -12,7 +12,7 @@ os.loadAPI("functions")
 
 -- Variables
 local monitor
-local slideDelay = 5
+local slideDelay = 10
 local refreshDelay = 60
 local jsonFile = "profile.txt"
 local serverId = 1
