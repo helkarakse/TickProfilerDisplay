@@ -12,7 +12,7 @@ os.loadAPI("parser")
 
 -- Variables
 local monitor, state
-local jsonFile = "data"
+local jsonFile = "profile.txt"
 local headerY = 6
 local displayY = 7
 local limit = 10
