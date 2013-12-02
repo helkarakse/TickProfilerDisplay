@@ -123,7 +123,7 @@ local function displayData(id)
 		end
 	elseif (id == 3) then
 		-- id 3 = the type list
-		local data = parser.getChunks()
+		local data = parser.getEntityByTypes()
 		for i = 1, limit do
 			monitor.setCursorPos(2, yPos)
 			monitor.write(data[i].type)
