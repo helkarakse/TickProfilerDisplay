@@ -6,10 +6,39 @@
  
 ]]
 
+-- Libraries
+os.loadAPI("parser")
+os.loadAPI("functions")
+
+-- Variables
+local monitor
+
+-- Functions
+local function getTps()
+	local tps = tonumber(parser.getTps())
+	local tpsColor
+	if (tps >= 18) then
+	        tpsColor = colors.green
+	elseif (tps >= 15 and tps < 18) then
+	        tpsColor = colors.yellow
+	elseif (tps < 15) then
+	        tpsColor = colors.red
+	end
+	
+	return tps, tpsColor
+end
+
+local function init()
+	local monFound, monDir = functions.locatePeripheral("monitor")
+	if (monFound == true) then
+		monitor = peripheral.wrap(monDir)
+	else
+		functions.debug("A monitor is required to use this program.")
+		return
+	end
+end
+
 while true do
-	--library
-	os.loadAPI("parser")
-	 
 	--initial actions
 	local monitor = peripheral.wrap("top")
 	 
@@ -19,16 +48,7 @@ while true do
 	parser.parseData(text)
 	 
 	--program start
-	local tps = tonumber(parser.getTps())
-	local tpsColour
-	if (tps >= 18) then
-	        tpsColour = colors.green
-	elseif (tps >= 15 and tps < 18) then
-	        tpsColour = colors.yellow
-	elseif (tps < 15) then
-	        tpsColour = colors.red
-	end
-	 
+	local tps, tpsColor = getTps()
 	monitor.clear()
 	monitor.setCursorPos(1,1)
 	monitor.write("OTE-Gaming Tickboard of Shame")
@@ -37,7 +57,7 @@ while true do
 	monitor.setCursorPos(1,4)
 	monitor.write("Global TPS: ")
 	monitor.setCursorPos(13,4)
-	monitor.setTextColor(tpsColour)
+	monitor.setTextColor(tpsColor)
 	monitor.write(tps)
 	monitor.setTextColor(colors.white)
 	 
