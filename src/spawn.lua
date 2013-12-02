@@ -33,8 +33,8 @@ end
 
 -- Display
 local function displayHeader()
-	local xPos = 1
-	local yPos = 1
+	local xPos = 2
+	local yPos = 2
 	local tps, tpsColor = getTps()
 	
 	monitor.setCursorPos(xPos, yPos)
@@ -49,48 +49,66 @@ local function displayHeader()
 	monitor.setTextColor(colors.white)
 end
 
-local function displayDataHeading()
-	local yPos = 6
-	monitor.setCursorPos(1, yPos)
-	monitor.write("Name:")
-	monitor.setCursorPos(25, yPos)
-	monitor.write("X - Y - Z:")
-	monitor.setCursorPos(40, yPos)
-	monitor.write("%")
-	monitor.setCursorPos(52, yPos)
-	monitor.write("Dimension:")
+local function displayDataHeading(id)
+	local yPos = 7
+	
+	if (id == 1) then
+		-- id 1 = the single entity list
+		monitor.setCursorPos(2, yPos)
+		monitor.write("Name:")
+		monitor.setCursorPos(26, yPos)
+		monitor.write("X - Y - Z:")
+		monitor.setCursorPos(41, yPos)
+		monitor.write("%")
+		monitor.setCursorPos(53, yPos)
+		monitor.write("Dimension:")
+	elseif (id == 2) then
+		-- id 2 = the chunk list
+	elseif (id == 3) then
+		-- id 3 = the type list
+	elseif (id == 4) then
+		-- id 4 = the call list
+	end
 end
 
 local function displayData(id)
-	local singleEntities = parser.getSingleEntities()
-	for i = 1, 10 do
-		monitor.setCursorPos(1, i+6)
-		monitor.write(singleEntities[i].name)
-		monitor.setCursorPos(25, i+6)
-		monitor.write(singleEntities[i].position)
-		monitor.setCursorPos(40, i+6)
-		 
-		local percentage = tonumber(singleEntities[i].percent)
-		local percentageColour
-		if (percentage >= 5) then
-		        percentageColour = colors.red
-		elseif (percentage >= 3 and percentage < 5) then
-		        percentageColour = colors.yellow
-		elseif (percentage >= 0 and percentage < 3) then
-		        percentageColour = colors.green
+	if (id == 1) then
+		local singleEntities = parser.getSingleEntities()
+		for i = 1, 10 do
+			monitor.setCursorPos(2, i+6)
+			monitor.write(singleEntities[i].name)
+			monitor.setCursorPos(26, i+6)
+			monitor.write(singleEntities[i].position)
+			monitor.setCursorPos(41, i+6)
+			 
+			local percentage = tonumber(singleEntities[i].percent)
+			local percentageColour
+			if (percentage >= 5) then
+			        percentageColour = colors.red
+			elseif (percentage >= 3 and percentage < 5) then
+			        percentageColour = colors.yellow
+			elseif (percentage >= 0 and percentage < 3) then
+			        percentageColour = colors.green
+			end
+			 
+			monitor.setTextColor(percentageColour)
+			monitor.write(percentage)
+			monitor.setTextColor(colors.white)
+			
+			-- dimensions
+			monitor.setCursorPos(53, i+6)
+			if (tonumber(singleEntities[i].dimId) == 11) then
+				monitor.write("Gold Mining Age")
+			else
+				monitor.write(singleEntities[i].dimension)
+			end
 		end
-		 
-		monitor.setTextColor(percentageColour)
-		monitor.write(percentage)
-		monitor.setTextColor(colors.white)
-		
-		-- dimensions
-		monitor.setCursorPos(52, i+6)
-		if (tonumber(singleEntities[i].dimId) == 11) then
-			monitor.write("Gold Mining Age")
-		else
-			monitor.write(singleEntities[i].dimension)
-		end
+	elseif (id == 2) then
+		-- id 2 = the chunk list
+	elseif (id == 3) then
+		-- id 3 = the type list
+	elseif (id == 4) then
+		-- id 4 = the call list
 	end
 end
 
@@ -103,6 +121,7 @@ local refreshLoop = function()
 		
 		parser.parseData(text)
 		functions.debug("Refreshing data.")
+		displayDataHeading(1)
 		displayData(1)
 		functions.debug("Refreshing screen.")
 		sleep(refreshDelay)
@@ -129,7 +148,7 @@ local function init()
 	
 	monitor.clear()
 	displayHeader()
-	displayDataHeading()
+	displayDataHeading(1)
 	displayData(1)
 	
 	parallel.waitForAll(slideLoop, refreshLoop)
