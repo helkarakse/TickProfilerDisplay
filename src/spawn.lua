@@ -19,16 +19,7 @@ local jsonFile = "profile.txt"
 -- Functions
 local function getTps()
 	local tps = tonumber(parser.getTps())
-	local tpsColor
-	if (tps >= 18) then
-	        tpsColor = colors.green
-	elseif (tps >= 15 and tps < 18) then
-	        tpsColor = colors.yellow
-	elseif (tps < 15) then
-	        tpsColor = colors.red
-	end
-	
-	return tps, tpsColor
+	return tps, parser.getTpsColor(tps)
 end
 
 -- Display

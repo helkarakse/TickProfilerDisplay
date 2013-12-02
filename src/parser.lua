@@ -183,3 +183,16 @@ function getPercentColor(percent)
 	
 	return percentageColor
 end
+
+-- Returns the color for the tps based on severity
+function getTpsColor(tps)
+	local tpsColor
+	local tps = tonumber(tps)
+	if (tps >= 18) then
+	        tpsColor = colors.green
+	elseif (tps >= 15 and tps < 18) then
+	        tpsColor = colors.yellow
+	elseif (tps < 15) then
+	        tpsColor = colors.red
+	end
+end

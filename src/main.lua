@@ -28,15 +28,7 @@ local menuArray = {
 -- Display
 local function displayHeader()
 	local tps = tonumber(parser.getTps())
-	local tpsColour
-	if (tps >= 18) then
-	        tpsColour = colors.green
-	elseif (tps >= 15 and tps < 18) then
-	        tpsColour = colors.yellow
-	elseif (tps < 15) then
-	        tpsColour = colors.red
-	end
-	 
+	
 	monitor.clear()
 	monitor.setCursorPos(2, 1)
 	monitor.write("OTE-Gaming Tickboard of Shame")
@@ -45,7 +37,7 @@ local function displayHeader()
 	monitor.setCursorPos(2, 4)
 	monitor.write("Global TPS: ")
 	monitor.setCursorPos(13, 4)
-	monitor.setTextColor(tpsColour)
+	monitor.setTextColor(parser.getTpsColor(tps))
 	monitor.write(tps)
 	monitor.setTextColor(colors.white)
 end
@@ -94,7 +86,7 @@ local function displayEntities()
 		monitor.write(entities[i].position)
 		monitor.setCursorPos(percentX, y)
 		 
-		monitor.setTextColor(functions.getPercentColor(entities[i].percent))
+		monitor.setTextColor(parser.getPercentColor(entities[i].percent))
 		monitor.write(entities[i].percent)
 		monitor.setTextColor(colors.white)
 		
@@ -131,7 +123,7 @@ local function displayChunks()
 		monitor.setCursorPos(timeX, y)
 		monitor.write(chunks[i].time)
 		monitor.setCursorPos(percentX, y)
-		monitor.setTextColor(functions.getPercentColor(chunks[i].percent))
+		monitor.setTextColor(parser.getPercentColor(chunks[i].percent))
 		monitor.write(chunks[i].percent)
 		monitor.setTextColor(colors.white)
 		y = y + 1
@@ -159,7 +151,7 @@ local function displayTypes()
 		monitor.setCursorPos(timeX, y)
 		monitor.write(types[i].time)
 		monitor.setCursorPos(percentX, y)
-		monitor.setTextColor(functions.getPercentColor(types[i].percent))
+		monitor.setTextColor(parser.getPercentColor(types[i].percent))
 		monitor.write(types[i].percent)
 		monitor.setTextColor(colors.white)
 		y = y + 1
