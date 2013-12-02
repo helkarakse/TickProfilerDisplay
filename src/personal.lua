@@ -231,16 +231,16 @@ local refreshListener = function()
 	end
 end
 
-local passwordLoop = function()
-	while true do
-		term.clear()
-		term.setCursorPos (1, 1)
-		print ("This computer has been secured against edits for your safety.")
-		-- sets the client to read indefinitely
-		-- can probably add line of code here to reboot if typed "reboot"
-		input = read("")
-	end
-end
+--local passwordLoop = function()
+--	while true do
+--		term.clear()
+--		term.setCursorPos (1, 1)
+--		print ("This computer has been secured against edits for your safety.")
+--		-- sets the client to read indefinitely
+--		-- can probably add line of code here to reboot if typed "reboot"
+--		input = read("")
+--	end
+--end
 
 local function init()
 	-- open the file for parsing
@@ -266,7 +266,7 @@ local function init()
 	end
 	
 	displayScreen(1)
-	parallel.waitForAll(monitorListener, refreshListener, passwordLoop)
+	parallel.waitForAll(monitorListener, refreshListener)
 end
 
 init()
