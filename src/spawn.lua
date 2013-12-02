@@ -197,6 +197,11 @@ local function init()
 	local monFound, monDir = functions.locatePeripheral("monitor")
 	if (monFound == true) then
 		monitor = peripheral.wrap(monDir)
+		
+		if (monitor.isColor ~= true) then
+			functions.debug("An advanced monitor is required to use this program.")
+			return
+		end
 	else
 		functions.debug("A monitor is required to use this program.")
 		return

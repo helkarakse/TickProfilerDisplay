@@ -252,6 +252,11 @@ local function init()
 		monitor = peripheral.wrap(monDir)
 		local screenW, screenH = monitor.getSize()
 		functions.debug("Monitor size is: ", screenW, "x", screenH)
+		
+		if (monitor.isColor ~= true) then
+			functions.debug("An advanced monitor is required to use this program.")
+			return
+		end
 	else
 		-- no monitor found
 		functions.debug("A monitor is required to use this program.")
