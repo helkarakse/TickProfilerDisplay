@@ -63,36 +63,30 @@ local function displayDataHeading(id)
 end
 
 local function displayData(id)
+	local yPos = 8
 	if (id == 1) then
 		local singleEntities = parser.getSingleEntities()
 		for i = 1, 10 do
-			monitor.setCursorPos(2, i+6)
+			monitor.setCursorPos(2, yPos)
 			monitor.write(singleEntities[i].name)
-			monitor.setCursorPos(26, i+6)
+			monitor.setCursorPos(26, yPos)
 			monitor.write(singleEntities[i].position)
-			monitor.setCursorPos(41, i+6)
+			monitor.setCursorPos(41, yPos)
 			 
 			local percentage = tonumber(singleEntities[i].percent)
-			local percentageColour
-			if (percentage >= 5) then
-			        percentageColour = colors.red
-			elseif (percentage >= 3 and percentage < 5) then
-			        percentageColour = colors.yellow
-			elseif (percentage >= 0 and percentage < 3) then
-			        percentageColour = colors.green
-			end
-			 
-			monitor.setTextColor(percentageColour)
+			monitor.setTextColor(parser.getPercentColor(percentage))
 			monitor.write(percentage)
 			monitor.setTextColor(colors.white)
 			
 			-- dimensions
-			monitor.setCursorPos(53, i+6)
+			monitor.setCursorPos(53, yPos)
 			if (tonumber(singleEntities[i].dimId) == 11) then
 				monitor.write("Gold Mining Age")
 			else
 				monitor.write(singleEntities[i].dimension)
 			end
+			
+			yPos = yPos + 1
 		end
 	elseif (id == 2) then
 		-- id 2 = the chunk list
