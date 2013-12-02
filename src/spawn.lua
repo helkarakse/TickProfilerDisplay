@@ -58,7 +58,7 @@ local function displayDataHeading(id)
 	elseif (id == 2) then
 		-- id 2 = the chunk list
 		monitor.setCursorPos(2, yPos)
-		monitor.write("Chunk Position (X, Y, Z):")
+		monitor.write("Chunk Position:")
 		monitor.setCursorPos(26, yPos)
 		monitor.write("Time/Tick")
 		monitor.setCursorPos(41, yPos)
