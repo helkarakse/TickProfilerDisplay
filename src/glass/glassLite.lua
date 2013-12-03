@@ -33,7 +33,7 @@ end
 
 local function drawTps()
 	local tps = parser.getTps()
-	tpsTextText = bridge.addText(60, 114, "TPS: ", colors.white)
+	tpsTextText = bridge.addText(45, 114, "TPS: ", colors.white)
 	tpsText = bridge.addText(65, 114, tps, colors.white)
 	clockText = bridge.addText(20, 95, "clock", colors.white)
 	clockText.setScale(2)
