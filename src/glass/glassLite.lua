@@ -25,7 +25,7 @@ local colors = {
 }
 
 local size = {
-	small = 0.5, normal = 0.75, large = 1
+	small = 0.75, normal = 1, large = 1.25
 }
 
 -- Functions
@@ -48,7 +48,7 @@ local function drawTps()
 	tpsText = bridge.addText(65, 114, "TPS: " .. tps, colors.white)
 	tpsText.setScale(size.small)
 	clockText = bridge.addText(20, 75, "clock", colors.white)
-	clockText.setScale(size.large)
+	clockText.setScale(size.normal)
 end
 
 local function drawEntities(inputX, inputY)
