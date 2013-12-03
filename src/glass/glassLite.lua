@@ -27,7 +27,7 @@ local function drawMain()
 end
 
 local function drawHeader()
-	headerText = bridge.addText(7, 77, "OTE Glasses    LITE", colors.white)
+	headerText = bridge.addText(7, 57, "OTE Glasses    LITE", colors.white)
 	headerText.setZIndex(3)
 	headerText.setScale(0.5)
 end
