@@ -86,25 +86,25 @@ local function drawSanta(inputX, inputY)
 	end
 end
 
-local tpsRefreshLoop = function()
-	while true do
-		local file = fs.open(jsonFile, "r")
-		local text = file.readAll()
-		file.close()
-		
-		parser.parseData(text)
-		tpsText.setText(parser.getTps())
-		sleep(15)
-	end
-end
-
-local clockRefreshLoop = function()
-	while true do
-		local nTime = os.time()
-		clockText.setText(textutils.formatTime(nTime, false))
-		sleep(1)
-	end
-end
+--local tpsRefreshLoop = function()
+--	while true do
+--		local file = fs.open(jsonFile, "r")
+--		local text = file.readAll()
+--		file.close()
+--		
+--		parser.parseData(text)
+--		tpsText.setText(parser.getTps())
+--		sleep(15)
+--	end
+--end
+--
+--local clockRefreshLoop = function()
+--	while true do
+--		local nTime = os.time()
+--		clockText.setText(textutils.formatTime(nTime, false))
+--		sleep(1)
+--	end
+--end
 
 local function init()
 	local hasBridge, bridgeDir = functions.locatePeripheral("glassesbridge")
@@ -130,7 +130,7 @@ local function init()
 --	drawSanta(105,120)
 	drawEntities()
 	
-	parallel.waitForAll(tpsRefreshLoop, clockRefreshLoop)
+--	parallel.waitForAll(tpsRefreshLoop, clockRefreshLoop)
 end
 
 init()
