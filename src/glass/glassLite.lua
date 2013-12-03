@@ -164,7 +164,7 @@ local function init()
 	
 	drawMain(10, 65, 250, 160)
 	drawHeader(10, 65)
-	drawTps()
+	drawTps(10, 65)
 --	drawSanta(105,120)
 	drawEntities(15, 75)
 	drawChunks(15, 110)
