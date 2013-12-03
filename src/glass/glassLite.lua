@@ -48,7 +48,7 @@ x = inputX
 y = inputY
 
 --white parts
-box1 = bridge.addBox(x-2, y-11, 2, 2, white, 1)
+box1 = bridge.addBox(x, y-9, 2, 2, white, 1)
 box2 = bridge.addBox(x-9, y-1, 9, 2, white, 1)
 
 --red parts
@@ -102,7 +102,7 @@ local function init()
 	drawMain()
 	drawHeader()
 	drawTps()
-	drawSanta(100,100)
+	drawSanta(110,130)
 	
 	parallel.waitForAll(tpsRefreshLoop, clockRefreshLoop)
 end
