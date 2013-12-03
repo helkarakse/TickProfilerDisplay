@@ -40,29 +40,34 @@ local function drawTps()
 end
 
 local function drawSanta(inputX, inputY)
---white parts
-box1 = bridge.addBox(inputX, inputY-9, 2, 2, colors.white, 1)
-box2 = bridge.addBox(inputX-9, inputY-1, 9, 2, colors.white, 1)
-
---red parts
-box3 = bridge.addBox(inputX-2, inputY-8, 2, 1, colors.red, 1)
-box4 = bridge.addBox(inputX-3, inputY-7, 4, 1, colors.red, 1)
-box5 = bridge.addBox(inputX-4, inputY-6, 5, 1, colors.red, 1)
-box6 = bridge.addBox(inputX-5, inputY-5, 5, 1, colors.red, 1)
-box7 = bridge.addBox(inputX-6, inputY-4, 5, 1, colors.red, 1)
-box8 = bridge.addBox(inputX-7, inputY-3, 6, 1, colors.red, 1)
-box9 = bridge.addBox(inputX-8, inputY-2, 8, 1, colors.red, 1)
-
---set zindexes
-box1.setZIndex(4)
-box2.setZIndex(4)
-box3.setZIndex(4)
-box4.setZIndex(4)
-box5.setZIndex(4)
-box6.setZIndex(4)
-box7.setZIndex(4)
-box8.setZIndex(4)
-box9.setZIndex(4)
+	local boxArray = {}
+	--white parts
+	table.insert(boxArray, bridge.addBox(inputX, inputY-9, 2, 2, colors.white, 1))
+	table.insert(boxArray, bridge.addBox(inputX-9, inputY-1, 9, 2, colors.white, 1))
+	
+	--red parts
+	table.insert(boxArray, bridge.addBox(inputX-2, inputY-8, 2, 1, colors.red, 1))
+	table.insert(boxArray, bridge.addBox(inputX-3, inputY-7, 4, 1, colors.red, 1))
+	table.insert(boxArray, bridge.addBox(inputX-4, inputY-6, 5, 1, colors.red, 1))
+	table.insert(boxArray, bridge.addBox(inputX-5, inputY-5, 5, 1, colors.red, 1))
+	table.insert(boxArray, bridge.addBox(inputX-6, inputY-4, 5, 1, colors.red, 1))
+	table.insert(boxArray, bridge.addBox(inputX-7, inputY-3, 6, 1, colors.red, 1))
+	table.insert(boxArray, bridge.addBox(inputX-8, inputY-2, 8, 1, colors.red, 1))
+	
+	--set zindexes
+--	box1.setZIndex(4)
+--	box2.setZIndex(4)
+--	box3.setZIndex(4)
+--	box4.setZIndex(4)
+--	box5.setZIndex(4)
+--	box6.setZIndex(4)
+--	box7.setZIndex(4)
+--	box8.setZIndex(4)
+--	box9.setZIndex(4)
+	
+	for key, value in pairs(boxArray) do
+		value.setZIndex(4)
+	end
 end
 
 local tpsRefreshLoop = function()
