@@ -119,7 +119,7 @@ local function init()
 	functions.debug("Data parsing complete.")
 	
 	drawMain(10, 65, 500, 230)
-	drawHeader()
+	drawHeader(10, 65)
 	drawTps()
 	drawSanta(105,120)
 	drawEntities()
