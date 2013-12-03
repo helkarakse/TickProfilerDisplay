@@ -59,6 +59,17 @@ box6 = bridge.addBox(x-5, y-5, 5, 1, red, 1)
 box7 = bridge.addBox(x-6, y-4, 5, 1, red, 1)
 box8 = bridge.addBox(x-7, y-3, 6, 1, red, 1)
 box9 = bridge.addBox(x-8, y-2, 8, 1, red, 1)
+
+--set zindexes
+box1.setZIndex(4)
+box2.setZIndex(4)
+box3.setZIndex(4)
+box4.setZIndex(4)
+box5.setZIndex(4)
+box6.setZIndex(4)
+box7.setZIndex(4)
+box8.setZIndex(4)
+box9.setZIndex(4)
 end
 
 local tpsRefreshLoop = function()
@@ -102,7 +113,7 @@ local function init()
 	drawMain()
 	drawHeader()
 	drawTps()
-	drawSanta(105,115)
+	drawSanta(105,120)
 	
 	parallel.waitForAll(tpsRefreshLoop, clockRefreshLoop)
 end
