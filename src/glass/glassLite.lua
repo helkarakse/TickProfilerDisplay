@@ -45,12 +45,12 @@ local function drawTps()
 	clockText.setScale(1)
 end
 
-local function drawEntities()
+local function drawEntities(inputX, inputY)
 	local data = parser.getSingleEntities()
-	bridge.addText(tonumber(args[1]), tonumber(args[2]), "Entity Name:", colors.white).setScale(1)
-	bridge.addText(125, 100, "Position:", colors.white).setScale(1)
-	bridge.addText(150, 100, "%", colors.white).setScale(1)
-	bridge.addText(175, 100, "Dimension:", colors.white).setScale(1)
+	bridge.addText(inputX, inputY, "Entity Name:", colors.white).setScale(0.5)
+	bridge.addText(inputX + 50, inputY, "Position:", colors.white).setScale(0.5)
+	bridge.addText(inputX + 75, inputY, "%", colors.white).setScale(0.5)
+	bridge.addText(inputX + 100, inputY, "Dimension:", colors.white).setScale(0.5)
 end
 
 local function drawChunks()
@@ -128,7 +128,7 @@ local function init()
 	drawHeader(10, 65)
 --	drawTps()
 --	drawSanta(105,120)
-	drawEntities()
+	drawEntities(15, 75)
 	
 --	parallel.waitForAll(tpsRefreshLoop, clockRefreshLoop)
 end
