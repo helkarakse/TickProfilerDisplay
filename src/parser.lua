@@ -37,6 +37,12 @@ local dimArray = {
 	{rrServer = 2, dimensionId = 10, dimensionName = "Silver Mining"}
 }
 
+local hexColor = {
+	red = 0xFF0000,
+	green = 0x00FF00,
+	yellow = 0xFFFF00
+}
+
 -- Main Functions
 -- Parses the json string and initializes each table variable. Returns true on successful parse, false on empty string passed.
 function parseData(stringInput)
@@ -197,6 +203,22 @@ function getPercentColor(percent)
 	return percentageColor
 end
 
+-- Returns the color for the percentage based on severity
+-- Hex version for glasses
+function getPercentHexColor(percent)
+	local percentage = tonumber(percent)
+	local percentageColor
+	if (percentage >= 5) then
+		percentageColor = hexColor.red
+	elseif (percentage >= 3 and percentage < 5) then
+		percentageColor = hexColor.yellow
+	elseif (percentage >= 0 and percentage < 3) then
+		percentageColor = hexColor.green
+	end
+	
+	return percentageColor
+end
+
 -- Returns the color for the TPS based on severity
 function getTpsColor(tps)
 	local tpsColor
@@ -207,6 +229,20 @@ function getTpsColor(tps)
 	        tpsColor = colors.yellow
 	elseif (tps < 15) then
 	        tpsColor = colors.red
+	end
+	
+	return tpsColor
+end
+
+function getTpsHexColor(tps)
+	local tpsColor
+	local tps = tonumber(tps)
+	if (tps >= 18) then
+	        tpsColor = hexColor.green
+	elseif (tps >= 15 and tps < 18) then
+	        tpsColor = hexColor.yellow
+	elseif (tps < 15) then
+	        tpsColor = hexColor.red
 	end
 	
 	return tpsColor
