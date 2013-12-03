@@ -22,12 +22,12 @@ local colors = {
 local function drawMain()
 	mainBox = bridge.addBox(10, 65, 100, 50, colors.headerEnd, 0.3)
 	header = bridge.addGradientBox(5, 65, 75, 7, colors.headerEnd, 0, colors.headerStart, 1, 2)
-	edgeBox = bridge.addGradientBox(10, 100, 100, 2, colors.headerStart, 1, colors.headerEnd, 0, 2)
+	edgeBox = bridge.addGradientBox(10, 165, 100, 2, colors.headerStart, 1, colors.headerEnd, 0, 2)
 	header.setZIndex(2)
 end
 
 local function drawHeader()
-	headerText = bridge.addText(7, 57, "OTE Glasses    LITE", colors.white)
+	headerText = bridge.addText(7, 70, "OTE Glasses    LITE", colors.white)
 	headerText.setZIndex(3)
 	headerText.setScale(0.5)
 end
@@ -37,7 +37,7 @@ local function drawTps()
 --	tpsTextText = bridge.addText(44, 114, "TPS: ", colors.white)
 	tpsText = bridge.addText(65, 114, "TPS: " .. tps, colors.white)
 	tpsText.setScale(0.5)
-	clockText = bridge.addText(20, 95, "clock", colors.white)
+	clockText = bridge.addText(20, 75, "clock", colors.white)
 	clockText.setScale(1)
 end
 
