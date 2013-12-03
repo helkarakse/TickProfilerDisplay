@@ -15,7 +15,7 @@ local jsonFile = "profile.txt"
 local bridge, mainBox, edgeBox
 local header, headerText, clockText, tpsText
 local colors = {
-	headerStart = 0x18caf0, headerEnd = 0x9fedfd, white = 0xffffff
+	headerStart = 0x18caf0, headerEnd = 0x9fedfd, white = 0xffffff, red = 0xFF0000
 }
 
 -- Functions
@@ -27,38 +27,31 @@ local function drawMain()
 end
 
 local function drawHeader()
-	headerText = bridge.addText(7, 77, "Megaton OS    LITE", colors.white)
+	headerText = bridge.addText(7, 77, "OTE Glasses    LITE", colors.white)
 	headerText.setZIndex(3)
 end
 
 local function drawTps()
 	local tps = parser.getTps()
+	tpsTextText = bridge.addText(60, 114, "TPS: ", colors.white)
 	tpsText = bridge.addText(65, 114, tps, colors.white)
 	clockText = bridge.addText(20, 95, "clock", colors.white)
 	clockText.setScale(2)
 end
 
 local function drawSanta(inputX, inputY)
---colors
-white = 0xffffff
-red = 0xFF0000
-
---initial starting position
-x = inputX
-y = inputY
-
 --white parts
-box1 = bridge.addBox(x, y-9, 2, 2, white, 1)
-box2 = bridge.addBox(x-9, y-1, 9, 2, white, 1)
+box1 = bridge.addBox(inputX, inputY-9, 2, 2, colors.white, 1)
+box2 = bridge.addBox(inputX-9, inputY-1, 9, 2, colors.white, 1)
 
 --red parts
-box3 = bridge.addBox(x-2, y-8, 2, 1, red, 1)
-box4 = bridge.addBox(x-3, y-7, 4, 1, red, 1)
-box5 = bridge.addBox(x-4, y-6, 5, 1, red, 1)
-box6 = bridge.addBox(x-5, y-5, 5, 1, red, 1)
-box7 = bridge.addBox(x-6, y-4, 5, 1, red, 1)
-box8 = bridge.addBox(x-7, y-3, 6, 1, red, 1)
-box9 = bridge.addBox(x-8, y-2, 8, 1, red, 1)
+box3 = bridge.addBox(inputX-2, inputY-8, 2, 1, colors.red, 1)
+box4 = bridge.addBox(inputX-3, inputY-7, 4, 1, colors.red, 1)
+box5 = bridge.addBox(inputX-4, inputY-6, 5, 1, colors.red, 1)
+box6 = bridge.addBox(inputX-5, inputY-5, 5, 1, colors.red, 1)
+box7 = bridge.addBox(inputX-6, inputY-4, 5, 1, colors.red, 1)
+box8 = bridge.addBox(inputX-7, inputY-3, 6, 1, colors.red, 1)
+box9 = bridge.addBox(inputX-8, inputY-2, 8, 1, colors.red, 1)
 
 --set zindexes
 box1.setZIndex(4)
