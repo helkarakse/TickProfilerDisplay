@@ -45,8 +45,6 @@ end
 
 local function drawEntities()
 	local data = parser.getSingleEntities()
-	bridge.addBox(100, 100, 150, 100, colors.white, 1)
-	bridge.addBox(105, 105, 140, 90, colors.red, 1)
 end
 
 local function drawChunks()
