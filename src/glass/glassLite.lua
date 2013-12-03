@@ -47,10 +47,10 @@ end
 
 local function drawEntities()
 	local data = parser.getSingleEntities()
-	bridge.addText(100, 100, "Entity Name:", colors.white)
-	bridge.addText(125, 100, "Position:", colors.white)
-	bridge.addText(150, 100, "%", colors.white)
-	bridge.addText(175, 100, "Dimension:", colors.white)
+	bridge.addText(tonumber(args[1]), tonumber(args[2]), "Entity Name:", colors.white).setScale(1)
+	bridge.addText(125, 100, "Position:", colors.white).setScale(1)
+	bridge.addText(150, 100, "%", colors.white).setScale(1)
+	bridge.addText(175, 100, "Dimension:", colors.white).setScale(1)
 end
 
 local function drawChunks()
@@ -126,8 +126,8 @@ local function init()
 	
 	drawMain(10, 65, 500, 230)
 	drawHeader(10, 65)
-	drawTps()
-	drawSanta(105,120)
+--	drawTps()
+--	drawSanta(105,120)
 	drawEntities()
 	
 	parallel.waitForAll(tpsRefreshLoop, clockRefreshLoop)
