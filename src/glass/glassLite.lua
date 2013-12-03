@@ -31,7 +31,7 @@ local function drawMain(inputX, inputY, inputWidth, inputHeight)
 end
 
 local function drawHeader(inputX, inputY)
-	headerText = bridge.addText(args[1], args[2], "OTE Glasses    LITE", colors.white)
+	headerText = bridge.addText(tonumber(args[1]), tonumber(args[2]), "OTE Glasses    LITE", colors.white)
 	headerText.setZIndex(3)
 	headerText.setScale(0.5)
 end
