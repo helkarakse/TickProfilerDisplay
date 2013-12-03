@@ -49,8 +49,15 @@ local function drawEntities(inputX, inputY)
 	local data = parser.getSingleEntities()
 	bridge.addText(inputX, inputY, "Entity Name:", colors.white).setScale(0.5)
 	bridge.addText(inputX + 50, inputY, "Position:", colors.white).setScale(0.5)
-	bridge.addText(inputX + 75, inputY, "%", colors.white).setScale(0.5)
-	bridge.addText(inputX + 100, inputY, "Dimension:", colors.white).setScale(0.5)
+	bridge.addText(inputX + 100, inputY, "%", colors.white).setScale(0.5)
+	bridge.addText(inputX + 125, inputY, "Dimension:", colors.white).setScale(0.5)
+	
+	for i = 1, limit do
+		bridge.addText(inputX, inputY + (5 * i), data[i].name, colors.white).setScale(0.5)
+		bridge.addText(inputX + 50, inputY + (5 * i), data[i].position, colors.white).setScale(0.5)
+		bridge.addText(inputX + 100, inputY + (5 * i), data[i].percent, colors.white).setScale(0.5)
+		bridge.addText(inputX + 125, inputY + (5 * i), parser.getDimensionName(1, data[i].dimId), colors.white).setScale(0.5)
+	end
 end
 
 local function drawChunks()
