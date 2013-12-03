@@ -94,7 +94,7 @@ local function drawTypes(inputX, inputY)
 end
 
 local function drawCalls(inputX, inputY)
-	local data = parser.getEntityByTypes()
+	local data = parser.getAverageCalls()
 	bridge.addText(inputX, inputY, "Entity Name:", colors.white).setScale(size.small)
 	bridge.addText(inputX + 100, inputY, "Time/Tick:", colors.white).setScale(size.small)
 	bridge.addText(inputX + 150, inputY, "Average Calls", colors.white).setScale(size.small)
