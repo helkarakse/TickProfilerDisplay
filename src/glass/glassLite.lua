@@ -15,6 +15,7 @@ local jsonFile = "profile.txt"
 local bridge, mainBox, edgeBox
 local header, headerText, clockText, tpsText
 local limit = 5
+local lineMultiplier = 5
 
 local args = {...}
 
@@ -59,15 +60,24 @@ local function drawEntities(inputX, inputY)
 	bridge.addText(inputX + 200, inputY, "Dimension:", colors.white).setScale(size.small)
 	
 	for i = 1, limit do
-		bridge.addText(inputX, inputY + (5 * i), data[i].name, colors.white).setScale(size.small)
-		bridge.addText(inputX + 100, inputY + (5 * i), data[i].position, colors.white).setScale(size.small)
-		bridge.addText(inputX + 150, inputY + (5 * i), data[i].percent, parser.getPercentHexColor(data[i].percent)).setScale(size.small)
-		bridge.addText(inputX + 200, inputY + (5 * i), parser.getDimensionName(1, data[i].dimId), colors.white).setScale(size.small)
+		bridge.addText(inputX, inputY + (lineMultiplier * i), data[i].name, colors.white).setScale(size.small)
+		bridge.addText(inputX + 100, inputY + (lineMultiplier * i), data[i].position, colors.white).setScale(size.small)
+		bridge.addText(inputX + 150, inputY + (lineMultiplier * i), data[i].percent, parser.getPercentHexColor(data[i].percent)).setScale(size.small)
+		bridge.addText(inputX + 200, inputY + (lineMultiplier * i), parser.getDimensionName(1, data[i].dimId), colors.white).setScale(size.small)
 	end
 end
 
-local function drawChunks()
-
+local function drawChunks(inputX, inputY)
+	local data = parser.getChunks()
+	bridge.addText(inputX, inputY, "Chunk Position (X, Z):", colors.white).setScale(size.small)
+	bridge.addText(inputX + 150, inputY, "Time/Tick:", colors.white).setScale(size.small)
+	bridge.addText(inputX + 200, inputY, "%", colors.white).setScale(size.small)
+	
+	for i = 1, limit do
+		bridge.addText(inputX, inputY + (lineMultiplier * i), data[i].positionX .. ", " .. data[i].positionZ, colors.white).setScale(size.small)
+		bridge.addText(inputX + 150, inputY + (lineMultiplier * i), data[i].time, colors.white).setScale(size.small)
+		bridge.addText(inputX + 200, inputY + (lineMultiplier * i), data[i].percent, parser.getPercentHexColor(data[i].percent)).setScale(size.small)
+	end
 end
 
 local function drawTypes()
@@ -142,6 +152,7 @@ local function init()
 --	drawTps()
 --	drawSanta(105,120)
 	drawEntities(15, 75)
+	drawChunks(15, 110)
 	
 --	parallel.waitForAll(tpsRefreshLoop, clockRefreshLoop)
 end
