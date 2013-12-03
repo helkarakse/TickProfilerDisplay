@@ -27,7 +27,7 @@ local function drawMain()
 end
 
 local function drawHeader()
-	headerText = g.addText(7, 77, "Megaton OS    LITE", colors.white)
+	headerText = bridge.addText(7, 77, "Megaton OS    LITE", colors.white)
 	headerText.setZIndex(3)
 end
 
