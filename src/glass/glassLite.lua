@@ -43,13 +43,10 @@ local function drawHeader(inputX, inputY)
 	headerText.setScale(size.small)
 end
 
-local function drawTps()
+local function drawTps(inputX, inputY)
 	local tps = parser.getTps()
---	tpsTextText = bridge.addText(44, 114, "TPS: ", colors.white)
-	tpsText = bridge.addText(65, 114, "TPS: " .. tps, colors.white)
-	tpsText.setScale(size.small)
-	clockText = bridge.addText(20, 75, "clock", colors.white)
-	clockText.setScale(size.normal)
+	tpsText = bridge.addText(inputX + 100, inputY + 2, tps, colors.white).setScale(size.small)
+	clockText = bridge.addText(inputX + 100, inputY + 2, "clock", colors.white).setScale(size.normal)
 end
 
 local function drawEntities(inputX, inputY)
@@ -127,25 +124,25 @@ local function drawSanta(inputX, inputY)
 	end
 end
 
---local tpsRefreshLoop = function()
---	while true do
---		local file = fs.open(jsonFile, "r")
---		local text = file.readAll()
---		file.close()
---		
---		parser.parseData(text)
---		tpsText.setText(parser.getTps())
---		sleep(15)
---	end
---end
---
---local clockRefreshLoop = function()
---	while true do
---		local nTime = os.time()
---		clockText.setText(textutils.formatTime(nTime, false))
---		sleep(1)
---	end
---end
+local tpsRefreshLoop = function()
+	while true do
+		local file = fs.open(jsonFile, "r")
+		local text = file.readAll()
+		file.close()
+		
+		parser.parseData(text)
+		tpsText.setText(parser.getTps())
+		sleep(15)
+	end
+end
+
+local clockRefreshLoop = function()
+	while true do
+		local nTime = os.time()
+		clockText.setText(textutils.formatTime(nTime, false))
+		sleep(1)
+	end
+end
 
 local function init()
 	local hasBridge, bridgeDir = functions.locatePeripheral("glassesbridge")
@@ -165,16 +162,16 @@ local function init()
 	parser.parseData(text)
 	functions.debug("Data parsing complete.")
 	
-	drawMain(10, 65, 500, 230)
+	drawMain(10, 65, 250, 160)
 	drawHeader(10, 65)
---	drawTps()
+	drawTps()
 --	drawSanta(105,120)
 	drawEntities(15, 75)
 	drawChunks(15, 110)
 	drawTypes(15, 145)
 	drawCalls(15, 180)
 	
---	parallel.waitForAll(tpsRefreshLoop, clockRefreshLoop)
+	parallel.waitForAll(tpsRefreshLoop, clockRefreshLoop)
 end
 
 init()
