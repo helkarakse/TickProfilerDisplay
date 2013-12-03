@@ -28,7 +28,7 @@ local function drawMain(inputX, inputY, inputWidth, inputHeight)
 	header.setZIndex(2)
 end
 
-local function drawHeader()
+local function drawHeader(inputX, inputY)
 	headerText = bridge.addText(inputX-3, inputY-2, "OTE Glasses    LITE", colors.white)
 	headerText.setZIndex(3)
 	headerText.setScale(0.5)
@@ -118,7 +118,7 @@ local function init()
 	parser.parseData(text)
 	functions.debug("Data parsing complete.")
 	
-	drawMain(10, 65, 500, 250)
+	drawMain(10, 65, 500, 230)
 	drawHeader()
 	drawTps()
 	drawSanta(105,120)
