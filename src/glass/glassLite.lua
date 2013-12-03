@@ -45,9 +45,9 @@ end
 
 local function drawTps(inputX, inputY)
 	local tps = parser.getTps()
-	tpsText = bridge.addText(inputX + 50, inputY + 2, tps, colors.white)
+	tpsText = bridge.addText(inputX + 75, inputY + 2, tps, colors.white)
 	tpsText.setScale(size.small)
-	clockText = bridge.addText(inputX + 75, inputY + 2, "clock", colors.white)
+	clockText = bridge.addText(inputX + 100, inputY + 2, "clock", colors.white)
 	clockText.setScale(size.small)
 end
 
