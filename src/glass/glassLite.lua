@@ -29,7 +29,7 @@ local function drawMain(inputX, inputY, inputWidth, inputHeight)
 end
 
 local function drawHeader()
-	headerText = bridge.addText(inputX -3, inputY-2, "OTE Glasses    LITE", colors.white)
+	headerText = bridge.addText(inputX-3, inputY-2, "OTE Glasses    LITE", colors.white)
 	headerText.setZIndex(3)
 	headerText.setScale(0.5)
 end
