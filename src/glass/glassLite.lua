@@ -22,6 +22,10 @@ local colors = {
 	headerStart = 0x18caf0, headerEnd = 0x9fedfd, white = 0xffffff, red = 0xFF0000
 }
 
+local size = {
+	small = 0.5, normal = 0.75, large = 1
+}
+
 -- Functions
 local function drawMain(inputX, inputY, inputWidth, inputHeight)	
 	mainBox = bridge.addBox(inputX, inputY, inputWidth, inputHeight, colors.headerEnd, 0.3)
@@ -33,30 +37,30 @@ end
 local function drawHeader(inputX, inputY)
 	headerText = bridge.addText(inputX, inputY + 2, "OTE Glasses    LITE", colors.white)
 	headerText.setZIndex(3)
-	headerText.setScale(0.5)
+	headerText.setScale(size.small)
 end
 
 local function drawTps()
 	local tps = parser.getTps()
 --	tpsTextText = bridge.addText(44, 114, "TPS: ", colors.white)
 	tpsText = bridge.addText(65, 114, "TPS: " .. tps, colors.white)
-	tpsText.setScale(0.5)
+	tpsText.setScale(size.small)
 	clockText = bridge.addText(20, 75, "clock", colors.white)
-	clockText.setScale(1)
+	clockText.setScale(size.large)
 end
 
 local function drawEntities(inputX, inputY)
 	local data = parser.getSingleEntities()
-	bridge.addText(inputX, inputY, "Entity Name:", colors.white).setScale(0.5)
-	bridge.addText(inputX + 50, inputY, "Position:", colors.white).setScale(0.5)
-	bridge.addText(inputX + 100, inputY, "%", colors.white).setScale(0.5)
-	bridge.addText(inputX + 125, inputY, "Dimension:", colors.white).setScale(0.5)
+	bridge.addText(inputX, inputY, "Entity Name:", colors.white).setScale(size.small)
+	bridge.addText(inputX + 100, inputY, "Position:", colors.white).setScale(size.small)
+	bridge.addText(inputX + 200, inputY, "%", colors.white).setScale(size.small)
+	bridge.addText(inputX + 250, inputY, "Dimension:", colors.white).setScale(size.small)
 	
 	for i = 1, limit do
-		bridge.addText(inputX, inputY + (5 * i), data[i].name, colors.white).setScale(0.5)
-		bridge.addText(inputX + 50, inputY + (5 * i), data[i].position, colors.white).setScale(0.5)
-		bridge.addText(inputX + 100, inputY + (5 * i), data[i].percent, colors.white).setScale(0.5)
-		bridge.addText(inputX + 125, inputY + (5 * i), parser.getDimensionName(1, data[i].dimId), colors.white).setScale(0.5)
+		bridge.addText(inputX, inputY + (5 * i), data[i].name, colors.white).setScale(size.small)
+		bridge.addText(inputX + 100, inputY + (5 * i), data[i].position, colors.white).setScale(size.small)
+		bridge.addText(inputX + 200, inputY + (5 * i), data[i].percent, colors.white).setScale(size.small)
+		bridge.addText(inputX + 250, inputY + (5 * i), parser.getDimensionName(1, data[i].dimId), colors.white).setScale(size.small)
 	end
 end
 
