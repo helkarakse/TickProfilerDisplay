@@ -102,7 +102,7 @@ local function init()
 	drawMain()
 	drawHeader()
 	drawTps()
-	drawSanta(110,130)
+	drawSanta(105,115)
 	
 	parallel.waitForAll(tpsRefreshLoop, clockRefreshLoop)
 end
