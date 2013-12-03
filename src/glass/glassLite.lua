@@ -29,14 +29,16 @@ end
 local function drawHeader()
 	headerText = bridge.addText(7, 77, "OTE Glasses    LITE", colors.white)
 	headerText.setZIndex(3)
+	headerText.setScale(0.5)
 end
 
 local function drawTps()
 	local tps = parser.getTps()
-	tpsTextText = bridge.addText(44, 114, "TPS: ", colors.white)
-	tpsText = bridge.addText(65, 114, tps, colors.white)
+--	tpsTextText = bridge.addText(44, 114, "TPS: ", colors.white)
+	tpsText = bridge.addText(65, 114, "TPS: " .. tps, colors.white)
+	tpsText.setScale(0.5)
 	clockText = bridge.addText(20, 95, "clock", colors.white)
-	clockText.setScale(2)
+	clockText.setScale(1)
 end
 
 local function drawSanta(inputX, inputY)
@@ -55,16 +57,6 @@ local function drawSanta(inputX, inputY)
 	table.insert(boxArray, bridge.addBox(inputX-8, inputY-2, 8, 1, colors.red, 1))
 	
 	--set zindexes
---	box1.setZIndex(4)
---	box2.setZIndex(4)
---	box3.setZIndex(4)
---	box4.setZIndex(4)
---	box5.setZIndex(4)
---	box6.setZIndex(4)
---	box7.setZIndex(4)
---	box8.setZIndex(4)
---	box9.setZIndex(4)
-	
 	for key, value in pairs(boxArray) do
 		value.setZIndex(4)
 	end
