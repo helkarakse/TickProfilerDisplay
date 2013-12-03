@@ -16,6 +16,8 @@ local bridge, mainBox, edgeBox
 local header, headerText, clockText, tpsText
 local limit = 5
 
+local args = {...}
+
 local colors = {
 	headerStart = 0x18caf0, headerEnd = 0x9fedfd, white = 0xffffff, red = 0xFF0000
 }
@@ -29,7 +31,7 @@ local function drawMain(inputX, inputY, inputWidth, inputHeight)
 end
 
 local function drawHeader(inputX, inputY)
-	headerText = bridge.addText(inputX-3, inputY-2, "OTE Glasses    LITE", colors.white)
+	headerText = bridge.addText(args[1], args[2], "OTE Glasses    LITE", colors.white)
 	headerText.setZIndex(3)
 	headerText.setScale(0.5)
 end
@@ -45,6 +47,10 @@ end
 
 local function drawEntities()
 	local data = parser.getSingleEntities()
+	bridge.addText(100, 100, "Entity Name:", colors.white)
+	bridge.addText(125, 100, "Position:", colors.white)
+	bridge.addText(150, 100, "%", colors.white)
+	bridge.addText(175, 100, "Dimension:", colors.white)
 end
 
 local function drawChunks()
