@@ -25,7 +25,7 @@ local colors = {
 }
 
 local size = {
-	small = 0.75, normal = 1, large = 1.25
+	small = 0.5, normal = 0.75, large = 1
 }
 
 -- Functions
