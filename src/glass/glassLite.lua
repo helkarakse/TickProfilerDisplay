@@ -14,6 +14,8 @@ os.loadAPI("parser")
 local jsonFile = "profile.txt"
 local bridge, mainBox, edgeBox
 local header, headerText, clockText, tpsText
+local limit = 5
+
 local colors = {
 	headerStart = 0x18caf0, headerEnd = 0x9fedfd, white = 0xffffff, red = 0xFF0000
 }
@@ -39,6 +41,23 @@ local function drawTps()
 	tpsText.setScale(0.5)
 	clockText = bridge.addText(20, 75, "clock", colors.white)
 	clockText.setScale(1)
+end
+
+local function drawEntities()
+	local data = parser.getSingleEntities()
+	
+end
+
+local function drawChunks()
+
+end
+
+local function drawTypes()
+
+end
+
+local function drawCalls()
+
 end
 
 local function drawSanta(inputX, inputY)
