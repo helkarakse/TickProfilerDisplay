@@ -20,8 +20,8 @@ local colors = {
 
 -- Functions
 local function drawMain()
-	mainBox = bridge.addBox(10, 52, 100, 50, colors.headerEnd, 0.3)
-	header = bridge.addGradientBox(5, 55, 75, 8, colors.headerEnd, 0, colors.headerStart, 1, 2)
+	mainBox = bridge.addBox(10, 65, 100, 50, colors.headerEnd, 0.3)
+	header = bridge.addGradientBox(5, 65, 75, 7, colors.headerEnd, 0, colors.headerStart, 1, 2)
 	edgeBox = bridge.addGradientBox(10, 100, 100, 2, colors.headerStart, 1, colors.headerEnd, 0, 2)
 	header.setZIndex(2)
 end
