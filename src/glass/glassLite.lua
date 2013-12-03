@@ -70,22 +70,40 @@ end
 local function drawChunks(inputX, inputY)
 	local data = parser.getChunks()
 	bridge.addText(inputX, inputY, "Chunk Position (X, Z):", colors.white).setScale(size.small)
-	bridge.addText(inputX + 150, inputY, "Time/Tick:", colors.white).setScale(size.small)
-	bridge.addText(inputX + 200, inputY, "%", colors.white).setScale(size.small)
+	bridge.addText(inputX + 100, inputY, "Time/Tick:", colors.white).setScale(size.small)
+	bridge.addText(inputX + 150, inputY, "%", colors.white).setScale(size.small)
 	
 	for i = 1, limit do
 		bridge.addText(inputX, inputY + (lineMultiplier * i), data[i].positionX .. ", " .. data[i].positionZ, colors.white).setScale(size.small)
-		bridge.addText(inputX + 150, inputY + (lineMultiplier * i), data[i].time, colors.white).setScale(size.small)
-		bridge.addText(inputX + 200, inputY + (lineMultiplier * i), data[i].percent, parser.getPercentHexColor(data[i].percent)).setScale(size.small)
+		bridge.addText(inputX + 100, inputY + (lineMultiplier * i), data[i].time, colors.white).setScale(size.small)
+		bridge.addText(inputX + 150, inputY + (lineMultiplier * i), data[i].percent, parser.getPercentHexColor(data[i].percent)).setScale(size.small)
 	end
 end
 
-local function drawTypes()
-
+local function drawTypes(inputX, inputY)
+	local data = parser.getEntityByTypes()
+	bridge.addText(inputX, inputY, "Entity Type:", colors.white).setScale(size.small)
+	bridge.addText(inputX + 100, inputY, "Time/Tick:", colors.white).setScale(size.small)
+	bridge.addText(inputX + 150, inputY, "%", colors.white).setScale(size.small)
+	
+	for i = 1, limit do
+		bridge.addText(inputX, inputY + (lineMultiplier * i), data[i].type, colors.white).setScale(size.small)
+		bridge.addText(inputX + 100, inputY + (lineMultiplier * i), data[i].time, colors.white).setScale(size.small)
+		bridge.addText(inputX + 150, inputY + (lineMultiplier * i), data[i].percent, parser.getPercentHexColor(data[i].percent)).setScale(size.small)
+	end
 end
 
-local function drawCalls()
-
+local function drawCalls(inputX, inputY)
+	local data = parser.getEntityByTypes()
+	bridge.addText(inputX, inputY, "Entity Name:", colors.white).setScale(size.small)
+	bridge.addText(inputX + 100, inputY, "Time/Tick:", colors.white).setScale(size.small)
+	bridge.addText(inputX + 150, inputY, "Average Calls", colors.white).setScale(size.small)
+	
+	for i = 1, limit do
+		bridge.addText(inputX, inputY + (lineMultiplier * i), data[i].name, colors.white).setScale(size.small)
+		bridge.addText(inputX + 100, inputY + (lineMultiplier * i), data[i].time, colors.white).setScale(size.small)
+		bridge.addText(inputX + 150, inputY + (lineMultiplier * i), data[i].calls, colors.white).setScale(size.small)
+	end
 end
 
 local function drawSanta(inputX, inputY)
@@ -153,6 +171,8 @@ local function init()
 --	drawSanta(105,120)
 	drawEntities(15, 75)
 	drawChunks(15, 110)
+	drawTypes(15, 145)
+	drawCalls(15, 180)
 	
 --	parallel.waitForAll(tpsRefreshLoop, clockRefreshLoop)
 end
