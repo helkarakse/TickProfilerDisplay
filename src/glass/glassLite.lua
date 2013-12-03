@@ -29,8 +29,8 @@ local function drawMain()
 	inputHeight = 50
 	
 	mainBox = bridge.addBox(inputX, inputY, inputWidth, inputHeight, colors.headerEnd, 0.3)
-	header = bridge.addGradientBox(5, 65, 75, 7, colors.headerEnd, 0, colors.headerStart, 1, 2)
-	edgeBox = bridge.addGradientBox(10, 165, 100, 2, colors.headerStart, 1, colors.headerEnd, 0, 2)
+	header = bridge.addGradientBox(inputX-5, inputY, 75, 7, colors.headerEnd, 0, colors.headerStart, 1, 2)
+	edgeBox = bridge.addGradientBox(inputX, inputY+inputHeight, inputWidth, 2, colors.headerStart, 1, colors.headerEnd, 0, 2)
 	header.setZIndex(2)
 end
 
