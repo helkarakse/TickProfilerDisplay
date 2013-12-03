@@ -19,7 +19,9 @@ local limit = 5
 local args = {...}
 
 local colors = {
-	headerStart = 0x18caf0, headerEnd = 0x9fedfd, white = 0xffffff, red = 0xFF0000
+	headerStart = 0x18caf0,
+	headerEnd = 0x9fedfd,
+	white = 0xffffff
 }
 
 local size = {
@@ -35,7 +37,7 @@ local function drawMain(inputX, inputY, inputWidth, inputHeight)
 end
 
 local function drawHeader(inputX, inputY)
-	headerText = bridge.addText(inputX, inputY + 2, "OTE Glasses    LITE", colors.white)
+	headerText = bridge.addText(inputX, inputY + 2, "OTE Glasses    LITE     TPS: ", colors.white)
 	headerText.setZIndex(3)
 	headerText.setScale(size.small)
 end
@@ -53,14 +55,14 @@ local function drawEntities(inputX, inputY)
 	local data = parser.getSingleEntities()
 	bridge.addText(inputX, inputY, "Entity Name:", colors.white).setScale(size.small)
 	bridge.addText(inputX + 100, inputY, "Position:", colors.white).setScale(size.small)
-	bridge.addText(inputX + 200, inputY, "%", colors.white).setScale(size.small)
-	bridge.addText(inputX + 250, inputY, "Dimension:", colors.white).setScale(size.small)
+	bridge.addText(inputX + 150, inputY, "%", colors.white).setScale(size.small)
+	bridge.addText(inputX + 200, inputY, "Dimension:", colors.white).setScale(size.small)
 	
 	for i = 1, limit do
 		bridge.addText(inputX, inputY + (5 * i), data[i].name, colors.white).setScale(size.small)
 		bridge.addText(inputX + 100, inputY + (5 * i), data[i].position, colors.white).setScale(size.small)
-		bridge.addText(inputX + 200, inputY + (5 * i), data[i].percent, colors.white).setScale(size.small)
-		bridge.addText(inputX + 250, inputY + (5 * i), parser.getDimensionName(1, data[i].dimId), colors.white).setScale(size.small)
+		bridge.addText(inputX + 150, inputY + (5 * i), data[i].percent, parser.getPercentHexColor(data[i].percent)).setScale(size.small)
+		bridge.addText(inputX + 200, inputY + (5 * i), parser.getDimensionName(1, data[i].dimId), colors.white).setScale(size.small)
 	end
 end
 
