@@ -21,16 +21,10 @@ local colors = {
 }
 
 -- Functions
-local function drawMain()
-	-- starting values mainbox
-	inputX = 10
-	inputY = 65
-	inputWidth = 100
-	inputHeight = 50
-	
+local function drawMain(inputX, inputY, inputWidth, inputHeight)	
 	mainBox = bridge.addBox(inputX, inputY, inputWidth, inputHeight, colors.headerEnd, 0.3)
 	header = bridge.addGradientBox(inputX-5, inputY, 75, 7, colors.headerEnd, 0, colors.headerStart, 1, 2)
-	edgeBox = bridge.addGradientBox(inputX, inputY+inputHeight, inputWidth, 2, colors.headerStart, 1, colors.headerEnd, 0, 2)
+	edgeBox = bridge.addGradientBox(inputX, inputY+inputHeight-2, inputWidth, 2, colors.headerStart, 1, colors.headerEnd, 0, 2)
 	header.setZIndex(2)
 end
 
@@ -126,7 +120,7 @@ local function init()
 	parser.parseData(text)
 	functions.debug("Data parsing complete.")
 	
-	drawMain()
+	drawMain(10, 65, 100, 50)
 	drawHeader()
 	drawTps()
 	drawSanta(105,120)
