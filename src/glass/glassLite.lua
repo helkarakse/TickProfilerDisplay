@@ -17,6 +17,12 @@ local header, headerText, clockText, tpsText
 local limit = 5
 local lineMultiplier = 10
 
+-- Positioning Variables
+local mainX = 10
+local mainY = 65
+local mainWidth = 250
+local mainHeight = 160
+
 local args = {...}
 
 local colors = {
@@ -31,9 +37,11 @@ local size = {
 }
 
 -- Functions
-local function drawMain(inputX, inputY, inputWidth, inputHeight)	
+local function drawMain(inputX, inputY, inputWidth, inputHeight)
+	local headerHeight = 9
+	
 	mainBox = bridge.addBox(inputX, inputY, inputWidth, inputHeight, colors.headerEnd, 0.3)
-	header = bridge.addGradientBox(inputX-5, inputY, inputWidth, 7, colors.headerEnd, 0, colors.headerStart, 1, 2)
+	header = bridge.addGradientBox(inputX-5, inputY, inputWidth, headerHeight, colors.headerEnd, 0, colors.headerStart, 1, 2)
 	edgeBox = bridge.addGradientBox(inputX, inputY+inputHeight-2, inputWidth, 2, colors.headerStart, 1, colors.headerEnd, 0, 2)
 	header.setZIndex(2)
 end
@@ -198,14 +206,15 @@ local function init()
 	parser.parseData(text)
 	functions.debug("Data parsing complete.")
 	
-	drawMain(10, 65, 250, 160)
-	drawHeader(10, 65)
-	drawTps(10, 65)
-	drawSanta(20,65)
-	drawEntities(15, 75)
-	drawChunks(15, 110)
-	drawTypes(15, 145)
-	drawCalls(15, 180)
+	drawMain(mainX, mainY, mainWidth, mainHeight)
+	drawHeader(mainX, mainY)
+	drawTps(mainX, mainY)
+	drawSanta(mainX + 10, mainY)
+	drawEntities(mainX + lineMultiplier, mainY + 10)
+	drawChunks(mainX + lineMultiplier, mainY + 10 + ((limit + 2) * lineMultiplier))
+	functions.debug("ChunksY:", mainY + 10 + ((limit + 2) * lineMultiplier))
+--	drawTypes(mainX + lineMultiplier, 145)
+--	drawCalls(mainX + lineMultiplier, 180)
 	
 	parallel.waitForAll(tpsRefreshLoop, clockRefreshLoop)
 end
