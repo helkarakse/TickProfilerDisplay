@@ -38,17 +38,17 @@ local function drawMain(inputX, inputY, inputWidth, inputHeight)
 end
 
 local function drawHeader(inputX, inputY)
-	headerText = bridge.addText(inputX, inputY + 2, "OTE Glasses    LITE     TPS: ", colors.white)
+	headerText = bridge.addText(inputX, inputY + 2, "OTE Glasses    LITE", colors.white)
 	headerText.setZIndex(3)
 	headerText.setScale(size.small)
 end
 
 local function drawTps(inputX, inputY)
 	local tps = parser.getTps()
-	tpsText = bridge.addText(inputX + 75, inputY + 2, tps, colors.white)
-	tpsText.setScale(size.small)
+	tpsText = bridge.addText(240, 225, tps, parser.getTpsHexColor(tps))
+	tpsText.setScale(size.normal)
 	tpsText.setZIndex(3)
-	clockText = bridge.addText(inputX + 100, inputY + 2, "clock", colors.white)
+	clockText = bridge.addText(240, inputY + 2, "clock", colors.white)
 	clockText.setScale(size.small)
 	clockText.setZIndex(3)
 end
