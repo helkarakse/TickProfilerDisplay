@@ -183,28 +183,14 @@ local dataRefreshLoop = function()
 		local text = file.readAll()
 		file.close()
 		
-		parser.parseData(text)
-		tpsText.setText(parser.getTps())
-		tpsText.setColor(parser.getTpsHexColor(parser.getTps()))
-		
-		-- clear old data
-		for key, value in pairs(entitiesArray) do
-			value.delete()
-		end
-		
-		for key, value in pairs(chunksArray) do
-			value.delete()
-		end
-		
-		for key, value in pairs(typesArray) do
-			value.delete()
-		end
-		
-		for key, value in pairs(callsArray) do
-			value.delete()
-		end
+		parser.parseData(text)		
+		bridge.clear()
 		
 		-- redraw the new data
+		drawMain(mainX, mainY, mainWidth, mainHeight)
+		drawHeader(mainX, mainY)
+		drawTps(mainX, mainY)
+		drawSanta(mainX + 10, mainY - 1)
 		drawData()
 		
 		sleep(10)
