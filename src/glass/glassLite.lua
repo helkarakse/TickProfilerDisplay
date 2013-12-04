@@ -56,15 +56,15 @@ local function drawTps(inputX, inputY)
 	
 	local tpsLabelText = bridge.addText(mainX + mainWidth - 55, mainY + mainHeight - tpsHeight, "TPS:", colors.white)
 	tpsLabelText.setScale(size.normal)
-	tpsLabelText.setZIndex(3)
+	tpsLabelText.setZIndex(4)
 	
 	tpsText = bridge.addText(mainX + mainWidth - 30, mainY + mainHeight - tpsHeight, tps, parser.getTpsHexColor(tps))
 	tpsText.setScale(size.normal)
-	tpsText.setZIndex(3)
+	tpsText.setZIndex(4)
 	
 	clockText = bridge.addText(mainX + mainWidth - 30, inputY + 1, "clock", colors.white)
 	clockText.setScale(size.small)
-	clockText.setZIndex(3)
+	clockText.setZIndex(4)
 end
 
 local function drawEntities(inputX, inputY)
@@ -162,7 +162,7 @@ local function drawSanta(inputX, inputY)
 	
 	--set zindexes
 	for key, value in pairs(boxArray) do
-		value.setZIndex(4)
+		value.setZIndex(6)
 	end
 end
 
