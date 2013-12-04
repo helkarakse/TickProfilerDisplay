@@ -35,8 +35,6 @@ local lineMultiplier = headerHeight
 local mainX = 10
 local mainY = 65
 local mainWidth = 250
---local mainHeight = 160
-
 local mainHeight = (28 * lineMultiplier) + 10
 
 -- Functions
@@ -86,7 +84,7 @@ local function drawEntities(inputX, inputY)
 	end
 	
 	for i = 1, #array do
-		array[i].setZIndex(3)
+		array[i].setZIndex(5)
 	end
 end
 
@@ -105,7 +103,7 @@ local function drawChunks(inputX, inputY)
 	end
 	
 	for i = 1, #array do
-		array[i].setZIndex(3)
+		array[i].setZIndex(5)
 	end
 end
 
@@ -124,7 +122,7 @@ local function drawTypes(inputX, inputY)
 	end
 	
 	for i = 1, #array do
-		array[i].setZIndex(3)
+		array[i].setZIndex(5)
 	end
 end
 
@@ -143,7 +141,7 @@ local function drawCalls(inputX, inputY)
 	end
 	
 	for i = 1, #array do
-		array[i].setZIndex(3)
+		array[i].setZIndex(5)
 	end
 end
 
@@ -210,7 +208,7 @@ local function init()
 	drawMain(mainX, mainY, mainWidth, mainHeight)
 	drawHeader(mainX, mainY)
 	drawTps(mainX, mainY)
-	drawSanta(mainX + 10, mainY)
+	drawSanta(mainX + 10, mainY - 1)
 	drawEntities(mainX + 5, mainY + headerHeight + 5)
 	drawChunks(mainX + 5, mainY + headerHeight + 5 + ((limit + 2) * lineMultiplier))
 	drawTypes(mainX + 5, mainY + headerHeight + 5 + ((limit + 2) * 2 * lineMultiplier))
