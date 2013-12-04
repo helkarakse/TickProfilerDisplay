@@ -211,9 +211,9 @@ local function init()
 	drawTps(mainX, mainY)
 	drawSanta(mainX + 10, mainY)
 	drawEntities(mainX + 5, mainY + 10)
-	drawChunks(mainX + 5, mainY + 10 + ((limit + 2) * lineMultiplier))
-	drawTypes(mainX + lineMultiplier, ((mainY + 10) * 2) + ((limit + 2) * lineMultiplier))
-	drawCalls(mainX + lineMultiplier, ((mainY + 10) * 3) + ((limit + 2) * lineMultiplier))
+	drawChunks(mainX + 5, mainY + ((limit + 2) * lineMultiplier))
+	drawTypes(mainX + lineMultiplier, ((mainY * 2) + ((limit + 2) * lineMultiplier)))
+	drawCalls(mainX + lineMultiplier, ((mainY * 3) + ((limit + 2) * lineMultiplier)))
 	
 	parallel.waitForAll(tpsRefreshLoop, clockRefreshLoop)
 end
