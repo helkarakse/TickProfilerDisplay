@@ -62,16 +62,22 @@ end
 
 local function drawEntities(inputX, inputY)
 	local data = parser.getSingleEntities()
-	bridge.addText(inputX, inputY, "Entity Name:", colors.white).setScale(size.small)
-	bridge.addText(inputX + 100, inputY, "Position:", colors.white).setScale(size.small)
-	bridge.addText(inputX + 150, inputY, "%", colors.white).setScale(size.small)
-	bridge.addText(inputX + 200, inputY, "Dimension:", colors.white).setScale(size.small)
+	local array = {}
+	
+	table.insert(array, bridge.addText(inputX, inputY, "Entity Name:", colors.white).setScale(size.small))
+	table.insert(array, bridge.addText(inputX + 100, inputY, "Position:", colors.white).setScale(size.small))
+	table.insert(array, bridge.addText(inputX + 150, inputY, "%", colors.white).setScale(size.small))
+	table.insert(array, bridge.addText(inputX + 200, inputY, "Dimension:", colors.white).setScale(size.small))
 	
 	for i = 1, limit do
-		bridge.addText(inputX, inputY + (lineMultiplier * i), data[i].name, colors.white).setScale(size.small)
-		bridge.addText(inputX + 100, inputY + (lineMultiplier * i), data[i].position, colors.white).setScale(size.small)
-		bridge.addText(inputX + 150, inputY + (lineMultiplier * i), data[i].percent, parser.getPercentHexColor(data[i].percent)).setScale(size.small)
-		bridge.addText(inputX + 200, inputY + (lineMultiplier * i), parser.getDimensionName(parser.getServerId(os.getComputerID()), data[i].dimId), colors.white).setScale(size.small)
+		table.insert(array, bridge.addText(inputX, inputY + (lineMultiplier * i), data[i].name, colors.white).setScale(size.small))
+		table.insert(array, bridge.addText(inputX + 100, inputY + (lineMultiplier * i), data[i].position, colors.white).setScale(size.small))
+		table.insert(array, bridge.addText(inputX + 150, inputY + (lineMultiplier * i), data[i].percent, parser.getPercentHexColor(data[i].percent)).setScale(size.small))
+		table.insert(array, bridge.addText(inputX + 200, inputY + (lineMultiplier * i), parser.getDimensionName(parser.getServerId(os.getComputerID()), data[i].dimId), colors.white).setScale(size.small))
+	end
+	
+	for i = 1, #array do
+		array[i].setZIndex(3)
 	end
 end
 
