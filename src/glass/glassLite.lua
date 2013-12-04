@@ -45,10 +45,12 @@ end
 
 local function drawTps(inputX, inputY)
 	local tps = parser.getTps()
-	tpsText = bridge.addText(inputX + 75, inputY + 2, tps, colors.white).setZIndex(3)
+	tpsText = bridge.addText(inputX + 75, inputY + 2, tps, colors.white)
 	tpsText.setScale(size.small)
-	clockText = bridge.addText(inputX + 100, inputY + 2, "clock", colors.white).setZIndex(3)
+	tpsText.setZIndex(3)
+	clockText = bridge.addText(inputX + 100, inputY + 2, "clock", colors.white)
 	clockText.setScale(size.small)
+	clockText.setZIndex(3)
 end
 
 local function drawEntities(inputX, inputY)
