@@ -17,6 +17,8 @@ local headerY = 6
 local displayY = 7
 local limit = 10
 
+local maintenance = true
+
 -- serverId, assumes that the computer label is 1tickMonitor, or 2tickMonitor
 local serverId = parser.getServerId(os.getComputerID())
 
@@ -183,6 +185,18 @@ local function displayCalls()
 	end
 end
 
+-- Display the maintenance message
+local function displayMessage()
+	monitor.setCursorPos(2, 6)
+	monitor.setTextColor(colors.yellow)
+	monitor.write("This tickboard is going to stop working soon.")
+	monitor.setCursorPos(2, 7)
+	monitor.write("It will be replaced by glasses displaying this information.")
+	monitor.setCursorPos(2, 8)
+	monitor.write("Contact Shotexpert for a replacement.")
+	monitor.setTextColor(colors.white)
+end
+
 -- Screen changing
 local function displayScreen(id) 
 	-- functions.debug("Displaying the screen for id: ", id)
@@ -190,15 +204,20 @@ local function displayScreen(id)
 	
 	monitor.clear()
 	displayHeader()
-	displayMenu(id)
-	if (id == 1) then
-		displayEntities()
-	elseif (id == 2) then
-		displayChunks()
-	elseif (id == 3) then
-		displayTypes()
-	elseif (id == 4) then
-		displayCalls()
+	
+	if (maintenance ~= true) then
+		displayMenu(id)
+		if (id == 1) then
+			displayEntities()
+		elseif (id == 2) then
+			displayChunks()
+		elseif (id == 3) then
+			displayTypes()
+		elseif (id == 4) then
+			displayCalls()
+		end
+	else
+		displayMessage()
 	end
 end
 
@@ -274,7 +293,12 @@ local function init()
 	end
 	
 	displayScreen(1)
-	parallel.waitForAll(monitorListener, refreshListener)
+	
+	if (maintenance ~= true) then
+		parallel.waitForAll(monitorListener, refreshListener)
+	else
+		parallel.waitForAll(refreshListener)
+	end
 end
 
 init()
