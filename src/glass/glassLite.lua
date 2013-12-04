@@ -47,7 +47,7 @@ end
 local function drawTps(inputX, inputY)
 	local tps = parser.getTps()
 	
-	local tpsLabelText = bridge.addText(220, 215, "TPS:", colors.white)
+	local tpsLabelText = bridge.addText(215, 215, "TPS:", colors.white)
 	tpsLabelText.setScale(size.normal)
 	tpsLabelText.setZIndex(3)
 	
@@ -143,6 +143,7 @@ local tpsRefreshLoop = function()
 		
 		parser.parseData(text)
 		tpsText.setText(parser.getTps())
+		tpsText.setTextColor(parser.getTpsHexColor(tps))
 		sleep(15)
 	end
 end
