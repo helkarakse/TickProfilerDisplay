@@ -70,10 +70,13 @@ local function drawTps(inputX, inputY)
 	clockText.setScale(size.small)
 	clockText.setZIndex(4)
 	
-	local lastUpdatedLabelText = bridge.addText(mainX + mainWidth - 70, inputY + 1, "Last Updated:", colors.white)
+	local lastUpdatedLabelText = bridge.addText(mainX + mainWidth - 170, inputY + 1, "Last Updated:", colors.white)
 	lastUpdatedLabelText.setScale(size.small)
 	lastUpdatedLabelText.setZIndex(4)
-	lastUpdatedText = bridge.addText(mainX + mainWidth - 53, inputY + 1, "last", colors.white)
+	
+	lastUpdatedText = bridge.addText(mainX + mainWidth - 153, inputY + 1, "last", colors.white)
+	lastUpdatedText.setScale(size.small)
+	lastUpdatedText.setZIndex(4)
 end
 
 local function drawEntities(inputX, inputY)
