@@ -28,14 +28,16 @@ local size = {
 }
 
 -- Positioning Variables
-local mainX = 10
-local mainY = 65
-local mainWidth = 250
-local mainHeight = 160
-
 local headerHeight = (size.small * 10)
 local tpsHeight = (size.normal * 10)
 local lineMultiplier = headerHeight
+
+local mainX = 10
+local mainY = 65
+local mainWidth = 250
+--local mainHeight = 160
+
+local mainHeight = (28 * lineMultiplier) + 10
 
 -- Functions
 local function drawMain(inputX, inputY, inputWidth, inputHeight)
@@ -62,7 +64,7 @@ local function drawTps(inputX, inputY)
 	tpsText.setScale(size.normal)
 	tpsText.setZIndex(3)
 	
-	clockText = bridge.addText(mainX + mainWidth - 25, inputY + 1, "clock", colors.white)
+	clockText = bridge.addText(mainX + mainWidth - 30, inputY + 1, "clock", colors.white)
 	clockText.setScale(size.small)
 	clockText.setZIndex(3)
 end
