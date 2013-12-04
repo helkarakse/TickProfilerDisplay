@@ -65,7 +65,7 @@ local function drawEntities(inputX, inputY)
 		bridge.addText(inputX, inputY + (lineMultiplier * i), data[i].name, colors.white).setScale(size.small)
 		bridge.addText(inputX + 100, inputY + (lineMultiplier * i), data[i].position, colors.white).setScale(size.small)
 		bridge.addText(inputX + 150, inputY + (lineMultiplier * i), data[i].percent, parser.getPercentHexColor(data[i].percent)).setScale(size.small)
-		bridge.addText(inputX + 200, inputY + (lineMultiplier * i), parser.getDimensionName(1, data[i].dimId), colors.white).setScale(size.small)
+		bridge.addText(inputX + 200, inputY + (lineMultiplier * i), parser.getDimensionName(parser.getServerId(os.getComputerID()), data[i].dimId), colors.white).setScale(size.small)
 	end
 end
 
