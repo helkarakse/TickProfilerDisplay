@@ -46,10 +46,10 @@ end
 
 local function drawTps(inputX, inputY)
 	local tps = parser.getTps()
-	tpsText = bridge.addText(240, 225, tps, parser.getTpsHexColor(tps))
+	tpsText = bridge.addText(240, 205, tps, parser.getTpsHexColor(tps))
 	tpsText.setScale(size.normal)
 	tpsText.setZIndex(3)
-	clockText = bridge.addText(240, inputY + 2, "clock", colors.white)
+	clockText = bridge.addText(250, inputY + 2, "clock", colors.white)
 	clockText.setScale(size.small)
 	clockText.setZIndex(3)
 end
@@ -65,7 +65,7 @@ local function drawEntities(inputX, inputY)
 		bridge.addText(inputX, inputY + (lineMultiplier * i), data[i].name, colors.white).setScale(size.small)
 		bridge.addText(inputX + 100, inputY + (lineMultiplier * i), data[i].position, colors.white).setScale(size.small)
 		bridge.addText(inputX + 150, inputY + (lineMultiplier * i), data[i].percent, parser.getPercentHexColor(data[i].percent)).setScale(size.small)
-		bridge.addText(inputX + 200, inputY + (lineMultiplier * i), parser.getDimensionName(1, data[i].dimId), colors.white).setScale(size.small)
+		bridge.addText(inputX + 200, inputY + (lineMultiplier * i), parser.getDimensionName(parser.getServerId(os.getComputerID()), data[i].dimId), colors.white).setScale(size.small)
 	end
 end
 
