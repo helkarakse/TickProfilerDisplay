@@ -46,10 +46,15 @@ end
 
 local function drawTps(inputX, inputY)
 	local tps = parser.getTps()
-	bridge.addText(230, 215, "TPS:", colors.white).setScale(size.normal).setZIndex(3)
+	
+	local tpsLabelText = bridge.addText(230, 215, "TPS:", colors.white)
+	tpsLabelText.setScale(size.normal)
+	tpsLabelText.setZIndex(3)
+	
 	tpsText = bridge.addText(240, 215, tps, parser.getTpsHexColor(tps))
 	tpsText.setScale(size.normal)
 	tpsText.setZIndex(3)
+	
 	clockText = bridge.addText(250, inputY + 2, "clock", colors.white)
 	clockText.setScale(size.small)
 	clockText.setZIndex(3)
