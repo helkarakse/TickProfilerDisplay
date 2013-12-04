@@ -203,7 +203,8 @@ local dataRefreshLoop = function()
 			drawSanta(mainX + 10, mainY - 1)
 			drawData()
 			
-			-- reset the updated time
+			-- reset the updated time and the new file size
+			currentFileSize = fs.getSize(jsonFile)
 			lastUpdated = os.clock()
 		end
 		
