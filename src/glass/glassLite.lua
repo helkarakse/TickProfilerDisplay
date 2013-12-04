@@ -66,7 +66,7 @@ local function drawTps(inputX, inputY)
 	tpsText.setScale(size.normal)
 	tpsText.setZIndex(4)
 	
-	clockText = bridge.addText(mainX + mainWidth - 30, inputY + 1, "clock", colors.white)
+	clockText = bridge.addText(mainX + mainWidth - 30, inputY + 1, "", colors.white)
 	clockText.setScale(size.small)
 	clockText.setZIndex(4)
 	
@@ -74,7 +74,7 @@ local function drawTps(inputX, inputY)
 	lastUpdatedLabelText.setScale(size.small)
 	lastUpdatedLabelText.setZIndex(4)
 	
-	lastUpdatedText = bridge.addText(mainX + mainWidth - 55, inputY + 1, "last", colors.white)
+	lastUpdatedText = bridge.addText(mainX + mainWidth - 55, inputY + 1, "", colors.white)
 	lastUpdatedText.setScale(size.small)
 	lastUpdatedText.setZIndex(4)
 end
