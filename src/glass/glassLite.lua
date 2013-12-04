@@ -205,7 +205,7 @@ local dataRefreshLoop = function()
 		end
 		
 		local elapsedTime = os.clock() - lastUpdated
-		lastUpdatedText.setText(string.sub(tostring(), 1, #elapsedTime - 2) .. "s")
+		lastUpdatedText.setText(string.sub(tostring(elapsedTime), 1, #elapsedTime - 2) .. "s")
 		sleep(1)
 	end
 end
