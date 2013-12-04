@@ -22,7 +22,8 @@ local args = {...}
 local colors = {
 	headerStart = 0x18caf0,
 	headerEnd = 0x9fedfd,
-	white = 0xffffff
+	white = 0xffffff, 
+	red = 0xFF0000
 }
 
 local size = {
@@ -169,7 +170,7 @@ local function init()
 	drawMain(10, 65, 250, 160)
 	drawHeader(10, 65)
 	drawTps(10, 65)
---	drawSanta(105,120)
+	drawSanta(250,65)
 	drawEntities(15, 75)
 	drawChunks(15, 110)
 	drawTypes(15, 145)
