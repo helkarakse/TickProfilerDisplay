@@ -143,7 +143,7 @@ local tpsRefreshLoop = function()
 		
 		parser.parseData(text)
 		tpsText.setText(parser.getTps())
-		tpsText.setTextColor(parser.getTpsHexColor(parser.getTps()))
+		tpsText.setColor(parser.getTpsHexColor(parser.getTps()))
 		sleep(15)
 	end
 end
