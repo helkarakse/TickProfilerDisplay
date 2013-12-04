@@ -51,7 +51,7 @@ local function drawTps(inputX, inputY)
 	tpsLabelText.setScale(size.normal)
 	tpsLabelText.setZIndex(3)
 	
-	tpsText = bridge.addText(240, 215, tps, parser.getTpsHexColor(tps))
+	tpsText = bridge.addText(235, 215, tps, parser.getTpsHexColor(tps))
 	tpsText.setScale(size.normal)
 	tpsText.setZIndex(3)
 	
