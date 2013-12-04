@@ -54,11 +54,11 @@ end
 local function drawTps(inputX, inputY)
 	local tps = parser.getTps()
 	
-	local tpsLabelText = bridge.addText(mainX + mainWidth - 45, mainY + mainHeight - tpsHeight, "TPS:", colors.white)
+	local tpsLabelText = bridge.addText(mainX + mainWidth - 55, mainY + mainHeight - tpsHeight, "TPS:", colors.white)
 	tpsLabelText.setScale(size.normal)
 	tpsLabelText.setZIndex(3)
 	
-	tpsText = bridge.addText(mainX + mainWidth - 25, mainY + mainHeight - tpsHeight, tps, parser.getTpsHexColor(tps))
+	tpsText = bridge.addText(mainX + mainWidth - 30, mainY + mainHeight - tpsHeight, tps, parser.getTpsHexColor(tps))
 	tpsText.setScale(size.normal)
 	tpsText.setZIndex(3)
 	
