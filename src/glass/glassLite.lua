@@ -34,6 +34,7 @@ local mainWidth = 250
 local mainHeight = 160
 
 local headerHeight = (size.small * 10)
+local tpsHeight = (size.normal * 10)
 local lineMultiplier = headerHeight
 
 -- Functions
@@ -53,11 +54,11 @@ end
 local function drawTps(inputX, inputY)
 	local tps = parser.getTps()
 	
-	local tpsLabelText = bridge.addText(mainX + mainWidth - 45, mainY + mainHeight - 25, "TPS:", colors.white)
+	local tpsLabelText = bridge.addText(mainX + mainWidth - 45, mainY + mainHeight - tpsHeight, "TPS:", colors.white)
 	tpsLabelText.setScale(size.normal)
 	tpsLabelText.setZIndex(3)
 	
-	tpsText = bridge.addText(mainX + mainWidth - 25, mainY + mainHeight - 25, tps, parser.getTpsHexColor(tps))
+	tpsText = bridge.addText(mainX + mainWidth - 25, mainY + mainHeight - tpsHeight, tps, parser.getTpsHexColor(tps))
 	tpsText.setScale(size.normal)
 	tpsText.setZIndex(3)
 	
