@@ -74,7 +74,7 @@ local function drawTps(inputX, inputY)
 	lastUpdatedLabelText.setScale(size.small)
 	lastUpdatedLabelText.setZIndex(4)
 	
-	lastUpdatedText = bridge.addText(mainX + mainWidth - 50, inputY + 1, "last", colors.white)
+	lastUpdatedText = bridge.addText(mainX + mainWidth - 55, inputY + 1, "last", colors.white)
 	lastUpdatedText.setScale(size.small)
 	lastUpdatedText.setZIndex(4)
 end
