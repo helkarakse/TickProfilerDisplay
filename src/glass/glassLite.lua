@@ -33,12 +33,12 @@ local colors = {
 }
 
 local size = {
-	small = 0.75, normal = 1, large = 1.25
+	small = 0.6, normal = 1, large = 1.25
 }
 
 -- Functions
 local function drawMain(inputX, inputY, inputWidth, inputHeight)
-	local headerHeight = 9
+	local headerHeight = (size.small * 10)
 	
 	mainBox = bridge.addBox(inputX, inputY, inputWidth, inputHeight, colors.headerEnd, 0.3)
 	header = bridge.addGradientBox(inputX-5, inputY, inputWidth, headerHeight, colors.headerEnd, 0, colors.headerStart, 1, 2)
@@ -211,9 +211,9 @@ local function init()
 	drawTps(mainX, mainY)
 	drawSanta(mainX + 10, mainY)
 	drawEntities(mainX + 5, mainY + 10)
-	drawChunks(mainX + 5, mainY + ((limit + 2) * lineMultiplier))
-	drawTypes(mainX + lineMultiplier, ((mainY * 2) + ((limit + 2) * lineMultiplier)))
-	drawCalls(mainX + lineMultiplier, ((mainY * 3) + ((limit + 2) * lineMultiplier)))
+	drawChunks(mainX + 5, mainY + 10 + ((limit + 2) * lineMultiplier))
+	drawTypes(mainX + 5, ((mainY * 2) + ((limit + 2) * lineMultiplier)))
+	drawCalls(mainX + 5, ((mainY * 3) + ((limit + 2) * lineMultiplier)))
 	
 	parallel.waitForAll(tpsRefreshLoop, clockRefreshLoop)
 end
