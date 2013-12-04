@@ -16,6 +16,8 @@ local bridge, mainBox, edgeBox
 local header, headerText, clockText, tpsText
 local limit = 5
 
+local lastUpdated
+
 local colors = {
 	headerStart = 0x18caf0,
 	headerEnd = 0x9fedfd,
@@ -36,6 +38,8 @@ local mainX = 10
 local mainY = 65
 local mainWidth = 250
 local mainHeight = (28 * lineMultiplier) + 10
+
+local entitiesArray, chunksArray, typesArray, callsArray
 
 -- Functions
 local function drawMain(inputX, inputY, inputWidth, inputHeight)
@@ -69,79 +73,79 @@ end
 
 local function drawEntities(inputX, inputY)
 	local data = parser.getSingleEntities()
-	local array = {}
+	entitiesArray = {}
 	
-	table.insert(array, bridge.addText(inputX, inputY, "Entity Name:", colors.white).setScale(size.small))
-	table.insert(array, bridge.addText(inputX + 100, inputY, "Position:", colors.white).setScale(size.small))
-	table.insert(array, bridge.addText(inputX + 150, inputY, "%", colors.white).setScale(size.small))
-	table.insert(array, bridge.addText(inputX + 200, inputY, "Dimension:", colors.white).setScale(size.small))
+	table.insert(entitiesArray, bridge.addText(inputX, inputY, "Entity Name:", colors.white).setScale(size.small))
+	table.insert(entitiesArray, bridge.addText(inputX + 100, inputY, "Position:", colors.white).setScale(size.small))
+	table.insert(entitiesArray, bridge.addText(inputX + 150, inputY, "%", colors.white).setScale(size.small))
+	table.insert(entitiesArray, bridge.addText(inputX + 200, inputY, "Dimension:", colors.white).setScale(size.small))
 	
 	for i = 1, limit do
-		table.insert(array, bridge.addText(inputX, inputY + (lineMultiplier * i), data[i].name, colors.white).setScale(size.small))
-		table.insert(array, bridge.addText(inputX + 100, inputY + (lineMultiplier * i), data[i].position, colors.white).setScale(size.small))
-		table.insert(array, bridge.addText(inputX + 150, inputY + (lineMultiplier * i), data[i].percent, parser.getPercentHexColor(data[i].percent)).setScale(size.small))
-		table.insert(array, bridge.addText(inputX + 200, inputY + (lineMultiplier * i), parser.getDimensionName(parser.getServerId(os.getComputerID()), data[i].dimId), colors.white).setScale(size.small))
+		table.insert(entitiesArray, bridge.addText(inputX, inputY + (lineMultiplier * i), data[i].name, colors.white).setScale(size.small))
+		table.insert(entitiesArray, bridge.addText(inputX + 100, inputY + (lineMultiplier * i), data[i].position, colors.white).setScale(size.small))
+		table.insert(entitiesArray, bridge.addText(inputX + 150, inputY + (lineMultiplier * i), data[i].percent, parser.getPercentHexColor(data[i].percent)).setScale(size.small))
+		table.insert(entitiesArray, bridge.addText(inputX + 200, inputY + (lineMultiplier * i), parser.getDimensionName(parser.getServerId(os.getComputerID()), data[i].dimId), colors.white).setScale(size.small))
 	end
 	
-	for i = 1, #array do
-		array[i].setZIndex(5)
+	for i = 1, #entitiesArray do
+		entitiesArray[i].setZIndex(5)
 	end
 end
 
 local function drawChunks(inputX, inputY)
 	local data = parser.getChunks()
-	local array = {}
+	chunksArray = {}
 	
-	table.insert(array, bridge.addText(inputX, inputY, "Chunk Position (X, Z):", colors.white).setScale(size.small))
-	table.insert(array, bridge.addText(inputX + 100, inputY, "Time/Tick:", colors.white).setScale(size.small))
-	table.insert(array, bridge.addText(inputX + 150, inputY, "%", colors.white).setScale(size.small))
+	table.insert(chunksArray, bridge.addText(inputX, inputY, "Chunk Position (X, Z):", colors.white).setScale(size.small))
+	table.insert(chunksArray, bridge.addText(inputX + 100, inputY, "Time/Tick:", colors.white).setScale(size.small))
+	table.insert(chunksArray, bridge.addText(inputX + 150, inputY, "%", colors.white).setScale(size.small))
 	
 	for i = 1, limit do
-		table.insert(array, bridge.addText(inputX, inputY + (lineMultiplier * i), data[i].positionX .. ", " .. data[i].positionZ, colors.white).setScale(size.small))
-		table.insert(array, bridge.addText(inputX + 100, inputY + (lineMultiplier * i), data[i].time, colors.white).setScale(size.small))
-		table.insert(array, bridge.addText(inputX + 150, inputY + (lineMultiplier * i), data[i].percent, parser.getPercentHexColor(data[i].percent)).setScale(size.small))
+		table.insert(chunksArray, bridge.addText(inputX, inputY + (lineMultiplier * i), data[i].positionX .. ", " .. data[i].positionZ, colors.white).setScale(size.small))
+		table.insert(chunksArray, bridge.addText(inputX + 100, inputY + (lineMultiplier * i), data[i].time, colors.white).setScale(size.small))
+		table.insert(chunksArray, bridge.addText(inputX + 150, inputY + (lineMultiplier * i), data[i].percent, parser.getPercentHexColor(data[i].percent)).setScale(size.small))
 	end
 	
-	for i = 1, #array do
-		array[i].setZIndex(5)
+	for i = 1, #chunksArray do
+		chunksArray[i].setZIndex(5)
 	end
 end
 
 local function drawTypes(inputX, inputY)
 	local data = parser.getEntityByTypes()
-	local array = {}
+	typesArray = {}
 	
-	table.insert(array, bridge.addText(inputX, inputY, "Entity Type:", colors.white).setScale(size.small))
-	table.insert(array, bridge.addText(inputX + 100, inputY, "Time/Tick:", colors.white).setScale(size.small))
-	table.insert(array, bridge.addText(inputX + 150, inputY, "%", colors.white).setScale(size.small))
+	table.insert(typesArray, bridge.addText(inputX, inputY, "Entity Type:", colors.white).setScale(size.small))
+	table.insert(typesArray, bridge.addText(inputX + 100, inputY, "Time/Tick:", colors.white).setScale(size.small))
+	table.insert(typesArray, bridge.addText(inputX + 150, inputY, "%", colors.white).setScale(size.small))
 	
 	for i = 1, limit do
-		table.insert(array, bridge.addText(inputX, inputY + (lineMultiplier * i), data[i].type, colors.white).setScale(size.small))
-		table.insert(array, bridge.addText(inputX + 100, inputY + (lineMultiplier * i), data[i].time, colors.white).setScale(size.small))
-		table.insert(array, bridge.addText(inputX + 150, inputY + (lineMultiplier * i), data[i].percent, parser.getPercentHexColor(data[i].percent)).setScale(size.small))
+		table.insert(typesArray, bridge.addText(inputX, inputY + (lineMultiplier * i), data[i].type, colors.white).setScale(size.small))
+		table.insert(typesArray, bridge.addText(inputX + 100, inputY + (lineMultiplier * i), data[i].time, colors.white).setScale(size.small))
+		table.insert(typesArray, bridge.addText(inputX + 150, inputY + (lineMultiplier * i), data[i].percent, parser.getPercentHexColor(data[i].percent)).setScale(size.small))
 	end
 	
-	for i = 1, #array do
-		array[i].setZIndex(5)
+	for i = 1, #typesArray do
+		typesArray[i].setZIndex(5)
 	end
 end
 
 local function drawCalls(inputX, inputY)
 	local data = parser.getAverageCalls()
-	local array = {}
+	callsArray = {}
 	
-	table.insert(array, bridge.addText(inputX, inputY, "Entity Name:", colors.white).setScale(size.small))
-	table.insert(array, bridge.addText(inputX + 100, inputY, "Time/Tick:", colors.white).setScale(size.small))
-	table.insert(array, bridge.addText(inputX + 150, inputY, "Average Calls", colors.white).setScale(size.small))
+	table.insert(callsArray, bridge.addText(inputX, inputY, "Entity Name:", colors.white).setScale(size.small))
+	table.insert(callsArray, bridge.addText(inputX + 100, inputY, "Time/Tick:", colors.white).setScale(size.small))
+	table.insert(callsArray, bridge.addText(inputX + 150, inputY, "Average Calls", colors.white).setScale(size.small))
 	
 	for i = 1, limit do
-		table.insert(array, bridge.addText(inputX, inputY + (lineMultiplier * i), data[i].name, colors.white).setScale(size.small))
-		table.insert(array, bridge.addText(inputX + 100, inputY + (lineMultiplier * i), data[i].time, colors.white).setScale(size.small))
-		table.insert(array, bridge.addText(inputX + 150, inputY + (lineMultiplier * i), data[i].calls, colors.white).setScale(size.small))
+		table.insert(callsArray, bridge.addText(inputX, inputY + (lineMultiplier * i), data[i].name, colors.white).setScale(size.small))
+		table.insert(callsArray, bridge.addText(inputX + 100, inputY + (lineMultiplier * i), data[i].time, colors.white).setScale(size.small))
+		table.insert(callsArray, bridge.addText(inputX + 150, inputY + (lineMultiplier * i), data[i].calls, colors.white).setScale(size.small))
 	end
 	
-	for i = 1, #array do
-		array[i].setZIndex(5)
+	for i = 1, #callsArray do
+		callsArray[i].setZIndex(5)
 	end
 end
 
@@ -166,7 +170,14 @@ local function drawSanta(inputX, inputY)
 	end
 end
 
-local tpsRefreshLoop = function()
+local function drawData()
+	drawEntities(mainX + 5, mainY + headerHeight + 5)
+	drawChunks(mainX + 5, mainY + headerHeight + 5 + ((limit + 2) * lineMultiplier))
+	drawTypes(mainX + 5, mainY + headerHeight + 5 + ((limit + 2) * 2 * lineMultiplier))
+	drawCalls(mainX + 5, mainY + headerHeight + 5 + ((limit + 2) * 3 * lineMultiplier))
+end
+
+local dataRefreshLoop = function()
 	while true do
 		local file = fs.open(jsonFile, "r")
 		local text = file.readAll()
@@ -175,7 +186,28 @@ local tpsRefreshLoop = function()
 		parser.parseData(text)
 		tpsText.setText(parser.getTps())
 		tpsText.setColor(parser.getTpsHexColor(parser.getTps()))
-		sleep(15)
+		
+		-- clear old data
+		for key, value in pairs(entitiesArray) do
+			value.delete()
+		end
+		
+		for key, value in pairs(chunksArray) do
+			value.delete()
+		end
+		
+		for key, value in pairs(typesArray) do
+			value.delete()
+		end
+		
+		for key, value in pairs(callsArray) do
+			value.delete()
+		end
+		
+		-- redraw the new data
+		drawData()
+		
+		sleep(10)
 	end
 end
 
@@ -209,12 +241,9 @@ local function init()
 	drawHeader(mainX, mainY)
 	drawTps(mainX, mainY)
 	drawSanta(mainX + 10, mainY - 1)
-	drawEntities(mainX + 5, mainY + headerHeight + 5)
-	drawChunks(mainX + 5, mainY + headerHeight + 5 + ((limit + 2) * lineMultiplier))
-	drawTypes(mainX + 5, mainY + headerHeight + 5 + ((limit + 2) * 2 * lineMultiplier))
-	drawCalls(mainX + 5, mainY + headerHeight + 5 + ((limit + 2) * 3 * lineMultiplier))
+	drawData()
 	
-	parallel.waitForAll(tpsRefreshLoop, clockRefreshLoop)
+	parallel.waitForAll(dataRefreshLoop, clockRefreshLoop)
 end
 
 init()
