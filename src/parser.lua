@@ -31,6 +31,7 @@ local dimArray = {
 	{rrServer = 1, dimensionId = 16, dimensionName = "Public Mining"},
 	{rrServer = 1, dimensionId = 11, dimensionName = "Gold Mining"},
 	{rrServer = 1, dimensionId = 5, dimensionName = "Silver Mining"},
+	{rrServer = 1, dimensionId = 7, dimensionName = "Twilight Forest"},
 	{rrServer = 2, dimensionId = 9, dimensionName = "Public Mining"},
 	{rrServer = 2, dimensionId = 11, dimensionName = "Gold Mining"},
 	{rrServer = 2, dimensionId = 7, dimensionName = "Twilight Forest"},
