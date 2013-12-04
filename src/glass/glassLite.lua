@@ -13,10 +13,10 @@ os.loadAPI("parser")
 -- Variables
 local jsonFile = "profile.txt"
 local bridge, mainBox, edgeBox
-local header, headerText, clockText, tpsText
+local header, headerText, clockText, tpsText, lastUpdatedText
 local limit = 5
 
-local lastUpdated
+local lastUpdated, currentFileSize
 
 local colors = {
 	headerStart = 0x18caf0,
@@ -69,6 +69,11 @@ local function drawTps(inputX, inputY)
 	clockText = bridge.addText(mainX + mainWidth - 30, inputY + 1, "clock", colors.white)
 	clockText.setScale(size.small)
 	clockText.setZIndex(4)
+	
+	local lastUpdatedLabelText = bridge.addText(mainX + mainWidth - 70, inputY + 1, "Last Updated:", colors.white)
+	lastUpdatedLabelText.setScale(size.small)
+	lastUpdatedLabelText.setZIndex(4)
+	lastUpdatedText = bridge.addText(mainX + mainWidth - 53, inputY + 1, "last", colors.white)
 end
 
 local function drawEntities(inputX, inputY)
@@ -179,21 +184,26 @@ end
 
 local dataRefreshLoop = function()
 	while true do
-		local file = fs.open(jsonFile, "r")
-		local text = file.readAll()
-		file.close()
+		if (fs.getSize(jsonFile) ~= currentFileSize) then
+			functions.debug("File size of profile.txt has changed. Assuming new data.")
+			local file = fs.open(jsonFile, "r")
+			local text = file.readAll()
+			file.close()
+			
+			parser.parseData(text)
+			bridge.clear()
+			
+			-- redraw the new data
+			drawMain(mainX, mainY, mainWidth, mainHeight)
+			drawHeader(mainX, mainY)
+			drawTps(mainX, mainY)
+			drawSanta(mainX + 10, mainY - 1)
+			drawData()
+		end
 		
-		parser.parseData(text)		
-		bridge.clear()
-		
-		-- redraw the new data
-		drawMain(mainX, mainY, mainWidth, mainHeight)
-		drawHeader(mainX, mainY)
-		drawTps(mainX, mainY)
-		drawSanta(mainX + 10, mainY - 1)
-		drawData()
-		
-		sleep(10)
+		local elapsedTime = os.clock() - lastUpdated
+		lastUpdatedText.setText(elapsedTime .. "s")
+		sleep(1)
 	end
 end
 
@@ -218,6 +228,12 @@ local function init()
 	local file = fs.open(jsonFile, "r")
 	local text = file.readAll()
 	file.close()
+	
+	currentFileSize = fs.getSize(jsonFile)
+	functions.debug("Setting the current file size to: ", currentFileSize)
+	
+	lastUpdated = os.clock()
+	functions.debug("Setting lastUpdated time to: ", lastUpdated)
 	
 	functions.debug("Beginning initial data parsing.")
 	parser.parseData(text)
