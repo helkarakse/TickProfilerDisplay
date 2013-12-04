@@ -193,6 +193,13 @@ local dataRefreshLoop = function()
 			local text = file.readAll()
 			file.close()
 			
+			-- reset the updated time and the new file size
+			currentFileSize = fs.getSize(jsonFile)
+			functions.debug("Setting the current file size to: ", currentFileSize)
+			
+			lastUpdated = os.clock()
+			functions.debug("Setting lastUpdated time to: ", lastUpdated)
+			
 			parser.parseData(text)
 			bridge.clear()
 			
@@ -202,14 +209,11 @@ local dataRefreshLoop = function()
 			drawTps(mainX, mainY)
 			drawSanta(mainX + 10, mainY - 1)
 			drawData()
-			
-			-- reset the updated time and the new file size
-			currentFileSize = fs.getSize(jsonFile)
-			lastUpdated = os.clock()
+		else
+			local elapsedTime = tostring(os.clock() - lastUpdated)
+			lastUpdatedText.setText(string.sub(elapsedTime, 1, #elapsedTime - 3) .. "s")
 		end
 		
-		local elapsedTime = tostring(os.clock() - lastUpdated)
-		lastUpdatedText.setText(string.sub(elapsedTime, 1, #elapsedTime - 3) .. "s")
 		sleep(1)
 	end
 end
