@@ -202,10 +202,13 @@ local dataRefreshLoop = function()
 			drawTps(mainX, mainY)
 			drawSanta(mainX + 10, mainY - 1)
 			drawData()
+			
+			-- reset the updated time
+			lastUpdated = os.clock()
 		end
 		
 		local elapsedTime = tostring(os.clock() - lastUpdated)
-		lastUpdatedText.setText(string.sub(elapsedTime, 1, #elapsedTime - 2) .. "s")
+		lastUpdatedText.setText(string.sub(elapsedTime, 1, #elapsedTime - 3) .. "s")
 		sleep(1)
 	end
 end
