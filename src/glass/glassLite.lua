@@ -15,15 +15,6 @@ local jsonFile = "profile.txt"
 local bridge, mainBox, edgeBox
 local header, headerText, clockText, tpsText
 local limit = 5
-local lineMultiplier = 10
-
--- Positioning Variables
-local mainX = 10
-local mainY = 65
-local mainWidth = 250
-local mainHeight = 160
-
-local args = {...}
 
 local colors = {
 	headerStart = 0x18caf0,
@@ -36,10 +27,17 @@ local size = {
 	small = 0.6, normal = 1, large = 1.25
 }
 
+-- Positioning Variables
+local mainX = 10
+local mainY = 65
+local mainWidth = 250
+local mainHeight = 160
+
+local headerHeight = (size.small * 10)
+local lineMultiplier = headerHeight
+
 -- Functions
 local function drawMain(inputX, inputY, inputWidth, inputHeight)
-	local headerHeight = (size.small * 10)
-	
 	mainBox = bridge.addBox(inputX, inputY, inputWidth, inputHeight, colors.headerEnd, 0.3)
 	header = bridge.addGradientBox(inputX-5, inputY, inputWidth, headerHeight, colors.headerEnd, 0, colors.headerStart, 1, 2)
 	edgeBox = bridge.addGradientBox(inputX, inputY+inputHeight-2, inputWidth, 2, colors.headerStart, 1, colors.headerEnd, 0, 2)
@@ -210,10 +208,10 @@ local function init()
 	drawHeader(mainX, mainY)
 	drawTps(mainX, mainY)
 	drawSanta(mainX + 10, mainY)
-	drawEntities(mainX + 5, mainY + 10)
-	drawChunks(mainX + 5, mainY + 10 + ((limit + 2) * lineMultiplier))
-	drawTypes(mainX + 5, ((mainY * 2) + ((limit + 2) * lineMultiplier)))
-	drawCalls(mainX + 5, ((mainY * 3) + ((limit + 2) * lineMultiplier)))
+	drawEntities(mainX + 5, mainY + headerHeight + 5)
+	drawChunks(mainX + 5, mainY + ((limit + 3) * lineMultiplier))
+	drawTypes(mainX + 5, ((mainY * 2) + ((limit + 3) * lineMultiplier)))
+	drawCalls(mainX + 5, ((mainY * 3) + ((limit + 3) * lineMultiplier)))
 	
 	parallel.waitForAll(tpsRefreshLoop, clockRefreshLoop)
 end
