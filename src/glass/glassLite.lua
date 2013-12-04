@@ -204,8 +204,8 @@ local dataRefreshLoop = function()
 			drawData()
 		end
 		
-		local elapsedTime = os.clock() - lastUpdated
-		lastUpdatedText.setText(string.sub(tostring(elapsedTime), 1, #elapsedTime - 2) .. "s")
+		local elapsedTime = tostring(os.clock() - lastUpdated)
+		lastUpdatedText.setText(string.sub(elapsedTime, 1, #elapsedTime - 2) .. "s")
 		sleep(1)
 	end
 end
