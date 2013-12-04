@@ -186,6 +186,7 @@ local function drawData()
 end
 
 local dataRefreshLoop = function()
+	lastUpdated = 0
 	while true do
 		if (fs.getSize(jsonFile) ~= currentFileSize) then
 			functions.debug("File size of profile.txt has changed. Assuming new data.")
@@ -196,10 +197,9 @@ local dataRefreshLoop = function()
 			-- reset the updated time and the new file size
 			currentFileSize = fs.getSize(jsonFile)
 			functions.debug("Setting the current file size to: ", currentFileSize)
+			lastUpdated = 0
 			
-			lastUpdated = os.clock()
-			functions.debug("Setting lastUpdated time to: ", lastUpdated)
-			
+			-- re-parse the data
 			parser.parseData(text)
 			bridge.clear()
 			
@@ -210,10 +210,10 @@ local dataRefreshLoop = function()
 			drawSanta(mainX + 10, mainY - 1)
 			drawData()
 		else
-			local elapsedTime = tostring(os.clock() - lastUpdated)
-			lastUpdatedText.setText(string.sub(elapsedTime, 1, #elapsedTime - 3) .. "s")
+			lastUpdatedText.setText(lastUpdated .. "s")
 		end
 		
+		lastUpdated = lastUpdated + 1
 		sleep(1)
 	end
 end
@@ -242,9 +242,6 @@ local function init()
 	
 	currentFileSize = fs.getSize(jsonFile)
 	functions.debug("Setting the current file size to: ", currentFileSize)
-	
-	lastUpdated = os.clock()
-	functions.debug("Setting lastUpdated time to: ", lastUpdated)
 	
 	functions.debug("Beginning initial data parsing.")
 	parser.parseData(text)
