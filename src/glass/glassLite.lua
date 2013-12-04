@@ -15,7 +15,7 @@ local jsonFile = "profile.txt"
 local bridge, mainBox, edgeBox
 local header, headerText, clockText, tpsText
 local limit = 5
-local lineMultiplier = 5
+local lineMultiplier = 10
 
 local args = {...}
 
@@ -27,7 +27,7 @@ local colors = {
 }
 
 local size = {
-	small = 0.5, normal = 0.75, large = 1
+	small = 0.75, normal = 1, large = 1.25
 }
 
 -- Functions
