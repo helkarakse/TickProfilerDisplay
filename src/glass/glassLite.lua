@@ -74,7 +74,7 @@ local function drawTps(inputX, inputY)
 	lastUpdatedLabelText.setScale(size.small)
 	lastUpdatedLabelText.setZIndex(4)
 	
-	lastUpdatedText = bridge.addText(mainX + mainWidth - 80, inputY + 1, "last", colors.white)
+	lastUpdatedText = bridge.addText(mainX + mainWidth - 50, inputY + 1, "last", colors.white)
 	lastUpdatedText.setScale(size.small)
 	lastUpdatedText.setZIndex(4)
 end
@@ -204,7 +204,7 @@ local dataRefreshLoop = function()
 			drawData()
 		end
 		
-		local elapsedTime = os.clock() - lastUpdated
+		local elapsedTime = functions.roundTo(os.clock() - lastUpdated, 0)
 		lastUpdatedText.setText(elapsedTime .. "s")
 		sleep(1)
 	end
