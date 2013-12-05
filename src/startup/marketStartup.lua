@@ -10,10 +10,10 @@
 
 -- File array of github links
 local fileArray = {
-	{link = "https://raw.github.com/helkarakse/LuaLibs/master/src/functions.lua", file = "functions"},
-	{link = "https://raw.github.com/helkarakse/LuaLibs/master/src/json.lua", file = "json"},
-	{link = "https://raw.github.com/helkarakse/TickProfilerDisplay/master/src/parser.lua", file = "parser"},
-	{link = "https://raw.github.com/helkarakse/TickProfilerDisplay/master/src/market.lua", file = "market"}
+	{link = "https://raw.github.com/helkarakse/LuaLibs/master/src/common/functions.lua", file = "functions"},
+	{link = "https://raw.github.com/helkarakse/LuaLibs/master/src/libs/libJson.lua", file = "json"},
+	{link = "https://raw.github.com/helkarakse/LuaLibs/master/src/parser/tickParser.lua", file = "parser"},
+	{link = "https://raw.github.com/helkarakse/TickProfilerDisplay/master/src/board/market.lua", file = "market"}
 }
 
 -- This filename is the file that will be executed
