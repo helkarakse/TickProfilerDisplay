@@ -15,6 +15,7 @@ local jsonFile = "profile.txt"
 local bridge, mainBox, edgeBox
 local header, headerText, clockText, tpsText, lastUpdatedText
 local limit = 5
+local opacity = 0.15
 
 local lastUpdated, currentFileSize
 
@@ -43,9 +44,9 @@ local entitiesArray, chunksArray, typesArray, callsArray
 
 -- Functions
 local function drawMain(inputX, inputY, inputWidth, inputHeight)
-	mainBox = bridge.addBox(inputX, inputY, inputWidth, inputHeight, colors.headerEnd, 0.3)
-	header = bridge.addGradientBox(inputX-5, inputY, inputWidth, headerHeight, colors.headerEnd, 0, colors.headerStart, 1, 2)
-	edgeBox = bridge.addGradientBox(inputX, inputY+inputHeight-2, inputWidth, 2, colors.headerStart, 1, colors.headerEnd, 0, 2)
+	mainBox = bridge.addBox(inputX, inputY, inputWidth, inputHeight, colors.headerEnd, opacity)
+	header = bridge.addGradientBox(inputX - 5, inputY, inputWidth, headerHeight, colors.headerEnd, 0, colors.headerStart, 1, 2)
+	edgeBox = bridge.addGradientBox(inputX, inputY+inputHeight - 2, inputWidth, 2, colors.headerStart, 1, colors.headerEnd, 0, 2)
 	header.setZIndex(2)
 end
 
