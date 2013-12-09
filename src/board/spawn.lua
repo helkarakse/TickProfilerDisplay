@@ -88,70 +88,78 @@ local function displayData(id)
 	local yPos = 8
 	if (id == 1) then
 		local data = parser.getSingleEntities()
-		for i = 1, limit do
-			monitor.setCursorPos(2, yPos)
-			monitor.write(data[i].name)
-			monitor.setCursorPos(26, yPos)
-			monitor.write(data[i].position)
-			monitor.setCursorPos(41, yPos)
-			 
-			local percentage = tonumber(data[i].percent)
-			monitor.setTextColor(parser.getPercentColor(percentage))
-			monitor.write(percentage)
-			monitor.setTextColor(colors.white)
-			
-			-- dimensions
-			monitor.setCursorPos(53, yPos)
-			monitor.write(parser.getDimensionName(serverId, data[i].dimId))
-			
-			yPos = yPos + 1
+		if (data ~= nil) then
+			for i = 1, limit do
+				monitor.setCursorPos(2, yPos)
+				monitor.write(data[i].name)
+				monitor.setCursorPos(26, yPos)
+				monitor.write(data[i].position)
+				monitor.setCursorPos(41, yPos)
+				 
+				local percentage = tonumber(data[i].percent)
+				monitor.setTextColor(parser.getPercentColor(percentage))
+				monitor.write(percentage)
+				monitor.setTextColor(colors.white)
+				
+				-- dimensions
+				monitor.setCursorPos(53, yPos)
+				monitor.write(parser.getDimensionName(serverId, data[i].dimId))
+				
+				yPos = yPos + 1
+			end
 		end
 	elseif (id == 2) then
 		-- id 2 = the chunk list
 		local data = parser.getChunks()
-		for i = 1, limit do
-			monitor.setCursorPos(2, yPos)
-			monitor.write(data[i].positionX .. ", " .. data[i].positionZ)
-			monitor.setCursorPos(26, yPos)
-			monitor.write(data[i].time)
-			monitor.setCursorPos(41, yPos)
-			 
-			local percentage = tonumber(data[i].percent)
-			monitor.setTextColor(parser.getPercentColor(percentage))
-			monitor.write(percentage)
-			monitor.setTextColor(colors.white)
-			
-			yPos = yPos + 1
+		if (data ~= nil) then
+			for i = 1, limit do
+				monitor.setCursorPos(2, yPos)
+				monitor.write(data[i].positionX .. ", " .. data[i].positionZ)
+				monitor.setCursorPos(26, yPos)
+				monitor.write(data[i].time)
+				monitor.setCursorPos(41, yPos)
+				 
+				local percentage = tonumber(data[i].percent)
+				monitor.setTextColor(parser.getPercentColor(percentage))
+				monitor.write(percentage)
+				monitor.setTextColor(colors.white)
+				
+				yPos = yPos + 1
+			end
 		end
 	elseif (id == 3) then
 		-- id 3 = the type list
 		local data = parser.getEntityByTypes()
-		for i = 1, limit do
-			monitor.setCursorPos(2, yPos)
-			monitor.write(data[i].type)
-			monitor.setCursorPos(26, yPos)
-			monitor.write(data[i].time)
-			monitor.setCursorPos(41, yPos)
-			 
-			local percentage = tonumber(data[i].percent)
-			monitor.setTextColor(parser.getPercentColor(percentage))
-			monitor.write(percentage)
-			monitor.setTextColor(colors.white)
-			
-			yPos = yPos + 1
+		if (data ~= nil) then
+			for i = 1, limit do
+				monitor.setCursorPos(2, yPos)
+				monitor.write(data[i].type)
+				monitor.setCursorPos(26, yPos)
+				monitor.write(data[i].time)
+				monitor.setCursorPos(41, yPos)
+				 
+				local percentage = tonumber(data[i].percent)
+				monitor.setTextColor(parser.getPercentColor(percentage))
+				monitor.write(percentage)
+				monitor.setTextColor(colors.white)
+				
+				yPos = yPos + 1
+			end
 		end
 	elseif (id == 4) then
 		-- id 4 = the call list
 		local data = parser.getAverageCalls()
-		for i = 1, limit do
-			monitor.setCursorPos(2, yPos)
-			monitor.write(data[i].name)
-			monitor.setCursorPos(26, yPos)
-			monitor.write(data[i].time)
-			monitor.setCursorPos(41, yPos)
-			monitor.write(data[i].calls)
-			
-			yPos = yPos + 1
+		if (data ~= nil) then
+			for i = 1, limit do
+				monitor.setCursorPos(2, yPos)
+				monitor.write(data[i].name)
+				monitor.setCursorPos(26, yPos)
+				monitor.write(data[i].time)
+				monitor.setCursorPos(41, yPos)
+				monitor.write(data[i].calls)
+				
+				yPos = yPos + 1
+			end
 		end
 	end
 end
