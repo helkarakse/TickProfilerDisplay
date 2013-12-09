@@ -88,15 +88,16 @@ local function displayData(id)
 	local yPos = 8
 	if (id == 1) then
 		local data = parser.getSingleEntities()
+		functions.debug(textutils.serialize(data))
 		if (data ~= nil or functions.getTableCount(data) > 0) then
 			for i = 1, limit do
 				monitor.setCursorPos(2, yPos)
-				monitor.write(data[i].name or "")
+				monitor.write(data[i].name)
 				monitor.setCursorPos(26, yPos)
-				monitor.write(data[i].position or "")
+				monitor.write(data[i].position)
 				monitor.setCursorPos(41, yPos)
 				 
-				local percentage = tonumber(data[i].percent or 0)
+				local percentage = tonumber(data[i].percent)
 				monitor.setTextColor(parser.getPercentColor(percentage))
 				monitor.write(percentage)
 				monitor.setTextColor(colors.white)
@@ -114,12 +115,12 @@ local function displayData(id)
 		if (data ~= nil or functions.getTableCount(data) > 0) then
 			for i = 1, limit do
 				monitor.setCursorPos(2, yPos)
-				monitor.write(data[i].positionX or "" .. ", " .. data[i].positionZ or "")
+				monitor.write(data[i].positionX .. ", " .. data[i].positionZ)
 				monitor.setCursorPos(26, yPos)
-				monitor.write(data[i].time or "")
+				monitor.write(data[i].time)
 				monitor.setCursorPos(41, yPos)
 				 
-				local percentage = tonumber(data[i].percent or 0)
+				local percentage = tonumber(data[i].percent)
 				monitor.setTextColor(parser.getPercentColor(percentage))
 				monitor.write(percentage)
 				monitor.setTextColor(colors.white)
@@ -133,12 +134,12 @@ local function displayData(id)
 		if (data ~= nil or functions.getTableCount(data) > 0) then
 			for i = 1, limit do
 				monitor.setCursorPos(2, yPos)
-				monitor.write(data[i].type or "")
+				monitor.write(data[i].type)
 				monitor.setCursorPos(26, yPos)
-				monitor.write(data[i].time or "")
+				monitor.write(data[i].time)
 				monitor.setCursorPos(41, yPos)
 				 
-				local percentage = tonumber(data[i].percent or 0)
+				local percentage = tonumber(data[i].percent)
 				monitor.setTextColor(parser.getPercentColor(percentage))
 				monitor.write(percentage)
 				monitor.setTextColor(colors.white)
