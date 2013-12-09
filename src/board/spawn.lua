@@ -91,12 +91,12 @@ local function displayData(id)
 		if (data ~= nil) then
 			for i = 1, limit do
 				monitor.setCursorPos(2, yPos)
-				monitor.write(data[i].name)
+				monitor.write(data[i].name or "")
 				monitor.setCursorPos(26, yPos)
-				monitor.write(data[i].position)
+				monitor.write(data[i].position or "")
 				monitor.setCursorPos(41, yPos)
 				 
-				local percentage = tonumber(data[i].percent)
+				local percentage = tonumber(data[i].percent or 0)
 				monitor.setTextColor(parser.getPercentColor(percentage))
 				monitor.write(percentage)
 				monitor.setTextColor(colors.white)
@@ -114,12 +114,12 @@ local function displayData(id)
 		if (data ~= nil) then
 			for i = 1, limit do
 				monitor.setCursorPos(2, yPos)
-				monitor.write(data[i].positionX .. ", " .. data[i].positionZ)
+				monitor.write(data[i].positionX or "" .. ", " .. data[i].positionZ or "")
 				monitor.setCursorPos(26, yPos)
-				monitor.write(data[i].time)
+				monitor.write(data[i].time or "")
 				monitor.setCursorPos(41, yPos)
 				 
-				local percentage = tonumber(data[i].percent)
+				local percentage = tonumber(data[i].percent or 0)
 				monitor.setTextColor(parser.getPercentColor(percentage))
 				monitor.write(percentage)
 				monitor.setTextColor(colors.white)
@@ -133,12 +133,12 @@ local function displayData(id)
 		if (data ~= nil) then
 			for i = 1, limit do
 				monitor.setCursorPos(2, yPos)
-				monitor.write(data[i].type)
+				monitor.write(data[i].type or "")
 				monitor.setCursorPos(26, yPos)
-				monitor.write(data[i].time)
+				monitor.write(data[i].time or "")
 				monitor.setCursorPos(41, yPos)
 				 
-				local percentage = tonumber(data[i].percent)
+				local percentage = tonumber(data[i].percent or 0)
 				monitor.setTextColor(parser.getPercentColor(percentage))
 				monitor.write(percentage)
 				monitor.setTextColor(colors.white)
@@ -152,11 +152,11 @@ local function displayData(id)
 		if (data ~= nil) then
 			for i = 1, limit do
 				monitor.setCursorPos(2, yPos)
-				monitor.write(data[i].name)
+				monitor.write(data[i].name or "")
 				monitor.setCursorPos(26, yPos)
-				monitor.write(data[i].time)
+				monitor.write(data[i].time or "")
 				monitor.setCursorPos(41, yPos)
-				monitor.write(data[i].calls)
+				monitor.write(data[i].calls or "")
 				
 				yPos = yPos + 1
 			end
