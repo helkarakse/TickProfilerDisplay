@@ -88,7 +88,7 @@ local function displayData(id)
 	local yPos = 8
 	if (id == 1) then
 		local data = parser.getSingleEntities()
-		if (data ~= nil) then
+		if (data ~= nil or functions.getTableCount(data) > 0) then
 			for i = 1, limit do
 				monitor.setCursorPos(2, yPos)
 				monitor.write(data[i].name or "")
@@ -111,7 +111,7 @@ local function displayData(id)
 	elseif (id == 2) then
 		-- id 2 = the chunk list
 		local data = parser.getChunks()
-		if (data ~= nil) then
+		if (data ~= nil or functions.getTableCount(data) > 0) then
 			for i = 1, limit do
 				monitor.setCursorPos(2, yPos)
 				monitor.write(data[i].positionX or "" .. ", " .. data[i].positionZ or "")
@@ -130,7 +130,7 @@ local function displayData(id)
 	elseif (id == 3) then
 		-- id 3 = the type list
 		local data = parser.getEntityByTypes()
-		if (data ~= nil) then
+		if (data ~= nil or functions.getTableCount(data) > 0) then
 			for i = 1, limit do
 				monitor.setCursorPos(2, yPos)
 				monitor.write(data[i].type or "")
@@ -149,7 +149,7 @@ local function displayData(id)
 	elseif (id == 4) then
 		-- id 4 = the call list
 		local data = parser.getAverageCalls()
-		if (data ~= nil) then
+		if (data ~= nil or functions.getTableCount(data) > 0) then
 			for i = 1, limit do
 				monitor.setCursorPos(2, yPos)
 				monitor.write(data[i].name or "")
