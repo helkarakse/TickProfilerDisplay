@@ -16,6 +16,7 @@ local jsonFile = "profile.txt"
 local headerY = 6
 local displayY = 7
 local limit = 10
+local next = next
 
 -- serverId, assumes that the computer label is 1tickMonitor, or 2tickMonitor
 local serverId = parser.getServerId(os.getComputerID())
@@ -81,23 +82,24 @@ local function displayEntities()
 
 	local y = displayY
 	local entities = parser.getSingleEntities()
-	
-	for i = 1, limit do
-		monitor.setCursorPos(entityX, y)
-		monitor.write(entities[i].name)
-		monitor.setCursorPos(posX, y)
-		monitor.write(entities[i].position)
-		monitor.setCursorPos(percentX, y)
-		 
-		monitor.setTextColor(parser.getPercentColor(entities[i].percent))
-		monitor.write(entities[i].percent)
-		monitor.setTextColor(colors.white)
-		
-		-- dimensions
-		monitor.setCursorPos(dimX, y)
-		monitor.write(parser.getDimensionName(serverId, entities[i].dimId))
-		
-		y = y + 1
+	if (next(entities) ~= nil) then
+		for i = 1, limit do
+			monitor.setCursorPos(entityX, y)
+			monitor.write(entities[i].name)
+			monitor.setCursorPos(posX, y)
+			monitor.write(entities[i].position)
+			monitor.setCursorPos(percentX, y)
+			 
+			monitor.setTextColor(parser.getPercentColor(entities[i].percent))
+			monitor.write(entities[i].percent)
+			monitor.setTextColor(colors.white)
+			
+			-- dimensions
+			monitor.setCursorPos(dimX, y)
+			monitor.write(parser.getDimensionName(serverId, entities[i].dimId))
+			
+			y = y + 1
+		end
 	end
 end
 
@@ -115,17 +117,18 @@ local function displayChunks()
 
 	local y = displayY
 	local chunks = parser.getChunks()
-	
-	for i = 1, limit do
-		monitor.setCursorPos(posX, y)
-		monitor.write(chunks[i].positionX .. ", " .. chunks[i].positionZ)
-		monitor.setCursorPos(timeX, y)
-		monitor.write(chunks[i].time)
-		monitor.setCursorPos(percentX, y)
-		monitor.setTextColor(parser.getPercentColor(chunks[i].percent))
-		monitor.write(chunks[i].percent)
-		monitor.setTextColor(colors.white)
-		y = y + 1
+	if (next(chunks) ~= nil) then
+		for i = 1, limit do
+			monitor.setCursorPos(posX, y)
+			monitor.write(chunks[i].positionX .. ", " .. chunks[i].positionZ)
+			monitor.setCursorPos(timeX, y)
+			monitor.write(chunks[i].time)
+			monitor.setCursorPos(percentX, y)
+			monitor.setTextColor(parser.getPercentColor(chunks[i].percent))
+			monitor.write(chunks[i].percent)
+			monitor.setTextColor(colors.white)
+			y = y + 1
+		end
 	end
 end
 
@@ -143,17 +146,18 @@ local function displayTypes()
 
 	local y = displayY
 	local types = parser.getEntityByTypes()
-	
-	for i = 1, limit do
-		monitor.setCursorPos(typeX, y)
-		monitor.write(types[i].type)
-		monitor.setCursorPos(timeX, y)
-		monitor.write(types[i].time)
-		monitor.setCursorPos(percentX, y)
-		monitor.setTextColor(parser.getPercentColor(types[i].percent))
-		monitor.write(types[i].percent)
-		monitor.setTextColor(colors.white)
-		y = y + 1
+	if (next(types) ~= nil) then
+		for i = 1, limit do
+			monitor.setCursorPos(typeX, y)
+			monitor.write(types[i].type)
+			monitor.setCursorPos(timeX, y)
+			monitor.write(types[i].time)
+			monitor.setCursorPos(percentX, y)
+			monitor.setTextColor(parser.getPercentColor(types[i].percent))
+			monitor.write(types[i].percent)
+			monitor.setTextColor(colors.white)
+			y = y + 1
+		end
 	end
 end
 
@@ -171,15 +175,16 @@ local function displayCalls()
 
 	local y = displayY
 	local calls = parser.getAverageCalls()
-	
-	for i = 1, limit do
-		monitor.setCursorPos(nameX, y)
-		monitor.write(calls[i].name)
-		monitor.setCursorPos(timeX, y)
-		monitor.write(calls[i].time)
-		monitor.setCursorPos(callX, y)
-		monitor.write(calls[i].calls)
-		y = y + 1
+	if (next(calls) ~= nil) then
+		for i = 1, limit do
+			monitor.setCursorPos(nameX, y)
+			monitor.write(calls[i].name)
+			monitor.setCursorPos(timeX, y)
+			monitor.write(calls[i].time)
+			monitor.setCursorPos(callX, y)
+			monitor.write(calls[i].calls)
+			y = y + 1
+		end
 	end
 end
 

@@ -90,7 +90,6 @@ local function displayData(id)
 
 	if (id == 1) then
 		local data = parser.getSingleEntities()
-		functions.debug(textutils.serialize(data))
 		if (next(data) ~= nil) then
 			for i = 1, limit do
 				monitor.setCursorPos(2, yPos)
