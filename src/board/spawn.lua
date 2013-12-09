@@ -205,7 +205,7 @@ local function init()
 	end
 	
 	-- open the file for parsing
-	if (fs.exists(jsonFile)) do
+	if (fs.exists(jsonFile)) then
 		local file = fs.open(jsonFile, "r")
 		local text = file.readAll()
 		file.close()

@@ -237,7 +237,7 @@ local function init()
 		bridge.clear()
 	end
 
-	if (fs.exists(jsonFile)) do
+	if (fs.exists(jsonFile)) then
 		local file = fs.open(jsonFile, "r")
 		local text = file.readAll()
 		file.close()

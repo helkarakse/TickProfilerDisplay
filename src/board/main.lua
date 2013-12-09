@@ -239,7 +239,7 @@ local function init()
 	functions.debug("Current server id is: ", serverId)
 	
 	-- open the file for parsing
-	if (fs.exists(jsonFile)) do
+	if (fs.exists(jsonFile)) then
 		local file = fs.open(jsonFile, "r")
 		local text = file.readAll()
 		file.close()
