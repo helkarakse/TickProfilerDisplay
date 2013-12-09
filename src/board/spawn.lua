@@ -159,19 +159,21 @@ end
 -- Loops
 local refreshLoop = function()
 	while true do
-		local file = fs.open(jsonFile, "r")
-		local text = file.readAll()
-		file.close()
-		
-		parser.parseData(text)
-		functions.debug("Refreshing data.")
-		
-		monitor.clear()
-		displayHeader()
-		displayDataHeading(1)
-		displayData(1)
-		
-		functions.debug("Refreshing screen.")
+		if (fs.exists(jsonFile)) then
+			local file = fs.open(jsonFile, "r")
+			local text = file.readAll()
+			file.close()
+			
+			parser.parseData(text)
+			functions.debug("Refreshing data.")
+			
+			monitor.clear()
+			displayHeader()
+			displayDataHeading(1)
+			displayData(1)
+			
+			functions.debug("Refreshing screen.")
+		end
 		sleep(refreshDelay)
 	end
 end
@@ -197,23 +199,23 @@ local function init()
 	local monFound, monDir = functions.locatePeripheral("monitor")
 	if (monFound == true) then
 		monitor = peripheral.wrap(monDir)
-		
---		if (monitor.isColor ~= true) then
---			functions.debug("An advanced monitor is required to use this program.")
---			return
---		end
 	else
 		functions.debug("A monitor is required to use this program.")
 		return
 	end
 	
-	local file = fs.open(jsonFile, "r")
-	local text = file.readAll()
-	file.close()
-	
-	functions.debug("Beginning initial data parsing.")
-	parser.parseData(text)
-	functions.debug("Data parsing complete.")
+	-- open the file for parsing
+	if (fs.exists(jsonFile)) do
+		local file = fs.open(jsonFile, "r")
+		local text = file.readAll()
+		file.close()
+		
+		functions.debug("Beginning initial data parsing.")
+		parser.parseData(text)
+		functions.debug("Data parsing complete.")
+	else
+		functions.debug("Profile.txt file not found.")
+	end
 	
 	monitor.clear()
 	displayHeader()

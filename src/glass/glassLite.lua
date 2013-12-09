@@ -189,7 +189,7 @@ end
 local dataRefreshLoop = function()
 	lastUpdated = 0
 	while true do
-		if (fs.getSize(jsonFile) ~= currentFileSize) then
+		if (fs.getSize(jsonFile) ~= currentFileSize and fs.exists(jsonFile)) then
 			functions.debug("File size of profile.txt has changed. Assuming new data.")
 			local file = fs.open(jsonFile, "r")
 			local text = file.readAll()
@@ -236,17 +236,21 @@ local function init()
 		bridge = peripheral.wrap(bridgeDir)
 		bridge.clear()
 	end
-	
-	local file = fs.open(jsonFile, "r")
-	local text = file.readAll()
-	file.close()
-	
-	currentFileSize = fs.getSize(jsonFile)
-	functions.debug("Setting the current file size to: ", currentFileSize)
-	
-	functions.debug("Beginning initial data parsing.")
-	parser.parseData(text)
-	functions.debug("Data parsing complete.")
+
+	if (fs.exists(jsonFile)) do
+		local file = fs.open(jsonFile, "r")
+		local text = file.readAll()
+		file.close()
+		
+		currentFileSize = fs.getSize(jsonFile)
+		functions.debug("Setting the current file size to: ", currentFileSize)
+		
+		functions.debug("Beginning initial data parsing.")
+		parser.parseData(text)
+		functions.debug("Data parsing complete.")
+	else
+		functions.debug("Profile.txt file not found.")
+	end
 	
 	drawMain(mainX, mainY, mainWidth, mainHeight)
 	drawHeader(mainX, mainY)

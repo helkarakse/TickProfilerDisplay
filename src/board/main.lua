@@ -221,14 +221,16 @@ end
 -- Listener to refresh parsed data
 local refreshListener = function()
 	while true do
-		local file = fs.open(jsonFile, "r")
-		local text = file.readAll()
-		file.close()
-		
-		parser.parseData(text)
-		functions.debug("Refreshing data.")
-		displayScreen(1)
-		functions.debug("Refreshing screen.")
+		if (fs.exists(jsonFile)) then
+			local file = fs.open(jsonFile, "r")
+			local text = file.readAll()
+			file.close()
+			
+			parser.parseData(text)
+			functions.debug("Refreshing data.")
+			displayScreen(1)
+			functions.debug("Refreshing screen.")
+		end
 		sleep(60)
 	end
 end
@@ -237,14 +239,17 @@ local function init()
 	functions.debug("Current server id is: ", serverId)
 	
 	-- open the file for parsing
-	local file = fs.open(jsonFile, "r")
-	local text = file.readAll()
-	file.close()
-	
-	-- parse the data into internal tables
-	functions.debug("Beginning initial data parsing.")
-	parser.parseData(text)
-	functions.debug("Data parsing complete.")
+	if (fs.exists(jsonFile)) do
+		local file = fs.open(jsonFile, "r")
+		local text = file.readAll()
+		file.close()
+		
+		functions.debug("Beginning initial data parsing.")
+		parser.parseData(text)
+		functions.debug("Data parsing complete.")
+	else
+		functions.debug("Profile.txt file not found.")
+	end
 	
 	-- find the monitor and init vars
 	local monFound, monDir = functions.locatePeripheral("monitor");
