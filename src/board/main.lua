@@ -14,7 +14,7 @@ os.loadAPI("parser")
 local monitor
 local state = 1
 local headerY = 8
-local displayY = 8
+local displayY = 9
 local limit = 10
 
 local dimId = string.sub(os.getComputerLabel(), 1, 1)
