@@ -105,19 +105,14 @@ local function drawEntities(inputX, inputY)
 end
 
 local function drawChunks(inputX, inputY)
-	functions.debug("data")
 	local data = parser.getChunks()
 	chunksArray = {}
-	functions.debug("header")
+	
 	table.insert(chunksArray, bridge.addText(inputX, inputY, "Chunk Position (X, Z):", colors.white).setScale(size.small))
 	table.insert(chunksArray, bridge.addText(inputX + 100, inputY, "Time/Tick:", colors.white).setScale(size.small))
 	table.insert(chunksArray, bridge.addText(inputX + 150, inputY, "%", colors.white).setScale(size.small))
-	functions.debug("info")
+	
 	for i = 1, limit do
-		functions.debug(data[i].positionX)
-		functions.debug(data[i].positionZ)
-		functions.debug(data[i].time)
-		functions.debug(data[i].percent)
 		table.insert(chunksArray, bridge.addText(inputX, inputY + (lineMultiplier * i), data[i].positionX .. ", " .. data[i].positionZ, colors.white).setScale(size.small))
 		table.insert(chunksArray, bridge.addText(inputX + 100, inputY + (lineMultiplier * i), data[i].time, colors.white).setScale(size.small))
 		table.insert(chunksArray, bridge.addText(inputX + 150, inputY + (lineMultiplier * i), data[i].percent, parser.getPercentHexColor(data[i].percent)).setScale(size.small))
@@ -254,15 +249,10 @@ local function init()
 	end
 	
 	functions.debug("Drawing the screen...")
-	functions.debug("drawmain")
 	drawMain(mainX, mainY, mainWidth, mainHeight)
-	functions.debug("drawheader")
 	drawHeader(mainX, mainY)
-	functions.debug("drawtps")
 	drawTps(mainX, mainY)
-	functions.debug("santa")
 	drawSanta(mainX + 10, mainY - 1)
-	functions.debug("data")
 	drawData()
 	
 	functions.debug("Starting parallel tasking...")
