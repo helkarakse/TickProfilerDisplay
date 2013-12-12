@@ -154,7 +154,8 @@ end
 local function drawUpdated(inputX, inputY)
 	local data = parser.getUpdatedDate()
 	
-	local lastUpdated = bridge.addText(inputX, inputY, "Last Updated: " .. data, colors.white).setScale(size.small)
+	local lastUpdated = bridge.addText(inputX, inputY, "Last Updated: " .. data, colors.white)
+	lastUpdated.setScale(size.small)
 	lastUpdated.setZIndex(5)
 end
 
@@ -184,7 +185,7 @@ local function drawData()
 	drawChunks(mainX + 5, mainY + headerHeight + 5 + ((limit + 2) * lineMultiplier))
 	drawTypes(mainX + 5, mainY + headerHeight + 5 + ((limit + 2) * 2 * lineMultiplier))
 	drawCalls(mainX + 5, mainY + headerHeight + 5 + ((limit + 2) * 3 * lineMultiplier))
-	drawUpdated(mainX + 5, (mainY + headerHeight + 5 + ((limit + 2) * 3 * lineMultiplier)) + 1)
+	drawUpdated(mainX + 5, (mainY + headerHeight + 5 + ((limit + 2) * 4 * lineMultiplier)) + 2)
 end
 
 local dataRefreshLoop = function()
