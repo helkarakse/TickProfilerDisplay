@@ -13,8 +13,10 @@ os.loadAPI("functions")
 -- Variables
 local monitor
 local slideDelay = 10
-local refreshDelay = 60
-local jsonFile = "profile.txt"
+local refreshDelay = 80
+
+local dimension = string.sub(os.getComputerLabel(), 1, 1)
+local remoteUrl = "http://www.otegamers.com/custom/helkarakse/upload.php?req=show&dim=" .. dimension
 
 -- serverId, assumes that the computer label is 1tickMonitor, or 2tickMonitor
 local serverId = parser.getServerId(os.getComputerID())
@@ -109,6 +111,10 @@ local function displayData(id)
 				
 				yPos = yPos + 1
 			end
+			
+			yPos = yPos + 1
+			monitor.setCursorPos(2, yPos)
+			monitor.write("Last updated at: " .. parser.getUpdatedDate())
 		end
 	elseif (id == 2) then
 		-- id 2 = the chunk list
@@ -128,6 +134,10 @@ local function displayData(id)
 				
 				yPos = yPos + 1
 			end
+			
+			yPos = yPos + 1
+			monitor.setCursorPos(2, yPos)
+			monitor.write("Last updated at: " .. parser.getUpdatedDate())
 		end
 	elseif (id == 3) then
 		-- id 3 = the type list
@@ -147,6 +157,10 @@ local function displayData(id)
 				
 				yPos = yPos + 1
 			end
+			
+			yPos = yPos + 1
+			monitor.setCursorPos(2, yPos)
+			monitor.write("Last updated at: " .. parser.getUpdatedDate())
 		end
 	elseif (id == 4) then
 		-- id 4 = the call list
@@ -162,6 +176,10 @@ local function displayData(id)
 				
 				yPos = yPos + 1
 			end
+			
+			yPos = yPos + 1
+			monitor.setCursorPos(2, yPos)
+			monitor.write("Last updated at: " .. parser.getUpdatedDate())
 		end
 	end
 end
@@ -169,13 +187,12 @@ end
 -- Loops
 local refreshLoop = function()
 	while true do
-		if (fs.exists(jsonFile)) then
-			local file = fs.open(jsonFile, "r")
-			local text = file.readAll()
-			file.close()
-			
+		local data = http.get(remoteUrl)
+		if (data) then
+			functions.debug("Data retrieved from remote server.")
+			-- re-parse the data
+			local text = data.readAll()
 			parser.parseData(text)
-			functions.debug("Refreshing data.")
 			
 			monitor.clear()
 			displayHeader()
@@ -183,7 +200,10 @@ local refreshLoop = function()
 			displayData(1)
 			
 			functions.debug("Refreshing screen.")
+		else
+			functions.debug("Failed to retrieve data from remote server.")
 		end
+		
 		sleep(refreshDelay)
 	end
 end
@@ -215,16 +235,15 @@ local function init()
 	end
 	
 	-- open the file for parsing
-	if (fs.exists(jsonFile)) then
-		local file = fs.open(jsonFile, "r")
-		local text = file.readAll()
-		file.close()
-		
-		functions.debug("Beginning initial data parsing.")
+	local data = http.get(remoteUrl)
+	if (data) then
+		functions.debug("Data retrieved from remote server.")
+		-- re-parse the data
+		local text = data.readAll()
 		parser.parseData(text)
 		functions.debug("Data parsing complete.")
 	else
-		functions.debug("Profile.txt file not found.")
+		functions.debug("Failed to retrieve data from remote server.")
 	end
 	
 	monitor.clear()
