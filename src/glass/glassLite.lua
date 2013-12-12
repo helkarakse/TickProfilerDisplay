@@ -269,6 +269,7 @@ local function init()
 	if (data) then
 		functions.debug("Data retrieved from remote server.")
 		-- re-parse the data
+		functions.debug(data)
 		parser.parseData(data)
 		bridge.clear()
 	else
