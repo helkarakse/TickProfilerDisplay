@@ -105,13 +105,14 @@ local function drawEntities(inputX, inputY)
 end
 
 local function drawChunks(inputX, inputY)
+	functions.debug("data")
 	local data = parser.getChunks()
 	chunksArray = {}
-	
+	functions.debug("header")
 	table.insert(chunksArray, bridge.addText(inputX, inputY, "Chunk Position (X, Z):", colors.white).setScale(size.small))
 	table.insert(chunksArray, bridge.addText(inputX + 100, inputY, "Time/Tick:", colors.white).setScale(size.small))
 	table.insert(chunksArray, bridge.addText(inputX + 150, inputY, "%", colors.white).setScale(size.small))
-	
+	functions.debug("info")
 	for i = 1, limit do
 		table.insert(chunksArray, bridge.addText(inputX, inputY + (lineMultiplier * i), data[i].positionX .. ", " .. data[i].positionZ, colors.white).setScale(size.small))
 		table.insert(chunksArray, bridge.addText(inputX + 100, inputY + (lineMultiplier * i), data[i].time, colors.white).setScale(size.small))
