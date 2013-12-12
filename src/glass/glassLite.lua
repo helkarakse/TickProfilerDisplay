@@ -11,7 +11,9 @@ os.loadAPI("functions")
 os.loadAPI("parser")
 
 -- Variables
-local jsonFile = "profile.txt"
+local jsonFile = "data"
+local dimension = string.sub(os.getComputerLabel(), 1, 1)
+local remoteUrl = "http://www.otegamers.com/custom/helkarakse/upload.php?req=show&dim=" .. dimension
 local bridge, mainBox, edgeBox
 local header, headerText, clockText, tpsText, lastUpdatedText
 local limit = 5
@@ -186,22 +188,46 @@ local function drawData()
 	drawCalls(mainX + 5, mainY + headerHeight + 5 + ((limit + 2) * 3 * lineMultiplier))
 end
 
+--local dataRefreshLoop = function()
+--	lastUpdated = 0
+--	while true do
+--		if (fs.getSize(jsonFile) ~= currentFileSize and fs.exists(jsonFile)) then
+--			functions.debug("File size of profile.txt has changed. Assuming new data.")
+--			local file = fs.open(jsonFile, "r")
+--			local text = file.readAll()
+--			file.close()
+--			
+--			-- reset the updated time and the new file size
+--			currentFileSize = fs.getSize(jsonFile)
+--			functions.debug("Setting the current file size to: ", currentFileSize)
+--			lastUpdated = 0
+--			
+--			-- re-parse the data
+--			parser.parseData(text)
+--			bridge.clear()
+--			
+--			-- redraw the new data
+--			drawMain(mainX, mainY, mainWidth, mainHeight)
+--			drawHeader(mainX, mainY)
+--			drawTps(mainX, mainY)
+--			drawSanta(mainX + 10, mainY - 1)
+--			drawData()
+--		else
+--			lastUpdatedText.setText(lastUpdated .. "s")
+--		end
+--		
+--		lastUpdated = lastUpdated + 1
+--		sleep(1)
+--	end
+--end
+
 local dataRefreshLoop = function()
-	lastUpdated = 0
 	while true do
-		if (fs.getSize(jsonFile) ~= currentFileSize and fs.exists(jsonFile)) then
-			functions.debug("File size of profile.txt has changed. Assuming new data.")
-			local file = fs.open(jsonFile, "r")
-			local text = file.readAll()
-			file.close()
-			
-			-- reset the updated time and the new file size
-			currentFileSize = fs.getSize(jsonFile)
-			functions.debug("Setting the current file size to: ", currentFileSize)
-			lastUpdated = 0
-			
+		-- download the file
+		local data = http.get(remoteUrl)
+		if (data) then
 			-- re-parse the data
-			parser.parseData(text)
+			parser.parseData(data)
 			bridge.clear()
 			
 			-- redraw the new data
@@ -210,12 +236,9 @@ local dataRefreshLoop = function()
 			drawTps(mainX, mainY)
 			drawSanta(mainX + 10, mainY - 1)
 			drawData()
-		else
-			lastUpdatedText.setText(lastUpdated .. "s")
 		end
 		
-		lastUpdated = lastUpdated + 1
-		sleep(1)
+		sleep(10)
 	end
 end
 
