@@ -228,8 +228,9 @@ local dataRefreshLoop = function()
 		if (data) then
 			functions.debug("Data retrieved from remote server.")
 			-- re-parse the data
-			functions.debug(data)
-			parser.parseData(data)
+			local text = data.readAll()
+			functions.debug(text)
+			parser.parseData(text)
 			bridge.clear()
 			
 			-- redraw the new data
@@ -269,8 +270,9 @@ local function init()
 	if (data) then
 		functions.debug("Data retrieved from remote server.")
 		-- re-parse the data
-		functions.debug(data)
-		parser.parseData(data)
+		local text = data.readAll()
+		functions.debug(text)
+		parser.parseData(text)
 		bridge.clear()
 	else
 		functions.debug("Failed to retrieve data from server.")
