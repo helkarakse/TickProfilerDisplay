@@ -15,11 +15,9 @@ local jsonFile = "data"
 local dimension = string.sub(os.getComputerLabel(), 1, 1)
 local remoteUrl = "http://www.otegamers.com/custom/helkarakse/upload.php?req=show&dim=" .. dimension
 local bridge, mainBox, edgeBox
-local header, headerText, clockText, tpsText, lastUpdatedText
+local header, headerText, clockText, tpsText
 local limit = 5
 local opacity = 0.15
-
-local lastUpdated, currentFileSize
 
 local colors = {
 	headerStart = 0x18caf0,
@@ -73,14 +71,6 @@ local function drawTps(inputX, inputY)
 	clockText = bridge.addText(mainX + mainWidth - 30, inputY + 1, "", colors.white)
 	clockText.setScale(size.small)
 	clockText.setZIndex(4)
-	
-	local lastUpdatedLabelText = bridge.addText(mainX + mainWidth - 100, inputY + 1, "Last Updated:", colors.white)
-	lastUpdatedLabelText.setScale(size.small)
-	lastUpdatedLabelText.setZIndex(4)
-	
-	lastUpdatedText = bridge.addText(mainX + mainWidth - 55, inputY + 1, updatedDate, colors.white)
-	lastUpdatedText.setScale(size.small)
-	lastUpdatedText.setZIndex(4)
 end
 
 local function drawEntities(inputX, inputY)
@@ -161,6 +151,13 @@ local function drawCalls(inputX, inputY)
 	end
 end
 
+local function drawUpdated(inputX, inputY)
+	local data = parser.getUpdatedDate()
+	
+	local lastUpdated = bridge.addText(inputX, inputY, "Last Updated: " .. data, colors.white).setScale(size.small)
+	lastUpdated.setZIndex(5)
+end
+
 local function drawSanta(inputX, inputY)
 	local boxArray = {}
 	--white parts
@@ -183,14 +180,11 @@ local function drawSanta(inputX, inputY)
 end
 
 local function drawData()
-	functions.debug("entities")
 	drawEntities(mainX + 5, mainY + headerHeight + 5)
-	functions.debug("chunks")
 	drawChunks(mainX + 5, mainY + headerHeight + 5 + ((limit + 2) * lineMultiplier))
-	functions.debug("types")
 	drawTypes(mainX + 5, mainY + headerHeight + 5 + ((limit + 2) * 2 * lineMultiplier))
-	functions.debug("calls")
 	drawCalls(mainX + 5, mainY + headerHeight + 5 + ((limit + 2) * 3 * lineMultiplier))
+	drawUpdated(mainX + 5, (mainY + headerHeight + 5 + ((limit + 2) * 3 * lineMultiplier)) + 1)
 end
 
 local dataRefreshLoop = function()
