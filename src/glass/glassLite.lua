@@ -226,6 +226,7 @@ local dataRefreshLoop = function()
 		-- download the file
 		local data = http.get(remoteUrl)
 		if (data) then
+			functions.debug("Data retrieved from remote server.")
 			-- re-parse the data
 			parser.parseData(data)
 			bridge.clear()
@@ -236,6 +237,8 @@ local dataRefreshLoop = function()
 			drawTps(mainX, mainY)
 			drawSanta(mainX + 10, mainY - 1)
 			drawData()
+		else
+			functions.debug("Failed to retrieve data from remote server.")
 		end
 		
 		sleep(10)
@@ -260,19 +263,15 @@ local function init()
 		bridge.clear()
 	end
 
-	if (fs.exists(jsonFile)) then
-		local file = fs.open(jsonFile, "r")
-		local text = file.readAll()
-		file.close()
-		
-		currentFileSize = fs.getSize(jsonFile)
-		functions.debug("Setting the current file size to: ", currentFileSize)
-		
-		functions.debug("Beginning initial data parsing.")
-		parser.parseData(text)
-		functions.debug("Data parsing complete.")
+	-- download the file
+	local data = http.get(remoteUrl)
+	if (data) then
+		functions.debug("Data retrieved from remote server.")
+		-- re-parse the data
+		parser.parseData(data)
+		bridge.clear()
 	else
-		functions.debug("Profile.txt file not found.")
+		functions.debug("Failed to retrieve data from server.")
 	end
 	
 	drawMain(mainX, mainY, mainWidth, mainHeight)
