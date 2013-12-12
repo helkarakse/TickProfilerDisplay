@@ -244,12 +244,14 @@ local function init()
 		functions.debug("Failed to retrieve data from server.")
 	end
 	
+	functions.debug("Drawing the screen...")
 	drawMain(mainX, mainY, mainWidth, mainHeight)
 	drawHeader(mainX, mainY)
 	drawTps(mainX, mainY)
 	drawSanta(mainX + 10, mainY - 1)
 	drawData()
 	
+	functions.debug("Starting parallel tasking...")
 	parallel.waitForAll(dataRefreshLoop, clockRefreshLoop)
 end
 
