@@ -60,6 +60,7 @@ end
 
 local function drawTps(inputX, inputY)
 	local tps = parser.getTps()
+	local updatedDate = parser.getUpdatedDate()
 	
 	local tpsLabelText = bridge.addText(mainX + mainWidth - 55, mainY + mainHeight - tpsHeight, "TPS:", colors.white)
 	tpsLabelText.setScale(size.normal)
@@ -77,7 +78,7 @@ local function drawTps(inputX, inputY)
 	lastUpdatedLabelText.setScale(size.small)
 	lastUpdatedLabelText.setZIndex(4)
 	
-	lastUpdatedText = bridge.addText(mainX + mainWidth - 55, inputY + 1, "", colors.white)
+	lastUpdatedText = bridge.addText(mainX + mainWidth - 55, inputY + 1, updatedDate, colors.white)
 	lastUpdatedText.setScale(size.small)
 	lastUpdatedText.setZIndex(4)
 end
@@ -229,7 +230,6 @@ local dataRefreshLoop = function()
 			functions.debug("Data retrieved from remote server.")
 			-- re-parse the data
 			local text = data.readAll()
-			functions.debug(text)
 			parser.parseData(text)
 			bridge.clear()
 			
@@ -271,7 +271,6 @@ local function init()
 		functions.debug("Data retrieved from remote server.")
 		-- re-parse the data
 		local text = data.readAll()
-		functions.debug(text)
 		parser.parseData(text)
 		bridge.clear()
 	else
