@@ -191,13 +191,14 @@ local refreshLoop = function()
 			-- re-parse the data
 			local text = data.readAll()
 			parser.parseData(text)
+			functions.debug("Data parsing complete.")
 			
 			monitor.clear()
 			displayHeader()
 			displayDataHeading(1)
 			displayData(1)
 			
-			functions.debug("Refreshing screen.")
+			functions.debug("Screen refreshed.")
 		else
 			functions.debug("Failed to retrieve data from remote server.")
 		end

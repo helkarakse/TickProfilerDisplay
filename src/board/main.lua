@@ -12,10 +12,12 @@ os.loadAPI("parser")
 
 -- Variables
 local monitor, state
-local jsonFile = "profile.txt"
 local headerY = 6
 local displayY = 7
 local limit = 10
+
+local dimId = string.sub(os.getComputerLabel(), 1, 1)
+local remoteUrl = "http://www.otegamers.com/custom/helkarakse/upload.php?req=show&dim=" .. dimId
 
 local next = next
 local tonumber = tonumber
@@ -95,7 +97,7 @@ local function displayEntities()
 			
 			-- dimensions
 			monitor.setCursorPos(dimX, y)
-			monitor.write(parser.getDimensionName(serverId, entities[i].dimId))
+			monitor.write(parser.getDimensionName(dimId, entities[i].dimId))
 			
 			y = y + 1
 		end
@@ -225,34 +227,33 @@ end
 -- Listener to refresh parsed data
 local refreshListener = function()
 	while true do
-		if (fs.exists(jsonFile)) then
-			local file = fs.open(jsonFile, "r")
-			local text = file.readAll()
-			file.close()
-			
+		local data = http.get(remoteUrl)
+		if (data) then
+			functions.debug("Data retrieved from remote server.")
+			-- re-parse the data
+			local text = data.readAll()
 			parser.parseData(text)
 			functions.debug("Refreshing data.")
 			displayScreen(1)
 			functions.debug("Refreshing screen.")
+		else
+			functions.debug("Failed to retrieve data from remote server.")
 		end
 		sleep(60)
 	end
 end
 
 local function init()
-	functions.debug("Current server id is: ", serverId)
-	
-	-- open the file for parsing
-	if (fs.exists(jsonFile)) then
-		local file = fs.open(jsonFile, "r")
-		local text = file.readAll()
-		file.close()
-		
-		functions.debug("Beginning initial data parsing.")
+	functions.debug("Current server id is: ", dimId)
+	local data = http.get(remoteUrl)
+	if (data) then
+		functions.debug("Data retrieved from remote server.")
+		-- re-parse the data
+		local text = data.readAll()
 		parser.parseData(text)
 		functions.debug("Data parsing complete.")
 	else
-		functions.debug("Profile.txt file not found.")
+		functions.debug("Failed to retrieve data from remote server.")
 	end
 	
 	-- find the monitor and init vars
@@ -261,11 +262,6 @@ local function init()
 		monitor = peripheral.wrap(monDir)
 		local screenW, screenH = monitor.getSize()
 		functions.debug("Monitor size is: ", screenW, "x", screenH)
-		
---		if (monitor.isColor ~= true) then
---			functions.debug("An advanced monitor is required to use this program.")
---			return
---		end
 	else
 		-- no monitor found
 		functions.debug("A monitor is required to use this program.")
