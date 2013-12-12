@@ -245,10 +245,15 @@ local function init()
 	end
 	
 	functions.debug("Drawing the screen...")
+	functions.debug("drawmain")
 	drawMain(mainX, mainY, mainWidth, mainHeight)
+	functions.debug("drawheader")
 	drawHeader(mainX, mainY)
+	functions.debug("drawtps")
 	drawTps(mainX, mainY)
+	functions.debug("santa")
 	drawSanta(mainX + 10, mainY - 1)
+	functions.debug("data")
 	drawData()
 	
 	functions.debug("Starting parallel tasking...")
