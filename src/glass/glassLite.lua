@@ -242,6 +242,7 @@ local function init()
 		functions.debug("Data retrieved from remote server.")
 		-- re-parse the data
 		local text = data.readAll()
+		print(text)
 		parser.parseData(text)
 		bridge.clear()
 	else
