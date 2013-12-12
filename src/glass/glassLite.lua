@@ -183,9 +183,13 @@ local function drawSanta(inputX, inputY)
 end
 
 local function drawData()
+	functions.debug("entities")
 	drawEntities(mainX + 5, mainY + headerHeight + 5)
+	functions.debug("chunks")
 	drawChunks(mainX + 5, mainY + headerHeight + 5 + ((limit + 2) * lineMultiplier))
+	functions.debug("types")
 	drawTypes(mainX + 5, mainY + headerHeight + 5 + ((limit + 2) * 2 * lineMultiplier))
+	functions.debug("calls")
 	drawCalls(mainX + 5, mainY + headerHeight + 5 + ((limit + 2) * 3 * lineMultiplier))
 end
 
