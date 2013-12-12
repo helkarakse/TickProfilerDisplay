@@ -13,7 +13,7 @@ os.loadAPI("parser")
 -- Variables
 local monitor, state
 local headerY = 6
-local displayY = 7
+local displayY = 8
 local limit = 10
 
 local dimId = string.sub(os.getComputerLabel(), 1, 1)
@@ -45,6 +45,8 @@ local function displayHeader()
 	monitor.setTextColor(parser.getTpsColor(tps))
 	monitor.write(tps)
 	monitor.setTextColor(colors.white)
+	monitor.setCursorPos(2, 6)
+	monitor.write("Last updated at: " .. parser.getUpdatedDate())
 end
 
 local function displayMenu(id)
