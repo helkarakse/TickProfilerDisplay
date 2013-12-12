@@ -11,7 +11,6 @@ os.loadAPI("functions")
 os.loadAPI("parser")
 
 -- Variables
-local jsonFile = "data"
 local dimension = string.sub(os.getComputerLabel(), 1, 1)
 local remoteUrl = "http://www.otegamers.com/custom/helkarakse/upload.php?req=show&dim=" .. dimension
 local bridge, mainBox, edgeBox
@@ -38,7 +37,7 @@ local lineMultiplier = headerHeight
 local mainX = 10
 local mainY = 65
 local mainWidth = 250
-local mainHeight = (28 * lineMultiplier) + 10
+local mainHeight = (30 * lineMultiplier) + 10
 
 local entitiesArray, chunksArray, typesArray, callsArray
 
