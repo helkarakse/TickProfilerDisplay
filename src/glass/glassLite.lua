@@ -189,39 +189,6 @@ local function drawData()
 	drawCalls(mainX + 5, mainY + headerHeight + 5 + ((limit + 2) * 3 * lineMultiplier))
 end
 
---local dataRefreshLoop = function()
---	lastUpdated = 0
---	while true do
---		if (fs.getSize(jsonFile) ~= currentFileSize and fs.exists(jsonFile)) then
---			functions.debug("File size of profile.txt has changed. Assuming new data.")
---			local file = fs.open(jsonFile, "r")
---			local text = file.readAll()
---			file.close()
---			
---			-- reset the updated time and the new file size
---			currentFileSize = fs.getSize(jsonFile)
---			functions.debug("Setting the current file size to: ", currentFileSize)
---			lastUpdated = 0
---			
---			-- re-parse the data
---			parser.parseData(text)
---			bridge.clear()
---			
---			-- redraw the new data
---			drawMain(mainX, mainY, mainWidth, mainHeight)
---			drawHeader(mainX, mainY)
---			drawTps(mainX, mainY)
---			drawSanta(mainX + 10, mainY - 1)
---			drawData()
---		else
---			lastUpdatedText.setText(lastUpdated .. "s")
---		end
---		
---		lastUpdated = lastUpdated + 1
---		sleep(1)
---	end
---end
-
 local dataRefreshLoop = function()
 	while true do
 		-- download the file
