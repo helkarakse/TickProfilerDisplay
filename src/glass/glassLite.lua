@@ -11,8 +11,8 @@ os.loadAPI("functions")
 os.loadAPI("parser")
 
 -- Variables
-local dimension = string.sub(os.getComputerLabel(), 1, 1)
-local remoteUrl = "http://www.otegamers.com/custom/helkarakse/upload.php?req=show&dim=" .. dimension
+local dimId = string.sub(os.getComputerLabel(), 1, 1)
+local remoteUrl = "http://www.otegamers.com/custom/helkarakse/upload.php?req=show&dim=" .. dimId
 local bridge, mainBox, edgeBox
 local header, headerText, clockText, tpsText
 local limit = 5
@@ -85,7 +85,7 @@ local function drawEntities(inputX, inputY)
 		table.insert(entitiesArray, bridge.addText(inputX, inputY + (lineMultiplier * i), data[i].name, colors.white).setScale(size.small))
 		table.insert(entitiesArray, bridge.addText(inputX + 100, inputY + (lineMultiplier * i), data[i].position, colors.white).setScale(size.small))
 		table.insert(entitiesArray, bridge.addText(inputX + 150, inputY + (lineMultiplier * i), data[i].percent, parser.getPercentHexColor(data[i].percent)).setScale(size.small))
-		table.insert(entitiesArray, bridge.addText(inputX + 200, inputY + (lineMultiplier * i), parser.getDimensionName(parser.getServerId(os.getComputerID()), data[i].dimId), colors.white).setScale(size.small))
+		table.insert(entitiesArray, bridge.addText(inputX + 200, inputY + (lineMultiplier * i), parser.getDimensionName(dimId, data[i].dimId), colors.white).setScale(size.small))
 	end
 	
 	for i = 1, #entitiesArray do

@@ -15,11 +15,9 @@ local monitor
 local slideDelay = 10
 local refreshDelay = 80
 
-local dimension = string.sub(os.getComputerLabel(), 1, 1)
-local remoteUrl = "http://www.otegamers.com/custom/helkarakse/upload.php?req=show&dim=" .. dimension
+local dimId = string.sub(os.getComputerLabel(), 1, 1)
+local remoteUrl = "http://www.otegamers.com/custom/helkarakse/upload.php?req=show&dim=" .. dimId
 
--- serverId, assumes that the computer label is 1tickMonitor, or 2tickMonitor
-local serverId = parser.getServerId(os.getComputerID())
 local limit = 10
 
 -- Functions
@@ -105,9 +103,9 @@ local function displayData(id)
 				monitor.write(percentage)
 				monitor.setTextColor(colors.white)
 				
-				-- dimensions
+				-- dimIds
 				monitor.setCursorPos(53, yPos)
-				monitor.write(parser.getDimensionName(serverId, data[i].dimId))
+				monitor.write(parser.getDimensionName(dimId, data[i].dimId))
 				
 				yPos = yPos + 1
 			end
@@ -224,7 +222,7 @@ local slideLoop = function()
 end
 
 local function init()
-	functions.debug("Current server id is: ", serverId)
+	functions.debug("Current server id is: ", dimId)
 	
 	local monFound, monDir = functions.locatePeripheral("monitor")
 	if (monFound == true) then
