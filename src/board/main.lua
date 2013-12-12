@@ -11,8 +11,9 @@ os.loadAPI("functions")
 os.loadAPI("parser")
 
 -- Variables
-local monitor, state
-local headerY = 6
+local monitor
+local state = 1
+local headerY = 8
 local displayY = 8
 local limit = 10
 
@@ -194,7 +195,7 @@ end
 -- Screen changing
 local function displayScreen(id) 
 	functions.debug("Displaying the screen for id: ", id)
-	state = menuArray[id].screen
+	state = id
 	
 	monitor.clear()
 	displayHeader()
@@ -218,7 +219,7 @@ local monitorListener = function()
 		functions.debug("Detected monitor touch at (", xPos, ", ", yPos, ")")
 		
 		if (yPos % 2 == 0 and xPos <= 14) then
-			local menuId = (yPos - 4) / 2
+			local menuId = (yPos - 6) / 2
 			if (menuId <= #menuArray) then
 				displayScreen(menuId)
 			end
@@ -236,7 +237,7 @@ local refreshListener = function()
 			local text = data.readAll()
 			parser.parseData(text)
 			functions.debug("Refreshing data.")
-			displayScreen(1)
+			displayScreen(state)
 			functions.debug("Refreshing screen.")
 		else
 			functions.debug("Failed to retrieve data from remote server.")
@@ -270,7 +271,7 @@ local function init()
 		return
 	end
 	
-	displayScreen(1)
+	displayScreen(state)
 	parallel.waitForAll(monitorListener, refreshListener)
 end
 
