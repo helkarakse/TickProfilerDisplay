@@ -225,7 +225,7 @@ local monitorListener = function()
 		
 		if (yPos % 2 == 0 and xPos <= 14) then
 			local menuId = (yPos - 6) / 2
-			if (menuId <= #menuArray) then
+			if (menuId <= #menuArray and menuId ~= 0 and menuId ~= nil) then
 				displayScreen(menuId)
 			end
 		end
