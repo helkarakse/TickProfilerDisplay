@@ -111,6 +111,7 @@ local function displayChunks()
 	local posX = 15
 	local timeX = 30
 	local percentX = 45
+	local dimX = 57
 	
 	monitor.setCursorPos(posX, headerY)
 	monitor.write("Position:")
@@ -118,6 +119,8 @@ local function displayChunks()
 	monitor.write("Time/Tick:")
 	monitor.setCursorPos(percentX, headerY)
 	monitor.write("%")
+	monitor.setCursorPos(dimX, headerY)
+	monitor.write("Dimension")
 
 	local y = displayY
 	local chunks = parser.getChunks()
@@ -131,6 +134,8 @@ local function displayChunks()
 			monitor.setTextColor(parser.getPercentColor(chunks[i].percent))
 			monitor.write(chunks[i].percent)
 			monitor.setTextColor(colors.white)
+			monitor.setCursorPos(dimX, y)
+			monitor.write(parser.getDimensionName(dimId, chunks[i].dimension))
 			y = y + 1
 		end
 	end
