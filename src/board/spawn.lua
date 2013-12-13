@@ -65,6 +65,8 @@ local function displayDataHeading(id)
 		monitor.write("Time/Tick")
 		monitor.setCursorPos(41, yPos)
 		monitor.write("%")
+		monitor.setCursorPos(53, yPos)
+		monitor.write("Dimension:")
 	elseif (id == 3) then
 		-- id 3 = the type list
 		monitor.setCursorPos(2, yPos)
@@ -129,6 +131,10 @@ local function displayData(id)
 				monitor.setTextColor(parser.getPercentColor(percentage))
 				monitor.write(percentage)
 				monitor.setTextColor(colors.white)
+				
+				-- dimIds
+				monitor.setCursorPos(53, yPos)
+				monitor.write(parser.getDimensionName(dimId, data[i].dimension))
 				
 				yPos = yPos + 1
 			end
