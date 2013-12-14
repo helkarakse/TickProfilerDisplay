@@ -12,7 +12,7 @@ os.loadAPI("parser")
 
 -- Variables
 local dimId = string.sub(os.getComputerLabel(), 1, 1)
-local remoteUrl = "http://www.otegamers.com/custom/helkarakse/upload.php?req=show&dim=" .. dimId
+local remoteUrl = "http://www.otegamers.com/custom/helkarakse/upload.php?req=show&dim=" .. dimId .. "&output=json"
 local bridge, mainBox, edgeBox
 local header, headerText, clockText, tpsText
 local limit = 5

@@ -18,7 +18,7 @@ local displayY = 9
 local limit = 10
 
 local dimId = string.sub(os.getComputerLabel(), 1, 1)
-local remoteUrl = "http://www.otegamers.com/custom/helkarakse/upload.php?req=show&dim=" .. dimId
+local remoteUrl = "http://www.otegamers.com/custom/helkarakse/upload.php?req=show&dim=" .. dimId .. "&output=json"
 
 local next = next
 local tonumber = tonumber
