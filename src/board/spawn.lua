@@ -71,17 +71,17 @@ local function displayDataHeading(id)
 		-- id 3 = the type list
 		monitor.setCursorPos(2, yPos)
 		monitor.write("Type:")
-		monitor.setCursorPos(26, yPos)
+		monitor.setCursorPos(35, yPos)
 		monitor.write("Time/Tick:")
-		monitor.setCursorPos(41, yPos)
+		monitor.setCursorPos(50, yPos)
 		monitor.write("%")
 	elseif (id == 4) then
 		-- id 4 = the call list
 		monitor.setCursorPos(2, yPos)
 		monitor.write("Name:")
-		monitor.setCursorPos(26, yPos)
+		monitor.setCursorPos(35, yPos)
 		monitor.write("Time/Tick:")
-		monitor.setCursorPos(41, yPos)
+		monitor.setCursorPos(50, yPos)
 		monitor.write("Calls")
 	end
 end
