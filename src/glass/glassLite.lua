@@ -67,7 +67,7 @@ local function drawTps(inputX, inputY)
 	tpsText.setScale(size.normal)
 	tpsText.setZIndex(4)
 	
-	clockText = bridge.addText(mainX + mainWidth - 30, inputY + 1, "", colors.white)
+	clockText = bridge.addText(mainX + mainWidth - 30, inputY + 1, textutils.formatTime(nTime, false), colors.white)
 	clockText.setScale(size.small)
 	clockText.setZIndex(4)
 end
