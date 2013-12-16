@@ -45,7 +45,7 @@ local entitiesArray, chunksArray, typesArray, callsArray
 local function drawMain(inputX, inputY, inputWidth, inputHeight)
 	mainBox = bridge.addBox(inputX, inputY, inputWidth, inputHeight, colors.headerEnd, opacity)
 	header = bridge.addGradientBox(inputX - 5, inputY, inputWidth, headerHeight, colors.headerEnd, 0, colors.headerStart, 1, 2)
-	edgeBox = bridge.addGradientBox(inputX, inputY+inputHeight - 2, inputWidth, 2, colors.headerStart, 1, colors.headerEnd, 0, 2)
+	edgeBox = bridge.addGradientBox(inputX, inputY + inputHeight - 2, inputWidth, 2, colors.headerStart, 1, colors.headerEnd, 0, 2)
 	header.setZIndex(2)
 end
 
@@ -67,7 +67,7 @@ local function drawTps(inputX, inputY)
 	tpsText.setScale(size.normal)
 	tpsText.setZIndex(4)
 	
-	clockText = bridge.addText(mainX + mainWidth - 30, inputY + 1, textutils.formatTime(nTime, false), colors.white)
+	clockText = bridge.addText(mainX + mainWidth - 30, inputY + 1, textutils.formatTime(os.time(), false), colors.white)
 	clockText.setScale(size.small)
 	clockText.setZIndex(4)
 end
