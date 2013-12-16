@@ -150,9 +150,9 @@ local function displayData(id)
 			for i = 1, limit do
 				monitor.setCursorPos(2, yPos)
 				monitor.write(data[i].type)
-				monitor.setCursorPos(26, yPos)
+				monitor.setCursorPos(35, yPos)
 				monitor.write(data[i].time)
-				monitor.setCursorPos(41, yPos)
+				monitor.setCursorPos(50, yPos)
 				 
 				local percentage = tonumber(data[i].percent)
 				monitor.setTextColor(parser.getPercentColor(percentage))
@@ -172,11 +172,11 @@ local function displayData(id)
 		if (next(data) ~= nil) then
 			for i = 1, limit do
 				monitor.setCursorPos(2, yPos)
-				monitor.write(data[i].name or "")
-				monitor.setCursorPos(26, yPos)
-				monitor.write(data[i].time or "")
-				monitor.setCursorPos(41, yPos)
-				monitor.write(data[i].calls or "")
+				monitor.write(data[i].name)
+				monitor.setCursorPos(35, yPos)
+				monitor.write(data[i].time)
+				monitor.setCursorPos(50, yPos)
+				monitor.write(data[i].calls)
 				
 				yPos = yPos + 1
 			end
