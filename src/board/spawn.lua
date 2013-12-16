@@ -107,7 +107,7 @@ local function displayData(id)
 				
 				-- dimIds
 				monitor.setCursorPos(53, yPos)
-				monitor.write(parser.getDimensionName(dimId, data[i].dimId))
+				monitor.write(data[i].dimension)
 				
 				yPos = yPos + 1
 			end
@@ -134,7 +134,7 @@ local function displayData(id)
 				
 				-- dimIds
 				monitor.setCursorPos(53, yPos)
-				monitor.write(parser.getDimensionName(dimId, data[i].dimension))
+				monitor.write(data[i].dimension)
 				
 				yPos = yPos + 1
 			end

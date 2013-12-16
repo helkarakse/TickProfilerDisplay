@@ -85,7 +85,7 @@ local function drawEntities(inputX, inputY)
 		table.insert(entitiesArray, bridge.addText(inputX, inputY + (lineMultiplier * i), data[i].name, colors.white).setScale(size.small))
 		table.insert(entitiesArray, bridge.addText(inputX + 100, inputY + (lineMultiplier * i), data[i].position, colors.white).setScale(size.small))
 		table.insert(entitiesArray, bridge.addText(inputX + 150, inputY + (lineMultiplier * i), data[i].percent, parser.getPercentHexColor(data[i].percent)).setScale(size.small))
-		table.insert(entitiesArray, bridge.addText(inputX + 200, inputY + (lineMultiplier * i), parser.getDimensionName(dimId, data[i].dimId), colors.white).setScale(size.small))
+		table.insert(entitiesArray, bridge.addText(inputX + 200, inputY + (lineMultiplier * i), data[i].dimension, colors.white).setScale(size.small))
 	end
 	
 	for i = 1, #entitiesArray do
@@ -106,7 +106,7 @@ local function drawChunks(inputX, inputY)
 		table.insert(chunksArray, bridge.addText(inputX, inputY + (lineMultiplier * i), data[i].positionX .. ", " .. data[i].positionZ, colors.white).setScale(size.small))
 		table.insert(chunksArray, bridge.addText(inputX + 100, inputY + (lineMultiplier * i), data[i].time, colors.white).setScale(size.small))
 		table.insert(chunksArray, bridge.addText(inputX + 150, inputY + (lineMultiplier * i), data[i].percent, parser.getPercentHexColor(data[i].percent)).setScale(size.small))
-		table.insert(chunksArray, bridge.addText(inputX + 200, inputY + (lineMultiplier * i), parser.getDimensionName(dimId, data[i].dimension), colors.white).setScale(size.small))
+		table.insert(chunksArray, bridge.addText(inputX + 200, inputY + (lineMultiplier * i), data[i].dimension, colors.white).setScale(size.small))
 	end
 	
 	for i = 1, #chunksArray do

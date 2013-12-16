@@ -100,7 +100,7 @@ local function displayEntities()
 			
 			-- dimensions
 			monitor.setCursorPos(dimX, y)
-			monitor.write(parser.getDimensionName(dimId, entities[i].dimId))
+			monitor.write(entities[i].dimension)
 			
 			y = y + 1
 		end
@@ -135,7 +135,7 @@ local function displayChunks()
 			monitor.write(chunks[i].percent)
 			monitor.setTextColor(colors.white)
 			monitor.setCursorPos(dimX, y)
-			monitor.write(parser.getDimensionName(dimId, chunks[i].dimension))
+			monitor.write(chunks[i].dimension)
 			y = y + 1
 		end
 	end
