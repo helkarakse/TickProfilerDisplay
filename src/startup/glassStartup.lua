@@ -13,6 +13,7 @@ local fileArray = {
 	{link = "https://raw.github.com/helkarakse/LuaLibs/master/src/common/functions.lua", file = "functions"},
 	{link = "https://raw.github.com/helkarakse/LuaLibs/master/src/libs/libJson.lua", file = "json"},
 	{link = "https://raw.github.com/helkarakse/LuaLibs/master/src/parser/tickParser.lua", file = "parser"},
+	{link = "https://raw.github.com/helkarakse/TickProfilerDisplay/master/src/data.lua", file = "data"},
 	{link = "https://raw.github.com/helkarakse/TickProfilerDisplay/master/src/glass/glassLite.lua", file = "glassLite"}
 }
 

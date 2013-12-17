@@ -9,6 +9,7 @@
 -- Functions
 os.loadAPI("functions")
 os.loadAPI("parser")
+os.loadAPI("data")
 
 -- Variables
 local monitor
@@ -16,9 +17,6 @@ local state = 1
 local headerY = 8
 local displayY = 9
 local limit = 10
-
-local dimId = string.sub(os.getComputerLabel(), 1, 1)
-local remoteUrl = "http://www.otegamers.com/custom/helkarakse/upload.php?req=show&dim=" .. dimId .. "&output=json"
 
 local next = next
 local tonumber = tonumber
@@ -235,7 +233,7 @@ end
 -- Listener to refresh parsed data
 local refreshListener = function()
 	while true do
-		local data = http.get(remoteUrl)
+		local data = http.get(data.dataUrl)
 		if (data) then
 			functions.debug("Data retrieved from remote server.")
 			-- re-parse the data
@@ -253,7 +251,7 @@ end
 
 local function init()
 	functions.debug("Current server id is: ", dimId)
-	local data = http.get(remoteUrl)
+	local data = http.get(data.dataUrl)
 	if (data) then
 		functions.debug("Data retrieved from remote server.")
 		-- re-parse the data

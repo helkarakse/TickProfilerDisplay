@@ -9,14 +9,12 @@
 -- Libraries
 os.loadAPI("parser")
 os.loadAPI("functions")
+os.loadAPI("data")
 
 -- Variables
 local monitor
 local slideDelay = 10
 local refreshDelay = 80
-
-local dimId = string.sub(os.getComputerLabel(), 1, 1)
-local remoteUrl = "http://www.otegamers.com/custom/helkarakse/upload.php?req=show&dim=" .. dimId .. "&output=json"
 
 local limit = 10
 
@@ -191,7 +189,7 @@ end
 -- Loops
 local refreshLoop = function()
 	while true do
-		local data = http.get(remoteUrl)
+		local data = http.get(data.dataUrl)
 		if (data) then
 			functions.debug("Data retrieved from remote server.")
 			-- re-parse the data
@@ -240,7 +238,7 @@ local function init()
 	end
 	
 	-- open the file for parsing
-	local data = http.get(remoteUrl)
+	local data = http.get(data.dataUrl)
 	if (data) then
 		functions.debug("Data retrieved from remote server.")
 		-- re-parse the data

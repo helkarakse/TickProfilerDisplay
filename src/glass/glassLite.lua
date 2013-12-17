@@ -9,10 +9,9 @@
 -- Libraries
 os.loadAPI("functions")
 os.loadAPI("parser")
+os.loadAPI("data")
 
 -- Variables
-local dimId = string.sub(os.getComputerLabel(), 1, 1)
-local remoteUrl = "http://www.otegamers.com/custom/helkarakse/upload.php?req=show&dim=" .. dimId .. "&output=json"
 local bridge, mainBox, edgeBox
 local header, headerText, clockText, tpsText
 local limit = 5
@@ -192,7 +191,7 @@ end
 local dataRefreshLoop = function()
 	while true do
 		-- download the file
-		local data = http.get(remoteUrl)
+		local data = http.get(data.dataUrl)
 		if (data) then
 			functions.debug("Data retrieved from remote server.")
 			-- re-parse the data
@@ -233,7 +232,7 @@ local function init()
 	end
 
 	-- download the file
-	local data = http.get(remoteUrl)
+	local data = http.get(data.dataUrl)
 	if (data) then
 		functions.debug("Data retrieved from remote server.")
 		-- re-parse the data
