@@ -101,11 +101,11 @@ local function displayData(id)
 				monitor.write(percentage)
 				monitor.setTextColor(colors.white)
 
-				yPos = yPos + 1
-
 				-- dimIds
 				monitor.setCursorPos(53, yPos)
 				monitor.write(data[i].dimension)
+
+				yPos = yPos + 1
 			end
 
 			yPos = yPos + 1
