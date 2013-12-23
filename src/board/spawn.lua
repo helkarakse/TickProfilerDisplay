@@ -1,9 +1,9 @@
 --[[
- 
-        TickProfiler Basic Version 1.0 Alpha
-        Do not modify, copy or distribute without permission of author
-        Helkarakse-Shotexpert, 20131201
- 
+
+TickProfiler Basic Version 1.0 Alpha
+Do not modify, copy or distribute without permission of author
+Helkarakse-Shotexpert, 20131201
+
 ]]
 
 -- Libraries
@@ -29,7 +29,7 @@ local function displayHeader()
 	local xPos = 2
 	local yPos = 2
 	local tps, tpsColor = getTps()
-	
+
 	monitor.setCursorPos(xPos, yPos)
 	monitor.write("OTE-Gaming Tickboard of Shame")
 	monitor.setCursorPos(xPos, yPos + 1)
@@ -44,7 +44,7 @@ end
 
 local function displayDataHeading(id)
 	local yPos = 7
-	
+
 	if (id == 1) then
 		-- id 1 = the single entity list
 		monitor.setCursorPos(2, yPos)
@@ -53,8 +53,6 @@ local function displayDataHeading(id)
 		monitor.write("X - Y - Z:")
 		monitor.setCursorPos(41, yPos)
 		monitor.write("%")
-		monitor.setCursorPos(53, yPos)
-		monitor.write("Dimension:")
 	elseif (id == 2) then
 		-- id 2 = the chunk list
 		monitor.setCursorPos(2, yPos)
@@ -63,8 +61,6 @@ local function displayDataHeading(id)
 		monitor.write("Time/Tick")
 		monitor.setCursorPos(41, yPos)
 		monitor.write("%")
-		monitor.setCursorPos(53, yPos)
-		monitor.write("Dimension:")
 	elseif (id == 3) then
 		-- id 3 = the type list
 		monitor.setCursorPos(2, yPos)
@@ -97,19 +93,15 @@ local function displayData(id)
 				monitor.setCursorPos(26, yPos)
 				monitor.write(data[i].position)
 				monitor.setCursorPos(41, yPos)
-				 
+
 				local percentage = tonumber(data[i].percent)
 				monitor.setTextColor(parser.getPercentColor(percentage))
 				monitor.write(percentage)
 				monitor.setTextColor(colors.white)
-				
-				-- dimIds
-				monitor.setCursorPos(53, yPos)
-				monitor.write(data[i].dimension)
-				
+
 				yPos = yPos + 1
 			end
-			
+
 			yPos = yPos + 1
 			monitor.setCursorPos(2, yPos)
 			monitor.write("Last updated at: " .. parser.getUpdatedDate())
@@ -124,19 +116,15 @@ local function displayData(id)
 				monitor.setCursorPos(26, yPos)
 				monitor.write(data[i].time)
 				monitor.setCursorPos(41, yPos)
-				 
+
 				local percentage = tonumber(data[i].percent)
 				monitor.setTextColor(parser.getPercentColor(percentage))
 				monitor.write(percentage)
 				monitor.setTextColor(colors.white)
-				
-				-- dimIds
-				monitor.setCursorPos(53, yPos)
-				monitor.write(data[i].dimension)
-				
+
 				yPos = yPos + 1
 			end
-			
+
 			yPos = yPos + 1
 			monitor.setCursorPos(2, yPos)
 			monitor.write("Last updated at: " .. parser.getUpdatedDate())
@@ -151,15 +139,15 @@ local function displayData(id)
 				monitor.setCursorPos(35, yPos)
 				monitor.write(data[i].time)
 				monitor.setCursorPos(50, yPos)
-				 
+
 				local percentage = tonumber(data[i].percent)
 				monitor.setTextColor(parser.getPercentColor(percentage))
 				monitor.write(percentage)
 				monitor.setTextColor(colors.white)
-				
+
 				yPos = yPos + 1
 			end
-			
+
 			yPos = yPos + 1
 			monitor.setCursorPos(2, yPos)
 			monitor.write("Last updated at: " .. parser.getUpdatedDate())
@@ -175,10 +163,10 @@ local function displayData(id)
 				monitor.write(data[i].time)
 				monitor.setCursorPos(50, yPos)
 				monitor.write(data[i].calls)
-				
+
 				yPos = yPos + 1
 			end
-			
+
 			yPos = yPos + 1
 			monitor.setCursorPos(2, yPos)
 			monitor.write("Last updated at: " .. parser.getUpdatedDate())
@@ -196,17 +184,17 @@ local refreshLoop = function()
 			local text = data.readAll()
 			parser.parseData(text)
 			functions.debug("Data parsing complete.")
-			
+
 			monitor.clear()
 			displayHeader()
 			displayDataHeading(1)
 			displayData(1)
-			
+
 			functions.debug("Screen refreshed.")
 		else
 			functions.debug("Failed to retrieve data from remote server.")
 		end
-		
+
 		sleep(refreshDelay)
 	end
 end
@@ -215,12 +203,12 @@ local slideLoop = function()
 	while true do
 		for i = 1, 4 do
 			functions.debug("Displaying screen #", i)
-			
+
 			monitor.clear()
 			displayHeader()
 			displayDataHeading(i)
 			displayData(i)
-			
+
 			sleep(slideDelay)
 		end
 	end
@@ -228,7 +216,7 @@ end
 
 local function init()
 	functions.debug("Current server id is: ", dimId)
-	
+
 	local monFound, monDir = functions.locatePeripheral("monitor")
 	if (monFound == true) then
 		monitor = peripheral.wrap(monDir)
@@ -236,7 +224,7 @@ local function init()
 		functions.debug("A monitor is required to use this program.")
 		return
 	end
-	
+
 	-- open the file for parsing
 	local data = http.get(data.dataUrl)
 	if (data) then
@@ -248,12 +236,12 @@ local function init()
 	else
 		functions.debug("Failed to retrieve data from remote server.")
 	end
-	
+
 	monitor.clear()
 	displayHeader()
 	displayDataHeading(1)
 	displayData(1)
-	
+
 	parallel.waitForAll(slideLoop, refreshLoop)
 end
 
