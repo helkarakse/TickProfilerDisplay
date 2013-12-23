@@ -35,7 +35,7 @@ local function displayHeader()
 	
 	monitor.clear()
 	monitor.setCursorPos(2, 1)
-	monitor.write("OTE-Gaming Tickboard of Shame - RR" .. dimId)
+	monitor.write("OTE-Gaming Tickboard of Shame - RR" .. data.dimId)
 	monitor.setCursorPos(2, 2)
 	monitor.write("Powered by Helk & Shot")
 	monitor.setCursorPos(2, 4)
