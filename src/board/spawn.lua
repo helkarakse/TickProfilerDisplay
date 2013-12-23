@@ -51,15 +51,17 @@ local function displayDataHeading(id)
 		monitor.write("Name:")
 		monitor.setCursorPos(26, yPos)
 		monitor.write("X - Y - Z:")
-		monitor.setCursorPos(41, yPos)
+		monitor.setCursorPos(45, yPos)
 		monitor.write("%")
+		monitor.setCursorPos(53, yPos)
+		monitor.write("Dimension:")
 	elseif (id == 2) then
 		-- id 2 = the chunk list
 		monitor.setCursorPos(2, yPos)
 		monitor.write("Chunk Position:")
 		monitor.setCursorPos(26, yPos)
 		monitor.write("Time/Tick")
-		monitor.setCursorPos(41, yPos)
+		monitor.setCursorPos(45, yPos)
 		monitor.write("%")
 	elseif (id == 3) then
 		-- id 3 = the type list
@@ -100,6 +102,10 @@ local function displayData(id)
 				monitor.setTextColor(colors.white)
 
 				yPos = yPos + 1
+
+				-- dimIds
+				monitor.setCursorPos(53, yPos)
+				monitor.write(data[i].dimension)
 			end
 
 			yPos = yPos + 1

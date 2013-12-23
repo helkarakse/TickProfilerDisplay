@@ -31,6 +31,20 @@ local tonumber = tonumber
 local tostring = tostring
 local colors = colors
 
+-- Dimension names
+local dimArray = {
+	{dimensionId = 0, dimensionName = "Overworld"},
+	{dimensionId = -1, dimensionName = "Nether"},
+	{dimensionId = 1, dimensionName = "The End"},
+	{dimensionId = 4, dimensionName = "Public Mining"},
+	{dimensionId = 7, dimensionName = "Twilight Forest"},
+	{dimensionId = 8, dimensionName = "Silver Mining"},
+	{dimensionId = 9, dimensionName = "Gold Mining"},
+	{dimensionId = -31, dimensionName = "Secret Cow Level"},
+	{dimensionId = -20, dimensionName = "Promised Lands"},
+	{dimensionId = 100, dimensionName = "Deep Dark"},
+}
+
 local hexColor = {
 	red = 0xFF0000,
 	green = 0x00FF00,
@@ -89,6 +103,18 @@ function getTps()
 	end
 end
 
+-- Returns the dimension name given the server and dimension id
+-- If the dimension id is a known minecraft constant, it does not lookup
+-- the array.
+local function getDimensionName(dimensionId)
+	for key, value in pairs(dimArray) do
+		if (value.dimensionId == tonumber(dimensionId)) then
+			return value.dimensionName
+		end
+	end
+	return "Unknown"
+end
+
 -- SingleEntities
 -- Returns a table containing single entities that cause lag.
 -- Each row is a table containing the following keys:
@@ -101,8 +127,9 @@ function getSingleEntities()
 		row.percent = value["%"]
 		row.time = value["Time/Tick"]
 
-		local name, posX, posY, posZ = string.match(value["Single Entity"], "(.*)\ (.*)\,(.*)\,(.*)")
+		local name, posX, posY, posZ, dimensionId = string.match(value["Single Entity"], "(.*)\ (.*)\,(.*)\,(.*)\:(.*)")
 		row.name = name
+		row.dimension = getDimensionName(dimensionId)
 		row.position = posX .. ", " .. posY .. ", " .. posZ
 
 		table.insert(returnTable, row)
