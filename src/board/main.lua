@@ -250,7 +250,6 @@ local refreshListener = function()
 end
 
 local function init()
-	functions.debug("Current server id is: ", serverId)
 	local data = http.get(data.dataUrl)
 	if (data) then
 		functions.debug("Data retrieved from remote server.")
