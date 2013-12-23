@@ -36,13 +36,10 @@ local dimArray = {
 	{dimensionId = 0, dimensionName = "Overworld"},
 	{dimensionId = -1, dimensionName = "Nether"},
 	{dimensionId = 1, dimensionName = "The End"},
-	{dimensionId = 4, dimensionName = "Public Mining"},
+	{dimensionId = 11, dimensionName = "Public Mining"},
 	{dimensionId = 7, dimensionName = "Twilight Forest"},
-	{dimensionId = 8, dimensionName = "Silver Mining"},
-	{dimensionId = 9, dimensionName = "Gold Mining"},
-	{dimensionId = -31, dimensionName = "Secret Cow Level"},
-	{dimensionId = -20, dimensionName = "Promised Lands"},
-	{dimensionId = 100, dimensionName = "Deep Dark"},
+	{dimensionId = 32, dimensionName = "Silver Mining"},
+	{dimensionId = 34, dimensionName = "Gold Mining"},
 }
 
 local hexColor = {
