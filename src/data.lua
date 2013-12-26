@@ -7,4 +7,6 @@
 ]]
 
 dimId = string.sub(os.getComputerLabel(), 1, 1)
-dataUrl = "http://dev.otegamers.com/helkarakse/index.php?c=upload&m=get&server=" .. server .. "&type=" .. dimension
+server = string.lower(string.sub(os.getComputerLabel(), 2))
+
+dataUrl = "http://dev.otegamers.com/helkarakse/index.php?c=upload&m=get&server=" .. server .. "&type=" .. dimId
