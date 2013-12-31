@@ -6,4 +6,4 @@
 
 ]]
 
-dataUrl = "http://dev.otegamers.com/helkarakse/index.php?c=upload&m=get&server=ftb&type=unleashed"
+dataUrl = "http://dev.otegamers.com/index.php?c=upload&m=get&server=ftb&type=unleashed"
