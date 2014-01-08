@@ -6,7 +6,6 @@
 
 ]]
 
-dimId = string.sub(os.getComputerLabel(), 1, 1)
-server = string.lower(string.sub(os.getComputerLabel(), 2))
-
-dataUrl = "http://dev.otegamers.com/index.php?c=upload&m=get&server=" .. server .. "&type=" .. dimId
+local server = string.sub(os.getComputerLabel(), 1, 1)
+local pack = string.lower(string.sub(os.getComputerLabel(), 2))
+dataUrl = "http://dev.otegamers.com/api/v1/tps/get/" .. pack .. "/" .. server

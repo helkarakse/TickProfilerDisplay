@@ -51,7 +51,7 @@ local function displayDataHeading(id)
 		monitor.write("Name:")
 		monitor.setCursorPos(26, yPos)
 		monitor.write("X - Y - Z:")
-		monitor.setCursorPos(41, yPos)
+		monitor.setCursorPos(45, yPos)
 		monitor.write("%")
 		monitor.setCursorPos(53, yPos)
 		monitor.write("Dimension:")
@@ -89,6 +89,7 @@ local function displayData(id)
 	local yPos = 8
 
 	if (id == 1) then
+		functions.debug("Displaying single.")
 		local data = parser.getSingleEntities()
 		if (next(data) ~= nil) then
 			for i = 1, limit do
@@ -96,7 +97,7 @@ local function displayData(id)
 				monitor.write(data[i].name)
 				monitor.setCursorPos(26, yPos)
 				monitor.write(data[i].position)
-				monitor.setCursorPos(41, yPos)
+				monitor.setCursorPos(45, yPos)
 				 
 				local percentage = tonumber(data[i].percent)
 				monitor.setTextColor(parser.getPercentColor(percentage))
@@ -116,6 +117,7 @@ local function displayData(id)
 		end
 	elseif (id == 2) then
 		-- id 2 = the chunk list
+		functions.debug("Displaying chunk.")
 		local data = parser.getChunks()
 		if (next(data) ~= nil) then
 			for i = 1, limit do
@@ -143,6 +145,7 @@ local function displayData(id)
 		end
 	elseif (id == 3) then
 		-- id 3 = the type list
+		functions.debug("Displaying type.")
 		local data = parser.getEntityByTypes()
 		if (next(data) ~= nil) then
 			for i = 1, limit do
@@ -166,6 +169,7 @@ local function displayData(id)
 		end
 	elseif (id == 4) then
 		-- id 4 = the call list
+		functions.debug("Displaying call.")
 		local data = parser.getAverageCalls()
 		if (next(data) ~= nil) then
 			for i = 1, limit do
@@ -226,9 +230,7 @@ local slideLoop = function()
 	end
 end
 
-local function init()
-	functions.debug("Current server id is: ", dimId)
-	
+local function init()	
 	local monFound, monDir = functions.locatePeripheral("monitor")
 	if (monFound == true) then
 		monitor = peripheral.wrap(monDir)
