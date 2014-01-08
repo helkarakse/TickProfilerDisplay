@@ -226,9 +226,7 @@ local slideLoop = function()
 	end
 end
 
-local function init()
-	functions.debug("Current server id is: ", dimId)
-	
+local function init()	
 	local monFound, monDir = functions.locatePeripheral("monitor")
 	if (monFound == true) then
 		monitor = peripheral.wrap(monDir)
