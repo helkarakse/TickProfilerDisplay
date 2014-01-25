@@ -203,7 +203,7 @@ local dataRefreshLoop = function()
 			drawMain(mainX, mainY, mainWidth, mainHeight)
 			drawHeader(mainX, mainY)
 			drawTps(mainX, mainY)
-			drawSanta(mainX + 10, mainY - 1)
+			--drawSanta(mainX + 10, mainY - 1)
 			drawData()
 		else
 			functions.debug("Failed to retrieve data from remote server.")
@@ -222,7 +222,7 @@ local clockRefreshLoop = function()
 end
 
 local function init()
-	local hasBridge, bridgeDir = functions.locatePeripheral("glassesbridge")
+	local hasBridge, bridgeDir = functions.locatePeripheral("openperipheral_glassesbridge")
 	if (hasBridge ~= true) then
 		functions.debug("Terminal glasses bridge peripheral required.")
 	else
@@ -246,7 +246,7 @@ local function init()
 	drawMain(mainX, mainY, mainWidth, mainHeight)
 	drawHeader(mainX, mainY)
 	drawTps(mainX, mainY)
-	drawSanta(mainX + 10, mainY - 1)
+	--drawSanta(mainX + 10, mainY - 1)
 	drawData()
 
 	parallel.waitForAll(dataRefreshLoop, clockRefreshLoop)

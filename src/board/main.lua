@@ -35,7 +35,7 @@ local function displayHeader()
 	
 	monitor.clear()
 	monitor.setCursorPos(2, 1)
-	monitor.write("OTE-Gaming Tickboard of Shame")
+	monitor.write("OTE-Gaming Tickboard of Shame - RR" .. data.dimId)
 	monitor.setCursorPos(2, 2)
 	monitor.write("Powered by Helk & Shot")
 	monitor.setCursorPos(2, 4)
@@ -250,7 +250,6 @@ local refreshListener = function()
 end
 
 local function init()
-	functions.debug("Current server id is: ", dimId)
 	local data = http.get(data.dataUrl)
 	if (data) then
 		functions.debug("Data retrieved from remote server.")
