@@ -222,7 +222,7 @@ local clockRefreshLoop = function()
 end
 
 local function init()
-	local hasBridge, bridgeDir = functions.locatePeripheral("glassesbridge")
+	local hasBridge, bridgeDir = functions.locatePeripheral("openperipheral_glassesbridge")
 	if (hasBridge ~= true) then
 		functions.debug("Terminal glasses bridge peripheral required.")
 	else
