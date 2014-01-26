@@ -45,12 +45,12 @@ local function drawMain(inputX, inputY, inputWidth, inputHeight)
 	mainBox = bridge.addBox(inputX, inputY, inputWidth, inputHeight, colors.headerEnd, opacity)
 	header = bridge.addGradientBox(inputX - 5, inputY, inputWidth, headerHeight, colors.headerEnd, 0, colors.headerStart, 1, 2)
 	edgeBox = bridge.addGradientBox(inputX, inputY + inputHeight - 2, inputWidth, 2, colors.headerStart, 1, colors.headerEnd, 0, 2)
-	header.setZIndex(2)
+--	header.setZIndex(2)
 end
 
 local function drawHeader(inputX, inputY)
 	headerText = bridge.addText(inputX, inputY + 1, "OTE Glass - Tick Lite (c) Helk & Shot 2013", colors.white)
-	headerText.setZIndex(3)
+--	headerText.setZIndex(3)
 	headerText.setScale(size.small)
 end
 
