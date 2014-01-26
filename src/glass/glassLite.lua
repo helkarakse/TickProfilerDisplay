@@ -60,15 +60,15 @@ local function drawTps(inputX, inputY)
 	
 	local tpsLabelText = bridge.addText(mainX + mainWidth - 55, mainY + mainHeight - tpsHeight, "TPS:", colors.white)
 	tpsLabelText.setScale(size.normal)
-	tpsLabelText.setZIndex(4)
+--	tpsLabelText.setZIndex(4)
 	
 	tpsText = bridge.addText(mainX + mainWidth - 30, mainY + mainHeight - tpsHeight, tps, parser.getTpsHexColor(tps))
 	tpsText.setScale(size.normal)
-	tpsText.setZIndex(4)
+--	tpsText.setZIndex(4)
 	
 	clockText = bridge.addText(mainX + mainWidth - 30, inputY + 1, textutils.formatTime(os.time(), false), colors.white)
 	clockText.setScale(size.small)
-	clockText.setZIndex(4)
+--	clockText.setZIndex(4)
 end
 
 local function drawEntities(inputX, inputY)
@@ -88,7 +88,7 @@ local function drawEntities(inputX, inputY)
 	end
 	
 	for i = 1, #entitiesArray do
-		entitiesArray[i].setZIndex(5)
+--		entitiesArray[i].setZIndex(5)
 	end
 end
 
@@ -109,7 +109,7 @@ local function drawChunks(inputX, inputY)
 	end
 	
 	for i = 1, #chunksArray do
-		chunksArray[i].setZIndex(5)
+--		chunksArray[i].setZIndex(5)
 	end
 end
 
@@ -128,7 +128,7 @@ local function drawTypes(inputX, inputY)
 	end
 	
 	for i = 1, #typesArray do
-		typesArray[i].setZIndex(5)
+--		typesArray[i].setZIndex(5)
 	end
 end
 
@@ -147,7 +147,7 @@ local function drawCalls(inputX, inputY)
 	end
 	
 	for i = 1, #callsArray do
-		callsArray[i].setZIndex(5)
+--		callsArray[i].setZIndex(5)
 	end
 end
 
@@ -156,7 +156,7 @@ local function drawUpdated(inputX, inputY)
 	
 	local lastUpdated = bridge.addText(inputX, inputY, "Last Updated: " .. data, colors.white)
 	lastUpdated.setScale(size.small)
-	lastUpdated.setZIndex(5)
+--	lastUpdated.setZIndex(5)
 end
 
 local function drawSanta(inputX, inputY)
@@ -176,7 +176,7 @@ local function drawSanta(inputX, inputY)
 	
 	--set zindexes
 	for key, value in pairs(boxArray) do
-		value.setZIndex(6)
+--		value.setZIndex(6)
 	end
 end
 
