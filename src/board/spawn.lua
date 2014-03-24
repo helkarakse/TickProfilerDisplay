@@ -92,7 +92,7 @@ local function displayData(id)
 		functions.debug("Displaying single.")
 		local data = parser.getSingleEntities()
 		if (next(data) ~= nil) then
-			for i = 1, limit do
+			for i = 1, functions.getTableCount(data) do
 				monitor.setCursorPos(2, yPos)
 				monitor.write(data[i].name)
 				monitor.setCursorPos(26, yPos)
@@ -120,7 +120,7 @@ local function displayData(id)
 		functions.debug("Displaying chunk.")
 		local data = parser.getChunks()
 		if (next(data) ~= nil) then
-			for i = 1, limit do
+			for i = 1, functions.getTableCount(data) do
 				monitor.setCursorPos(2, yPos)
 				monitor.write(data[i].positionX .. ", " .. data[i].positionZ)
 				monitor.setCursorPos(26, yPos)
@@ -148,7 +148,7 @@ local function displayData(id)
 		functions.debug("Displaying type.")
 		local data = parser.getEntityByTypes()
 		if (next(data) ~= nil) then
-			for i = 1, limit do
+			for i = 1, functions.getTableCount(data) do
 				monitor.setCursorPos(2, yPos)
 				monitor.write(data[i].type)
 				monitor.setCursorPos(35, yPos)
@@ -172,7 +172,7 @@ local function displayData(id)
 		functions.debug("Displaying call.")
 		local data = parser.getAverageCalls()
 		if (next(data) ~= nil) then
-			for i = 1, limit do
+			for i = 1, functions.getTableCount(data) do
 				monitor.setCursorPos(2, yPos)
 				monitor.write(data[i].name)
 				monitor.setCursorPos(35, yPos)
